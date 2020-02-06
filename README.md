@@ -4,7 +4,7 @@ Search engine - angular + unsplash
 
 ## Install
 
-Just `git clone` and `ng serve`(remember about a angular cli)
+Just `git clone` and `npm i`
 
 ## Development server
 
