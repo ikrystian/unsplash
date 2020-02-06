@@ -27,6 +27,11 @@
           <i class="actions__icon material-icons" aria-hidden="true" *ngIf="darkMode">brightness_7</i>
         </button>
       </li>
+      <li class="actions__item">
+        <button (click)="advancedSettings = !advancedSettings" title="advanced settings" class="actions__button button">
+          <i class="material-icons" aria-hidden="true">settings</i>
+        </button>
+      </li>
       <li class="actions__item" *ngIf="res">
         <button (click)="gridView = !gridView" title="Change grid layout" class="actions__button button">
           <i class="actions__icon material-icons" aria-hidden="true" *ngIf="gridView">list_view</i>
@@ -34,6 +39,11 @@
         </button>
       </li>
     </ul>
+  </div>
+  <div class="advanced-options" *ngIf="advancedSettings">
+    <div class="container">
+      It is just a demo app, if u want to know more just contact me at bpcoders@gmail.com
+    </div>
   </div>
 </header>
 <section class="welcome-page" *ngIf="!res">

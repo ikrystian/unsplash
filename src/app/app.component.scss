@@ -70,10 +70,12 @@ $wide: 1680px;
 
 .header {
   background-color: var(--header-background-color);
+  border-bottom: 1px solid var(--primary-border-color);
   min-height: 56px;
   display: flex;
-  align-items: center;
-  border-bottom: 1px solid var(--primary-border-color);
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
 
   &__container {
     display: flex;
@@ -537,6 +539,14 @@ button img {
     margin-bottom: 2rem;
     text-align: center;
   }
+}
+
+.advanced-options {
+  position: relative;
+  background-color: var(--header-background-color);
+  padding: 0.5rem 0;
+  transform: translateY(0);
+  transition: transform 0.2s ease-in-out;
 }
 
 @keyframes rotate-animation {

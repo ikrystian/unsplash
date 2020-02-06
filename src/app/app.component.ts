@@ -22,6 +22,8 @@ export class AppComponent implements OnInit {
   page;
   itemsPerPage;
   options;
+  advancedSettings = true;
+  disableImages = false;
   @HostBinding('class.dark-mode') darkMode = false;
 
   constructor(private formBuilder: FormBuilder) {
