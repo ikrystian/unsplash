@@ -2,16 +2,18 @@ import {Component, OnInit} from '@angular/core';
 import Unsplash, {toJson} from 'unsplash-js';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import * as moment from 'moment';
+import { Image } from './image/image';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
+
 export class AppComponent implements OnInit {
   unsplash = new Unsplash({accessKey: '4ae61b3dedfb954680f2c13f5f43370d6bd3e6cc1adab125577ab3a9dc070f3e'});
   res: any;
-  images: [];
+  images: Image[];
   searchForm: FormGroup;
   loading = false;
   gridView = false;

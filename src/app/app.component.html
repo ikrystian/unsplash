@@ -47,13 +47,13 @@
 
   <section class="image-list-view container" [ngClass]="{'image-list-view--grid' : gridView}" *ngIf="images">
     <ng-container *ngFor="let image of images">
-      <article class="search-item" (click)="goToImageWebsite(image.links.html)">
-        <div class="search-item__image-wrapper">
+      <article class="search-item" [ngClass]="{'search-item--grid' : gridView}" (click)="goToImageWebsite(image.links.html)">
+        <div class="search-item__image-wrapper" [ngClass]="{'search-item__image-wrapper--grid' : gridView}">
           <img
             src="{{image.urls.thumb}}"
             alt="" class="search-item__thumbnail">
         </div>
-        <div class="search-item__details">
+        <div class="search-item__details" [ngClass]="{'search-item__details--grid' : gridView}">
 
           <dl class="search-item__list">
             <ng-container *ngIf="!gridView">

@@ -46,7 +46,7 @@
       cursor: pointer;
 
       &:focus,
-      &:active{
+      &:active {
         border-color: var(--primary-color);
       }
     }
@@ -95,6 +95,7 @@
     border: 1px solid #c3c3c3;
     border-right: none;
     color: #c3c3c3;
+
     &:focus {
       outline: none;
       border-color: var(--primary-color);
@@ -163,14 +164,31 @@ button img {
   display: flex;
   padding: 0.5rem;
   position: relative;
+  height: 100%;
 
   &:hover {
     background-color: #dedede;
     cursor: pointer;
+
+    .search-item__thumbnail {
+      transform: scale(1.4);
+    }
   }
 
   &:not(:last-of-type) {
     margin-bottom: 0.5rem;
+    border-bottom: 1px solid var(--primary-border-color);
+  }
+
+  &--grid {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 0 !important;
+    margin-bottom: 1rem !important;
+    &:hover {
+      background-color: transparent;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23)
+    }
   }
 
   &__image-wrapper {
@@ -181,11 +199,19 @@ button img {
     align-items: center;
     justify-content: center;
     background-color: #fff;
+    overflow: hidden;
+
+    &--grid {
+      width: 100%;
+      height: 250px;
+      margin-bottom: 0.5rem;
+    }
   }
 
   &__thumbnail {
     object-fit: contain;
     max-height: 100%;
+    transition: transform 3s ease-in-out;
   }
 
   &__details {
@@ -194,6 +220,10 @@ button img {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+
+    &--grid {
+      padding: 0 0 44px 0;
+    }
   }
 
   &__button {
@@ -208,6 +238,11 @@ button img {
     text-decoration: none;
     background-color: var(--primary-color);
     font-size: 0.875em;
+
+    &:hover,
+    &:focus {
+      opacity: 0.5;
+    }
   }
 
   &__status {
@@ -237,6 +272,7 @@ button img {
       height: 0.3rem;
       content: '';
     }
+
     a:focus {
       color: red;
     }
@@ -254,7 +290,7 @@ button img {
 
   &__description {
     font-size: 0.875em;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
   }
 
 }
