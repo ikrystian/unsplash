@@ -3,6 +3,8 @@ import Unsplash, {toJson} from 'unsplash-js';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import * as moment from 'moment';
 import { Image } from './image/image';
+import {ImageService} from './image/image.service';
+import {observable} from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -18,10 +20,10 @@ export class AppComponent implements OnInit {
   loading = false;
   gridView = false;
   expiredNewLabelDate = moment().subtract(14, 'days').format();
-
-  constructor(private formBuilder: FormBuilder) {
-    this.getImages('office', 'portrait');
-    console.log(this.expiredNewLabelDate);
+  page;
+  constructor(private formBuilder: FormBuilder, private imageService: ImageService ) {
+    this.getImages('kitty', 'portrait');
+    this.page = 1;
   }
 
   ngOnInit() {
@@ -51,17 +53,34 @@ export class AppComponent implements OnInit {
     window.location.href = websiteUrl;
   }
 
-  getImages(searchText, orientation) {
+  getImages(searchText, orientation, page = this.page) {
     this.images = [];
     this.loading = true;
-    this.unsplash.search.photos(searchText, 1, 12, {orientation})
+    this.unsplash.search.photos(searchText, page, 12, {orientation})
       .then(toJson)
       .then(json => {
-          console.log(json.results);
           this.res = json;
           this.images = json.results;
           this.loading = false;
       });
+  }
+
+  gotToPage(page) {
+    this.page = page;
+    console.log(this.page);
+    this.images = [];
+    this.loading = true;
+    this.unsplash.search.photos('kitty', this.page, 12, {orientation: 'landscape'})
+      .then(toJson)
+      .then(json => {
+        this.res = json;
+        this.images = json.results;
+        this.loading = false;
+      });
+  }
+
+  scrollToTop(): void {
+    window.scroll(0, 0);
   }
 
 }

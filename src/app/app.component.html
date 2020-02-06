@@ -43,9 +43,14 @@
     <section class="statistic">
       Total items: {{ res.total }}
     </section>
+    <div class="pagination">
+      <button [disabled]="page == 1"  (click)="gotToPage(page - 1)"><i class="material-icons">arrow_back_ios</i></button>
+      <span>Page <strong>{{ page }}</strong> from: <strong>{{res.total_pages}}</strong></span>
+      <button (click)="gotToPage(page + 1)" [disabled]="page >= res.total_pages"><i class="material-icons">arrow_forward_ios</i></button>
+    </div>
   </section>
 
-  <section class="image-list-view container" [ngClass]="{'image-list-view--grid' : gridView}" *ngIf="images">
+  <section class="image-list-view container" [ngClass]="{'image-list-view--grid' : gridView}">
     <ng-container *ngFor="let image of images">
       <article class="search-item" [ngClass]="{'search-item--grid' : gridView}" (click)="goToImageWebsite(image.links.html)">
         <div class="search-item__image-wrapper" [ngClass]="{'search-item__image-wrapper--grid' : gridView}">
@@ -91,3 +96,9 @@
 
   </section>
 </div>
+
+<button class="scroll-to-top" (click)="scrollToTop()" title="Scroll to top">
+  <i class="material-icons">
+    keyboard_arrow_up
+  </i>
+</button>

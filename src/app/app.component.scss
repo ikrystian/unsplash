@@ -66,7 +66,7 @@
 }
 
 .container {
-  width: 932px;
+  width: 1160px;
   margin: auto;
   max-width: 100%;
 
@@ -290,9 +290,27 @@ button img {
 
   &__description {
     font-size: 0.875em;
-    margin-bottom: 0.5rem;
   }
+}
 
+.scroll-to-top {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    background-color: rgba(0, 0, 0, 0.2);
+  }
 }
 
 @keyframes rotate-animation {
