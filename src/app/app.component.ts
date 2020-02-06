@@ -20,8 +20,16 @@ export class AppComponent implements OnInit {
   gridView = false;
   expiredNewLabelDate = moment().subtract(14, 'days').format();
   page;
+  itemsPerPage;
+  options;
   constructor(private formBuilder: FormBuilder) {
     this.page = 1;
+    this.itemsPerPage = 1;
+    this.options = [
+      {name: 'portrait', value: 'portrait'},
+      {name: 'landscape', value: 'landscape'},
+      {name: 'squarish', value: 'squarish'},
+    ];
   }
 
   ngOnInit() {
@@ -29,14 +37,26 @@ export class AppComponent implements OnInit {
       searchText: '',
       orientation: 'portrait'
     });
+    if (localStorage.getItem('searchTerms')) {
+      const historyTerms = JSON.parse(localStorage.getItem('searchTerms'));
+      this.getImages(historyTerms.searchText, historyTerms.orientation);
+
+      this.searchForm = this.formBuilder.group({
+        searchText: historyTerms.searchText,
+        orientation: historyTerms.orientation
+      });
+
+    }
     this.onValueChanges();
   }
 
   onValueChanges(): void {
     this.searchForm.valueChanges.subscribe(val => {
       if (val.searchText) {
+        localStorage.setItem('searchTerms', JSON.stringify(val));
         this.getImages(val.searchText, val.orientation);
       } else {
+        localStorage.removeItem('searchTerms');
         this.res = null;
         this.images = [];
       }
@@ -54,7 +74,7 @@ export class AppComponent implements OnInit {
   getImages(searchText, orientation, page = this.page) {
     this.images = [];
     this.loading = true;
-    this.unsplash.search.photos(searchText, page, 12, {orientation})
+    this.unsplash.search.photos(searchText, page, this.itemsPerPage, {orientation})
       .then(toJson)
       .then(json => {
           this.res = json;
@@ -64,11 +84,12 @@ export class AppComponent implements OnInit {
   }
 
   gotToPage(page: number) {
+    const historyTerms = JSON.parse(localStorage.getItem('searchTerms'));
     this.page = page;
     console.log(this.page);
     this.images = [];
     this.loading = true;
-    this.unsplash.search.photos('kitty', this.page, 12, {orientation: 'landscape'})
+    this.unsplash.search.photos(historyTerms.searchText, this.page, this.itemsPerPage, {orientation: historyTerms.orientation})
       .then(toJson)
       .then(json => {
         this.res = json;

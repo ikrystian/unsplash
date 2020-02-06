@@ -47,6 +47,8 @@ $wide: 1680px;
     @include res(desktop) {
       flex-direction: row;
       align-items: center;
+      padding-left: 0;
+      padding-right: 0;
     }
   }
 }
@@ -132,13 +134,23 @@ $wide: 1680px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 0;
     font-size: 24px;
+    border: 1px solid var(--primary-border-color);
+
+    &:focus,
+    &:active {
+      border-color: var(--primary-color)
+    }
+
+    &:not(disabled) {
+      cursor: pointer;
+    }
   }
 
   span {
     margin-left: 0.5rem;
     margin-right: 0.5rem;
+    font-size: 0.875em;
   }
 }
 
@@ -173,7 +185,7 @@ $wide: 1680px;
 
   &__select {
     appearance: none;
-    width: 100px;
+    width: 140px;
     padding: 0 1rem;
     border: 1px solid #c3c3c3;
     cursor: pointer;
@@ -338,7 +350,8 @@ button img {
 
   &__label {
     color: #767676;
-    display: inline;
+    display: inline-block;
+    margin-right: 0.2rem;
   }
 
   &__value {
@@ -394,7 +407,29 @@ button img {
 }
 
 .welcome-page {
+  min-height: calc(100vh - 57px);
+  display: grid;
+  place-items: center;
+  padding: 2rem;
+  &__title {
+    text-align: center;
+    font-weight: 500;
+    strong {
+      font-weight: bold;
+      color: var(--primary-color);
+    }
+  }
+  svg {
+    max-width: 40vw;
+    max-height: 40vh;
+  }
 
+  span {
+    color: var(--primary-color);
+  }
+  h2 {
+    margin-bottom: 2rem;
+  }
 }
 
 @keyframes rotate-animation {
