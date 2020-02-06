@@ -19,7 +19,8 @@
       </li>
       <li class="actions__item">
         <button (click)="nightMode()" title="Change grid layout" class="actions__button">
-          <i class="actions__icon material-icons" aria-hidden="true">brightness_4</i>
+          <i class="actions__icon material-icons" aria-hidden="true" *ngIf="!darkMode">brightness_4</i>
+          <i class="actions__icon material-icons" aria-hidden="true" *ngIf="darkMode">brightness_7</i>
         </button>
       </li>
       <li class="actions__item" *ngIf="res">

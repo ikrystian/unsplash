@@ -29,12 +29,15 @@ $wide: 1680px;
     //550px;
   }
 }
+
 :host {
   display: block;
   color: var(--font-color);
   background-color: var(--body-background-color);
+  min-height: 100vh;
 
 }
+
 .header {
   background-color: var(--header-background-color);
   min-height: 56px;
@@ -126,7 +129,7 @@ $wide: 1680px;
 }
 
 .toolbar {
-  background-color: #fff;
+  background-color: var(--content-background);
   padding: 1rem;
   display: flex;
   flex-direction: column;
@@ -157,6 +160,7 @@ $wide: 1680px;
   @include res(tab) {
     justify-content: flex-start;
   }
+
   &__button {
     width: 36px;
     height: 36px;
@@ -233,7 +237,8 @@ $wide: 1680px;
   margin: auto;
   max-width: 100%;
   grid-template-columns: 1fr;
-  background-color: #fff;
+  background-color: var(--content-background);
+
   padding: 0 1rem 1rem 1rem;
 
   &:empty {
@@ -286,8 +291,9 @@ button img {
   @include res(tab) {
     flex-direction: row;
   }
+
   &:hover {
-    background-color: #dedede;
+    background-color: var(--search-item-hover-background);
     cursor: pointer;
 
     .search-item__thumbnail {
@@ -328,6 +334,7 @@ button img {
       width: 128px;
       height: 128px;
     }
+
     .material-icons {
       position: absolute;
       top: 50%;
@@ -413,8 +420,7 @@ button img {
   &__value {
     display: inline;
 
-    color: #222;
-
+    color: var(--search-item-value-color);
 
     &::after {
       display: block;

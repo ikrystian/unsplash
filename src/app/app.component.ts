@@ -22,11 +22,11 @@ export class AppComponent implements OnInit {
   page;
   itemsPerPage;
   options;
-  @HostBinding('class.dark-mode') someField = false;
+  @HostBinding('class.dark-mode') darkMode = false;
 
   constructor(private formBuilder: FormBuilder) {
     this.page = 1;
-    this.itemsPerPage = 1;
+    this.itemsPerPage = 5;
     this.options = [
       {name: 'portrait', value: 'portrait'},
       {name: 'landscape', value: 'landscape'},
@@ -66,17 +66,18 @@ export class AppComponent implements OnInit {
   }
 
   nightMode() {
-    this.someField = !this.someField;
+    this.darkMode = !this.darkMode;
   }
 
   goToImageWebsite(websiteUrl) {
     window.location.href = websiteUrl;
   }
 
-  getImages(searchText, orientation, page = this.page) {
+  getImages(searchText, orientation) {
+    this.page = 1;
     this.images = [];
     this.loading = true;
-    this.unsplash.search.photos(searchText, page, this.itemsPerPage, {orientation})
+    this.unsplash.search.photos(searchText, this.page, this.itemsPerPage, {orientation})
       .then(toJson)
       .then(json => {
           this.res = json;
