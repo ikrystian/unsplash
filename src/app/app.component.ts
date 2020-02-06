@@ -3,7 +3,6 @@ import Unsplash, {toJson} from 'unsplash-js';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import * as moment from 'moment';
 import { Image } from './image/image';
-import {ImageService} from './image/image.service';
 import {observable} from 'rxjs';
 
 @Component({
@@ -21,8 +20,7 @@ export class AppComponent implements OnInit {
   gridView = false;
   expiredNewLabelDate = moment().subtract(14, 'days').format();
   page;
-  constructor(private formBuilder: FormBuilder, private imageService: ImageService ) {
-    this.getImages('kitty', 'portrait');
+  constructor(private formBuilder: FormBuilder) {
     this.page = 1;
   }
 
@@ -65,7 +63,7 @@ export class AppComponent implements OnInit {
       });
   }
 
-  gotToPage(page) {
+  gotToPage(page: number) {
     this.page = page;
     console.log(this.page);
     this.images = [];

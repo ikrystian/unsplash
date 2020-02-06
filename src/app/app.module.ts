@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { ImageService } from './image/image.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MomentModule } from 'ngx-moment';
@@ -17,7 +16,7 @@ import { MomentModule } from 'ngx-moment';
     ReactiveFormsModule,
     MomentModule
   ],
-  providers: [ImageService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
