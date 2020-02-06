@@ -1,11 +1,122 @@
 .header {
   background-color: var(--header-background-color);
-  height: 80px;
+  height: 56px;
   display: flex;
   align-items: center;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid var(--primary-border-color);
+  position: fixed;
+  width: 100%;
+  top: 0;
+
+  &__container {
+    display: flex;
+    width: 1160px;
+    margin: auto;
+    max-width: 100%;
+    justify-content: space-between;
+  }
+}
+
+.actions {
+  display: flex;
+  list-style: none;
+
+  &__item {
+    margin-left: 0.5rem;
+    display: flex;
+    align-items: center;
+  }
+
+
+  &__button {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid var(--primary-border-color);
+    border-radius: 0;
+
+    i {
+      width: 24px;
+    }
+
+    &:not(:disabled) {
+      cursor: pointer;
+
+      &:focus,
+      &:active{
+        border-color: var(--primary-color);
+      }
+    }
+  }
+
+  &__loader {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: default;
+    color: var(--primary-color);
+    animation: rotate-animation 1.5s infinite normal;
+    user-select: none;
+  }
+}
+
+.container {
+  width: 1160px;
+  margin: auto;
+  max-width: 100%;
+
+  &--flex {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.toolbar {
+  background-color: #fff;
+  padding: 1rem 1rem 0 1rem;
+}
+
+.search-form {
+  width: 50%;
+  display: flex;
+
+  &__input {
+    flex: 1;
+    box-sizing: border-box;
+    height: 40px;
+    margin: 0;
+    padding: 0 0.5rem;
+    line-height: 40px;
+    border: 1px solid #c3c3c3;
+    border-right: none;
+    color: #c3c3c3;
+    &:focus {
+      outline: none;
+      border-color: var(--primary-color);
+
+      + select {
+        border-left-color: var(--primary-color);
+      }
+    }
+  }
+
+  &__select {
+    appearance: none;
+    width: 100px;
+    padding: 0 1rem;
+    border: 1px solid #c3c3c3;
+    cursor: pointer;
+    color: #222;
+
+    &:focus {
+      outline: none;
+      border-color: var(--primary-color);
+    }
+  }
 }
 
 .image-list-view {
@@ -29,10 +140,26 @@
 
 .content {
   padding: 1rem;
+  margin-top: 56px;
 }
-
 
 button img {
   width: 32px;
   height: 32px;
+}
+
+.hide-for-user {
+  width: 0;
+  height: 0;
+  display: block;
+  overflow: hidden;
+  position: fixed;
+  left: 0;
+  top: 0;
+}
+
+@keyframes rotate-animation {
+  100% {
+    transform: rotate(360deg)
+  }
 }

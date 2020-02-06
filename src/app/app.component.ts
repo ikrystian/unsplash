@@ -23,14 +23,22 @@ export class AppComponent implements OnInit {
       searchText: '',
       orientation: 'portrait'
     });
-
     this.onValueChanges();
   }
 
   onValueChanges(): void {
     this.searchForm.valueChanges.subscribe(val => {
-      (val.searchText.length > 2) ? this.getImages(val.searchText, val.orientation) : false;
+      if (val.searchText) {
+        this.getImages(val.searchText, val.orientation);
+      } else {
+        this.res = null;
+        this.images = [];
+      }
     });
+  }
+
+  nightMode() {
+
   }
 
   getImages(searchText, orientation) {
@@ -39,10 +47,10 @@ export class AppComponent implements OnInit {
     this.unsplash.search.photos(searchText, 1, 12, {orientation})
       .then(toJson)
       .then(json => {
-        console.log(json);
-        this.res = json;
-        this.images = json.results;
-        this.loading = false;
+          this.res = json;
+          this.images = json.results;
+          this.loading = false;
       });
   }
+
 }

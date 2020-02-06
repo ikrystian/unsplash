@@ -3,12 +3,15 @@
 :root {
   --body-background-color: #eceff1;
   --header-background-color: #fff;
+  --primary-color: #ff4858;
+  --primary-border-color: #ddd;
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  outline: none;
 }
 
 body {

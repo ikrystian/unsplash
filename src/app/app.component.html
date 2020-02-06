@@ -1,29 +1,54 @@
 <header class="header">
-<!--  <h1>MAUSE <span>Most Awesome Unsplash Search Engine</span></h1>-->
-  <form action="" class="search-form" [formGroup]="searchForm" autocomplete="off">
-    <input autofocuss type="search" id="search-text" class="search-form__input" placeholder="eg. puppies (more than 2 letters)" formControlName="searchText">
-    <select name="orientation" id="" formControlName="orientation">
-      <option value="portrait" >portrait</option>
-      <option value="landscape" >landscape</option>
-    </select>
-  </form>
+  <div class="header__container">
+    <!--  <h1>MAUSE <span>Most Awesome Unsplash Search Engine</span></h1>-->
+    <form action="" class="search-form" [formGroup]="searchForm" autocomplete="off">
+      <input autofocuss required type="search" id="search-text" class="search-form__input"
+             placeholder="eg. puppies (more than 2 letters)" formControlName="searchText">
+      <select class="search-form__select" name="orientation" id="" formControlName="orientation">
+        <option value="portrait" [defaultSelected]="true">portrait</option>
+        <option value="landscape">landscape</option>
+      </select>
+    </form>
+
+    <ul class="actions">
+      <li class="actions__item" *ngIf="loading">
+        <span class="actions__loader" role="alert">
+          <span class="hide-for-user">Loading, please wait</span>
+          <i class="material-icons" aria-hidden="true">
+            autorenew
+          </i>
+          </span>
+      </li>
+      <li class="actions__item">
+        <button (click)="nightMode()" title="Change grid layout" class="actions__button">
+          <i class="actions__icon material-icons" aria-hidden="true">brightness_4</i>
+        </button>
+      </li>
+      <li class="actions__item">
+        <button (click)="gridView = !gridView" title="Change grid layout" class="actions__button">
+          <i class="actions__icon material-icons" aria-hidden="true" *ngIf="gridView">list_view</i>
+          <i class="actions__icon material-icons" aria-hidden="true" *ngIf="!gridView">view_module</i>
+        </button>
+      </li>
+    </ul>
+  </div>
 </header>
-<section class="statistic" *ngIf="res">
-  Total items: {{ res.total }}
-</section>
+
 
 <section class="content">
 
-  <div class="loading" *ngIf="loading">We are searching photos for you, please wait dude</div>
-  <section class="toolbar">
-    <button (click)="gridView = !gridView">
-      <img src="https://assets.allegrostatic.com/metrum/icon/four-squares-57ffc0178b.svg" alt="">
-    </button>
+
+  <section class="toolbar container" *ngIf="res">
+    <section class="statistic">
+      Total items: {{ res.total }}
+    </section>
   </section>
-  <section class="image-list-view" [ngClass]="{'image-list-view--grid' : gridView}">
+  <section class="image-list-view container" [ngClass]="{'image-list-view--grid' : gridView}">
     <article class="search-item">
       <div>
-        <img src="https://images.unsplash.com/photo-1570126618953-d437176e8c79?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&ixid=eyJhcHBfaWQiOjExNDMzMX0" alt="">
+        <img
+          src="https://images.unsplash.com/photo-1570126618953-d437176e8c79?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&ixid=eyJhcHBfaWQiOjExNDMzMX0"
+          alt="">
       </div>
       <div>
 
@@ -32,7 +57,9 @@
 
     <article class="search-item">
       <div>
-        <img src="https://images.unsplash.com/photo-1570126618953-d437176e8c79?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&ixid=eyJhcHBfaWQiOjExNDMzMX0" alt="">
+        <img
+          src="https://images.unsplash.com/photo-1570126618953-d437176e8c79?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&ixid=eyJhcHBfaWQiOjExNDMzMX0"
+          alt="">
       </div>
       <div>
 
@@ -41,7 +68,9 @@
 
     <article class="search-item">
       <div>
-        <img src="https://images.unsplash.com/photo-1570126618953-d437176e8c79?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&ixid=eyJhcHBfaWQiOjExNDMzMX0" alt="">
+        <img
+          src="https://images.unsplash.com/photo-1570126618953-d437176e8c79?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&ixid=eyJhcHBfaWQiOjExNDMzMX0"
+          alt="">
       </div>
       <div>
 
@@ -50,7 +79,9 @@
 
     <article class="search-item">
       <div>
-        <img src="https://images.unsplash.com/photo-1570126618953-d437176e8c79?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&ixid=eyJhcHBfaWQiOjExNDMzMX0" alt="">
+        <img
+          src="https://images.unsplash.com/photo-1570126618953-d437176e8c79?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&ixid=eyJhcHBfaWQiOjExNDMzMX0"
+          alt="">
       </div>
       <div>
 
@@ -59,7 +90,9 @@
 
     <article class="search-item">
       <div>
-        <img src="https://images.unsplash.com/photo-1570126618953-d437176e8c79?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&ixid=eyJhcHBfaWQiOjExNDMzMX0" alt="">
+        <img
+          src="https://images.unsplash.com/photo-1570126618953-d437176e8c79?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&ixid=eyJhcHBfaWQiOjExNDMzMX0"
+          alt="">
       </div>
       <div>
 
@@ -67,15 +100,15 @@
     </article>
   </section>
 
-<!--  <section class="image-list-view" *ngIf="images">-->
-<!--    <article class="search-item" *ngFor="let image of images">-->
-<!--      <div>-->
-<!--        <img src="{{image.urls.thumb}}" alt="">-->
-<!--      </div>-->
-<!--      <div>-->
+  <section class="image-list-view" *ngIf="images">
+    <article class="search-item" *ngFor="let image of images">
+      <div>
+        <img src="{{image.urls.thumb}}" alt="">
+      </div>
+      <div>
 
-<!--      </div>-->
-<!--    </article>-->
-<!--  </section>-->
+      </div>
+    </article>
+  </section>
 
 </section>
