@@ -29,7 +29,8 @@
       </li>
       <li class="actions__item">
         <button (click)="advancedSettings = !advancedSettings" title="advanced settings" class="actions__button button">
-          <i class="material-icons" aria-hidden="true">settings</i>
+          <i class="material-icons" aria-hidden="true" *ngIf="advancedSettings">settings</i>
+          <i class="material-icons" aria-hidden="true" *ngIf="!advancedSettings">settings_applications</i>
         </button>
       </li>
       <li class="actions__item" *ngIf="res">
@@ -158,10 +159,10 @@
         Total items: <strong>{{ res.total }}</strong>
       </section>
       <div class="pagination">
-        <button class="button" [disabled]="page == 1" (click)="gotToPage(page - 1)"><i
+        <button class="button" [disabled]="page == 1 || loading" (click)="gotToPage(page - 1)"><i
           class="material-icons">keyboard_arrow_left</i></button>
         <span>Page <strong>{{ page }}</strong> from: <strong>{{res.total_pages}}</strong></span>
-        <button class="button" (click)="gotToPage(page + 1)" [disabled]="page >= res.total_pages"><i
+        <button class="button" (click)="gotToPage(page + 1)" [disabled]="page >= res.total_pages || loading"><i
           class="material-icons">keyboard_arrow_right</i></button>
       </div>
     </ng-container>
@@ -227,3 +228,9 @@
     keyboard_arrow_up
   </i>
 </button>
+
+<footer class="footer">
+  <div class="container">
+    <p><strong>MAUSE</strong> - most awesome unsplash search engine</p>
+  </div>
+</footer>

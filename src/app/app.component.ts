@@ -22,13 +22,13 @@ export class AppComponent implements OnInit {
   page;
   itemsPerPage;
   options;
-  advancedSettings = true;
+  advancedSettings = false;
   disableImages = false;
   @HostBinding('class.dark-mode') darkMode = false;
 
   constructor(private formBuilder: FormBuilder) {
     this.page = 1;
-    this.itemsPerPage = 5;
+    this.itemsPerPage = 12;
     this.options = [
       {name: 'portrait', value: 'portrait'},
       {name: 'landscape', value: 'landscape'},

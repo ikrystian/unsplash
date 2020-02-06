@@ -1,6 +1,6 @@
 $small: 567px;
 $medium: 768px;
-$desktop: 1024px;
+$desktop: 1160px;
 $wide: 1680px;
 
 @mixin res($breakpoint) {
@@ -229,9 +229,9 @@ $wide: 1680px;
     appearance: none;
     width: 140px;
     padding: 0 1rem;
-    border: 1px solid #c3c3c3;
+    border: 1px solid var(--form-border-color);
     cursor: pointer;
-    color: #222;
+    color: var(--font-color);
     position: relative;
     z-index: 1;
     background-color: transparent;
@@ -270,9 +270,14 @@ $wide: 1680px;
   &--grid {
     grid-template-columns: 1fr;
 
-    @include res(tab) {
+    @include res(thone) {
       grid-template-columns: repeat(2, 1fr);
     }
+
+    @include res(tab) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
 
     @include res(desktop) {
       grid-template-columns: repeat(4, 1fr);
@@ -310,8 +315,9 @@ button img {
   padding: 0.5rem;
   position: relative;
   height: 100%;
+  transition: background-color 0.2s ease-in-out;
 
-  @include res(tab) {
+  @include res(phone) {
     flex-direction: row;
   }
 
@@ -352,7 +358,7 @@ button img {
     position: relative;
     margin-bottom: 0.5rem;
 
-    @include res(tab) {
+    @include res(phone) {
       width: 128px;
       height: 128px;
       margin-bottom: 0;
@@ -389,7 +395,7 @@ button img {
     flex-direction: column;
     justify-content: space-between;
 
-    @include res(tab) {
+    @include res(phone) {
       padding-right: 5rem;
       padding-bottom: 0;
     }
@@ -544,9 +550,21 @@ button img {
 .advanced-options {
   position: relative;
   background-color: var(--header-background-color);
-  padding: 0.5rem 0;
+  padding: 0.5rem;
   transform: translateY(0);
   transition: transform 0.2s ease-in-out;
+
+  @include res(desktop) {
+    padding: 0.5rem 0;
+  }
+}
+
+.footer {
+  background-color: #fff;
+  padding: 0.5rem;
+  font-size: 0.875em;
+  text-align: right;
+  border-top: 1px solid var(--primary-border-color)
 }
 
 @keyframes rotate-animation {
