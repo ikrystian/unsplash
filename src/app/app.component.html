@@ -1,13 +1,30 @@
 <header class="header">
-  <form action="" class="search-form">
-    <label for="search-text" class="search-form__label">Search image in unsplash.com</label>
-    <input type="search" id="search-text" class="search-form__input" placeholder="eg. puppies">
-
-    <label for="image-orientation" class="search-form__label">Image orientation</label>
-    <select name="" id="image-orientation">
-      <option value="">landscape</option>
-      <option value="">portrait</option>
-      <option value="">squarish</option>
+<!--  <h1>MAUSE <span>Most Awesome Unsplash Search Engine</span></h1>-->
+  <form action="" class="search-form" [formGroup]="searchForm" autocomplete="off">
+    <input autofocuss type="search" id="search-text" class="search-form__input" placeholder="eg. puppies (more than 2 letters)" formControlName="searchText">
+    <select name="orientation" id="" formControlName="orientation">
+      <option value="portrait" >portrait</option>
+      <option value="landscape" >landscape</option>
     </select>
   </form>
 </header>
+<section class="statistic" *ngIf="res">
+  Total items: {{ res.total }}
+</section>
+
+<section class="content">
+
+  <div class="loading" *ngIf="loading">We are searching photos for you, please wait dude</div>
+
+  <section class="image-list-view" *ngIf="images">
+    <article class="search-item" *ngFor="let image of images">
+      <div>
+        <img src="{{image.urls.thumb}}" alt="">
+      </div>
+      <div>
+
+      </div>
+    </article>
+  </section>
+
+</section>
