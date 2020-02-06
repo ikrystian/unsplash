@@ -1,12 +1,9 @@
 .header {
   background-color: var(--header-background-color);
-  height: 56px;
+  min-height: 56px;
   display: flex;
   align-items: center;
   border-bottom: 1px solid var(--primary-border-color);
-  position: fixed;
-  width: 100%;
-  top: 0;
 
   &__container {
     display: flex;
@@ -14,12 +11,16 @@
     margin: auto;
     max-width: 100%;
     justify-content: space-between;
+    flex-direction: column-reverse;
+    align-items: flex-end;
+    padding: 0.5em;
   }
 }
 
 .actions {
   display: flex;
   list-style: none;
+  margin-bottom: 0.5rem;
 
   &__item {
     margin-left: 0.5rem;
@@ -65,7 +66,7 @@
 }
 
 .container {
-  width: 1160px;
+  width: 932px;
   margin: auto;
   max-width: 100%;
 
@@ -81,8 +82,8 @@
 }
 
 .search-form {
-  width: 50%;
   display: flex;
+  width: 100%;
 
   &__input {
     flex: 1;
@@ -156,6 +157,106 @@ button img {
   position: fixed;
   left: 0;
   top: 0;
+}
+
+.search-item {
+  display: flex;
+  padding: 0.5rem;
+  position: relative;
+
+  &:hover {
+    background-color: #dedede;
+    cursor: pointer;
+  }
+
+  &:not(:last-of-type) {
+    margin-bottom: 0.5rem;
+  }
+
+  &__image-wrapper {
+    min-width: 128px;
+    width: 128px;
+    height: 128px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+  }
+
+  &__thumbnail {
+    object-fit: contain;
+    max-height: 100%;
+  }
+
+  &__details {
+    padding-left: 1rem;
+    padding-right: 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  &__button {
+    position: absolute;
+    right: 0.5rem;
+    bottom: 0.5rem;
+    display: inline-block;
+    text-transform: uppercase;
+    color: #fff;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    background-color: var(--primary-color);
+    font-size: 0.875em;
+  }
+
+  &__status {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+
+  }
+
+  &__list {
+    font-size: 0.875em;
+  }
+
+  &__label {
+    color: #767676;
+    display: inline;
+  }
+
+  &__value {
+    display: inline;
+
+    color: #222;
+
+
+    &::after {
+      display: block;
+      height: 0.3rem;
+      content: '';
+    }
+    a:focus {
+      color: red;
+    }
+  }
+
+  &__link {
+    color: var(--primary-color);
+    text-decoration: none;
+
+    &:hover,
+    &:focus {
+      text-decoration: underline;
+    }
+  }
+
+  &__description {
+    font-size: 0.875em;
+    margin-bottom: 1rem;
+  }
+
 }
 
 @keyframes rotate-animation {

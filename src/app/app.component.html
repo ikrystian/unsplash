@@ -7,6 +7,7 @@
       <select class="search-form__select" name="orientation" id="" formControlName="orientation">
         <option value="portrait" [defaultSelected]="true">portrait</option>
         <option value="landscape">landscape</option>
+        <option value="squarish">squarish</option>
       </select>
     </form>
 
@@ -35,7 +36,7 @@
 </header>
 
 
-<section class="content">
+<div class="content">
 
 
   <section class="toolbar container" *ngIf="res">
@@ -43,72 +44,50 @@
       Total items: {{ res.total }}
     </section>
   </section>
-  <section class="image-list-view container" [ngClass]="{'image-list-view--grid' : gridView}">
-    <article class="search-item">
-      <div>
-        <img
-          src="https://images.unsplash.com/photo-1570126618953-d437176e8c79?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&ixid=eyJhcHBfaWQiOjExNDMzMX0"
-          alt="">
-      </div>
-      <div>
 
-      </div>
-    </article>
+  <section class="image-list-view container" [ngClass]="{'image-list-view--grid' : gridView}" *ngIf="images">
+    <ng-container *ngFor="let image of images">
+      <article class="search-item" (click)="goToImageWebsite(image.links.html)">
+        <div class="search-item__image-wrapper">
+          <img
+            src="{{image.urls.thumb}}"
+            alt="" class="search-item__thumbnail">
+        </div>
+        <div class="search-item__details">
 
-    <article class="search-item">
-      <div>
-        <img
-          src="https://images.unsplash.com/photo-1570126618953-d437176e8c79?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&ixid=eyJhcHBfaWQiOjExNDMzMX0"
-          alt="">
-      </div>
-      <div>
+          <dl class="search-item__list">
+            <ng-container *ngIf="!gridView">
 
-      </div>
-    </article>
+              <dt class="search-item__label">Photo id: </dt>
+              <dd class="search-item__value"> {{ image.id }}</dd>
 
-    <article class="search-item">
-      <div>
-        <img
-          src="https://images.unsplash.com/photo-1570126618953-d437176e8c79?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&ixid=eyJhcHBfaWQiOjExNDMzMX0"
-          alt="">
-      </div>
-      <div>
+              <dt class="search-item__label">Date of publication: </dt>
+              <dd class="search-item__value"> {{image.created_at | amLocal | amDateFormat: 'YYYY-MM-DD HH:mm'}}</dd>
 
-      </div>
-    </article>
+            </ng-container>
 
-    <article class="search-item">
-      <div>
-        <img
-          src="https://images.unsplash.com/photo-1570126618953-d437176e8c79?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&ixid=eyJhcHBfaWQiOjExNDMzMX0"
-          alt="">
-      </div>
-      <div>
+            <dt class="search-item__label">Author: </dt>
+            <dd class="search-item__value">
+              <a href="{{image.user.portfolio_url}}"
+                 class="search-item__link"
+                 (click)="$event.stopPropagation()"
+                 *ngIf="image.user.portfolio_url else onlyNameSection">{{ image.user.name }}</a>
+              <ng-template #onlyNameSection>{{ image.user.name }}</ng-template>
+            </dd>
+          </dl>
 
-      </div>
-    </article>
+          <p class="search-item__description">{{image.description}}</p>
 
-    <article class="search-item">
-      <div>
-        <img
-          src="https://images.unsplash.com/photo-1570126618953-d437176e8c79?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&ixid=eyJhcHBfaWQiOjExNDMzMX0"
-          alt="">
-      </div>
-      <div>
+          <a class="search-item__button" href="{{ image.links.html }}" (click)="$event.stopPropagation()" >View</a>
 
-      </div>
-    </article>
+          <span class="search-item__status" *ngIf="image.created_at < expiredNewLabelDate">
+            <i class="material-icons">
+            star_border
+            </i>
+          </span>
+        </div>
+      </article>
+    </ng-container>
+
   </section>
-
-  <section class="image-list-view" *ngIf="images">
-    <article class="search-item" *ngFor="let image of images">
-      <div>
-        <img src="{{image.urls.thumb}}" alt="">
-      </div>
-      <div>
-
-      </div>
-    </article>
-  </section>
-
-</section>
+</div>

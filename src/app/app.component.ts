@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import Unsplash, {toJson} from 'unsplash-js';
-import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import {FormBuilder, FormGroup} from '@angular/forms';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-root',
@@ -14,8 +15,11 @@ export class AppComponent implements OnInit {
   searchForm: FormGroup;
   loading = false;
   gridView = false;
+  expiredNewLabelDate = moment().subtract(14, 'days').format();
 
   constructor(private formBuilder: FormBuilder) {
+    this.getImages('office', 'portrait');
+    console.log(this.expiredNewLabelDate);
   }
 
   ngOnInit() {
@@ -41,12 +45,17 @@ export class AppComponent implements OnInit {
 
   }
 
+  goToImageWebsite(websiteUrl) {
+    window.location.href = websiteUrl;
+  }
+
   getImages(searchText, orientation) {
     this.images = [];
     this.loading = true;
     this.unsplash.search.photos(searchText, 1, 12, {orientation})
       .then(toJson)
       .then(json => {
+          console.log(json.results);
           this.res = json;
           this.images = json.results;
           this.loading = false;
