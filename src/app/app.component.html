@@ -22,7 +22,7 @@
           <i class="actions__icon material-icons" aria-hidden="true">brightness_4</i>
         </button>
       </li>
-      <li class="actions__item">
+      <li class="actions__item" *ngIf="res">
         <button (click)="gridView = !gridView" title="Change grid layout" class="actions__button">
           <i class="actions__icon material-icons" aria-hidden="true" *ngIf="gridView">list_view</i>
           <i class="actions__icon material-icons" aria-hidden="true" *ngIf="!gridView">view_module</i>
