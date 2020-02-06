@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, HostBinding, OnInit} from '@angular/core';
 import Unsplash, {toJson} from 'unsplash-js';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import * as moment from 'moment';
@@ -22,6 +22,8 @@ export class AppComponent implements OnInit {
   page;
   itemsPerPage;
   options;
+  @HostBinding('class.dark-mode') someField = false;
+
   constructor(private formBuilder: FormBuilder) {
     this.page = 1;
     this.itemsPerPage = 1;
@@ -64,7 +66,7 @@ export class AppComponent implements OnInit {
   }
 
   nightMode() {
-
+    this.someField = !this.someField;
   }
 
   goToImageWebsite(websiteUrl) {

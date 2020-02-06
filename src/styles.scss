@@ -5,6 +5,15 @@
   --header-background-color: #fff;
   --primary-color: #ff4858;
   --primary-border-color: #ddd;
+  --font-color: #222;
+}
+
+.dark-mode {
+  --body-background-color: #222;
+  --header-background-color: #000;
+  --font-color: #fff;
+  --primary-color: yellow;
+  --primary-border-color: #ddd;
 }
 
 * {
@@ -16,7 +25,6 @@
 
 body {
   font-size: 16px;
-  background-color: var(--body-background-color);
   min-height: 100vh;
   font-family: 'Montserrat', sans-serif;
   overflow-y: scroll;

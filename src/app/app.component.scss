@@ -29,7 +29,12 @@ $wide: 1680px;
     //550px;
   }
 }
+:host {
+  display: block;
+  color: var(--font-color);
+  background-color: var(--body-background-color);
 
+}
 .header {
   background-color: var(--header-background-color);
   min-height: 56px;
