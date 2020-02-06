@@ -43,7 +43,17 @@
   </div>
   <div class="advanced-options" *ngIf="advancedSettings">
     <div class="container">
-      It is just a demo app, if u want to know more just contact me at bpcoders@gmail.com
+      Setting from below will <strong>not</strong> be saved in local storage!
+      <form action="">
+        <div class="settings-form__group">
+          <input type="checkbox" id="disable-images-animation" [(ngModel)]="disableImages" [ngModelOptions]="{standalone: true}">
+          <label for="disable-images-animation">Disable thumbnails animation</label>
+        </div>
+        <div class="settings-form__group">
+          <input type="checkbox" id="crop-description" [(ngModel)]="croppedDescription" [ngModelOptions]="{standalone: true}">
+          <label for="crop-description">Crop description after second line in grid view</label>
+        </div>
+      </form>
     </div>
   </div>
 </header>
@@ -180,6 +190,7 @@
             image
           </i>
           <img
+            [ngClass]="{'search-item__thumbnail--disabled' : disableImages}"
             src="{{image.urls.small}}"
             alt="" class="search-item__thumbnail">
         </div>
@@ -206,7 +217,7 @@
             </dd>
           </dl>
 
-          <p class="search-item__description">{{image.description}}</p>
+          <p class="search-item__description" [ngClass]="{'cropped': croppedDescription, 'search-item__description--grid': gridView}">{{image.description}}</p>
 
           <a class="search-item__button" href="{{ image.links.html }}" (click)="$event.stopPropagation()">View</a>
 

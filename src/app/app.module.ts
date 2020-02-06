@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
-import { ReactiveFormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { MomentModule } from 'ngx-moment';
 
 @NgModule({
@@ -14,7 +14,8 @@ import { MomentModule } from 'ngx-moment';
     BrowserModule,
     HttpClientModule,
     ReactiveFormsModule,
-    MomentModule
+    MomentModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

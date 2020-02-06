@@ -16,6 +16,7 @@ export class AppComponent implements OnInit {
   res: any;
   images: Image[];
   searchForm: FormGroup;
+  settingsForm: FormGroup;
   loading = false;
   gridView = false;
   expiredNewLabelDate = moment().subtract(14, 'days').format();
@@ -24,6 +25,7 @@ export class AppComponent implements OnInit {
   options;
   advancedSettings = false;
   disableImages = false;
+  croppedDescription = false;
   @HostBinding('class.dark-mode') darkMode = false;
 
   constructor(private formBuilder: FormBuilder) {
@@ -37,6 +39,8 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
+
+
     this.searchForm = this.formBuilder.group({
       searchText: '',
       orientation: 'portrait'
