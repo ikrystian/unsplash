@@ -13,9 +13,9 @@ export class AppComponent implements OnInit {
   images: [];
   searchForm: FormGroup;
   loading = false;
+  gridView = false;
+
   constructor(private formBuilder: FormBuilder) {
-
-
   }
 
   ngOnInit() {

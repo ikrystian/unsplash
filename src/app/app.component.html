@@ -15,16 +15,67 @@
 <section class="content">
 
   <div class="loading" *ngIf="loading">We are searching photos for you, please wait dude</div>
-
-  <section class="image-list-view" *ngIf="images">
-    <article class="search-item" *ngFor="let image of images">
+  <section class="toolbar">
+    <button (click)="gridView = !gridView">
+      <img src="https://assets.allegrostatic.com/metrum/icon/four-squares-57ffc0178b.svg" alt="">
+    </button>
+  </section>
+  <section class="image-list-view" [ngClass]="{'image-list-view--grid' : gridView}">
+    <article class="search-item">
       <div>
-        <img src="{{image.urls.thumb}}" alt="">
+        <img src="https://images.unsplash.com/photo-1570126618953-d437176e8c79?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&ixid=eyJhcHBfaWQiOjExNDMzMX0" alt="">
+      </div>
+      <div>
+
+      </div>
+    </article>
+
+    <article class="search-item">
+      <div>
+        <img src="https://images.unsplash.com/photo-1570126618953-d437176e8c79?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&ixid=eyJhcHBfaWQiOjExNDMzMX0" alt="">
+      </div>
+      <div>
+
+      </div>
+    </article>
+
+    <article class="search-item">
+      <div>
+        <img src="https://images.unsplash.com/photo-1570126618953-d437176e8c79?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&ixid=eyJhcHBfaWQiOjExNDMzMX0" alt="">
+      </div>
+      <div>
+
+      </div>
+    </article>
+
+    <article class="search-item">
+      <div>
+        <img src="https://images.unsplash.com/photo-1570126618953-d437176e8c79?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&ixid=eyJhcHBfaWQiOjExNDMzMX0" alt="">
+      </div>
+      <div>
+
+      </div>
+    </article>
+
+    <article class="search-item">
+      <div>
+        <img src="https://images.unsplash.com/photo-1570126618953-d437176e8c79?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&ixid=eyJhcHBfaWQiOjExNDMzMX0" alt="">
       </div>
       <div>
 
       </div>
     </article>
   </section>
+
+<!--  <section class="image-list-view" *ngIf="images">-->
+<!--    <article class="search-item" *ngFor="let image of images">-->
+<!--      <div>-->
+<!--        <img src="{{image.urls.thumb}}" alt="">-->
+<!--      </div>-->
+<!--      <div>-->
+
+<!--      </div>-->
+<!--    </article>-->
+<!--  </section>-->
 
 </section>
