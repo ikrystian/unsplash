@@ -8,25 +8,21 @@ $wide: 1680px;
     @media only screen and (min-width: $wide) {
       @content;
     }
-    //1680
   }
   @if $breakpoint == desktop {
     @media only screen and (min-width: $desktop) {
       @content;
     }
-    //1024px;
   }
   @if $breakpoint == tab {
     @media only screen and (min-width: $medium) {
       @content;
     }
-    //760px;
   }
   @if $breakpoint == phone {
     @media only screen and (min-width: $small) {
       @content;
     }
-    //550px;
   }
 }
 
@@ -36,6 +32,40 @@ $wide: 1680px;
   background-color: var(--body-background-color);
   min-height: 100vh;
 
+}
+
+.button {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid var(--primary-border-color);
+  border-radius: 0;
+  overflow: hidden;
+  transition: border-color 0.2s ease-in-out, border-radius 0.2s ease-in-out;
+  &:not(:disabled) {
+    cursor: pointer;
+
+    &:hover,
+    &:focus {
+      border-radius: 50%;
+
+      i {
+        color: var(--primary-color);
+      }
+    }
+
+    &:focus,
+    &:active {
+      border-color: var(--primary-color);
+    }
+  }
+
+  i {
+    width: 24px;
+    transition: color 0.2s ease-in-out;
+  }
 }
 
 .header {
@@ -79,31 +109,6 @@ $wide: 1680px;
     align-items: center;
   }
 
-
-  &__button {
-    width: 40px;
-    height: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid var(--primary-border-color);
-    border-radius: 0;
-    overflow: hidden;
-
-    i {
-      width: 24px;
-    }
-
-    &:not(:disabled) {
-      cursor: pointer;
-
-      &:focus,
-      &:active {
-        border-color: var(--primary-color);
-      }
-    }
-  }
-
   &__loader {
     width: 40px;
     height: 40px;
@@ -134,14 +139,12 @@ $wide: 1680px;
   display: flex;
   flex-direction: column;
 
-  @include res(tab) {
+  @include res(phone) {
+    flex-direction: row;
     align-items: center;
     justify-content: space-between;
   }
 
-  @include res(desktop) {
-    flex-direction: row;
-  }
 }
 
 .statistic {
@@ -159,25 +162,6 @@ $wide: 1680px;
 
   @include res(tab) {
     justify-content: flex-start;
-  }
-
-  &__button {
-    width: 36px;
-    height: 36px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-    border: 1px solid var(--primary-border-color);
-
-    &:focus,
-    &:active {
-      border-color: var(--primary-color)
-    }
-
-    &:not(disabled) {
-      cursor: pointer;
-    }
   }
 
   span {
@@ -200,19 +184,42 @@ $wide: 1680px;
     box-sizing: border-box;
     height: 40px;
     margin: 0;
-    padding: 0 0.5rem;
+    padding: 0 1rem;
     line-height: 40px;
     border: 1px solid #c3c3c3;
     border-right: none;
-    color: #c3c3c3;
+    color: var(--font-color);
+    transition: border-color 0.2s ease-in-out, border-radius 0.2s ease-in-out;
+    background-color: transparent;
 
     &:focus {
       outline: none;
       border-color: var(--primary-color);
+      border-radius: 20px 0 0 20px;
 
       + select {
         border-left-color: var(--primary-color);
       }
+    }
+  }
+
+  &__select-wrapper {
+    display: flex;
+    position: relative;
+
+    &::after {
+      content: '';
+      display: block;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 10px 7.5px 0 7.5px;
+      border-color: var(--primary-color) transparent transparent transparent;
+      position: absolute;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 0;
     }
   }
 
@@ -223,10 +230,23 @@ $wide: 1680px;
     border: 1px solid #c3c3c3;
     cursor: pointer;
     color: #222;
+    position: relative;
+    z-index: 1;
+    background-color: transparent;
+    transition: border-color 0.2s ease-in-out, border-radius 0.2s ease-in-out;
 
     &:focus {
       outline: none;
       border-color: var(--primary-color);
+      border-radius: 0 20px 20px 0;
+    }
+
+    option {
+      &:hover, &:focus {
+        color: #fff;
+        background-color: #ff4858;
+        outline: none;
+      }
     }
   }
 }
@@ -288,6 +308,7 @@ button img {
   padding: 0.5rem;
   position: relative;
   height: 100%;
+
   @include res(tab) {
     flex-direction: row;
   }
@@ -302,7 +323,6 @@ button img {
   }
 
   &:not(:last-of-type) {
-    margin-bottom: 0.5rem;
     border-bottom: 1px solid var(--primary-border-color);
   }
 
@@ -333,6 +353,7 @@ button img {
     @include res(tab) {
       width: 128px;
       height: 128px;
+      margin-bottom: 0;
     }
 
     .material-icons {
@@ -436,10 +457,16 @@ button img {
   &__link {
     color: var(--primary-color);
     text-decoration: none;
+    background: linear-gradient(to bottom, var(--primary-color) 0%, var(--primary-color) 100%) repeat-x 0 100%;
+    background-size: 2px 2px;
+    transition: background-size .2s, color .2s;
+    padding-left: 3px;
+    padding-right: 3px;
 
     &:hover,
     &:focus {
-      text-decoration: underline;
+      background-size: 4px 50px;
+      color: #fff;
     }
   }
 
@@ -486,6 +513,7 @@ button img {
 
     strong {
       font-weight: bold;
+      background-color: #fff;
       color: var(--primary-color);
     }
   }
