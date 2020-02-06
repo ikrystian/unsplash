@@ -26,6 +26,8 @@ export class AppComponent implements OnInit {
   advancedSettings = false;
   disableImages = false;
   croppedDescription = false;
+  ieMode = false;
+
   @HostBinding('class.dark-mode') darkMode = false;
 
   constructor(private formBuilder: FormBuilder) {
@@ -36,6 +38,7 @@ export class AppComponent implements OnInit {
       {name: 'landscape', value: 'landscape'},
       {name: 'squarish', value: 'squarish'},
     ];
+    this.isIE();
   }
 
   ngOnInit() {
@@ -109,6 +112,11 @@ export class AppComponent implements OnInit {
 
   scrollToTop(): void {
     window.scroll(0, 0);
+  }
+
+  private isIE(): void {
+    const match = navigator.userAgent.search(/(?:Edge|MSIE|Trident\/.*; rv:)/);
+    this.ieMode = (match !== -1);
   }
 
 }

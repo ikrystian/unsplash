@@ -292,6 +292,7 @@ $wide: 1680px;
 
 .content {
   padding: 1rem;
+  min-height: calc(100vh - 91px);
 }
 
 button img {
@@ -390,6 +391,7 @@ button img {
     &--disabled {
       object-fit: cover;
       height: 100%;
+      width: 100%;
     }
   }
 
@@ -578,6 +580,61 @@ button img {
   font-size: 0.875em;
   text-align: right;
   border-top: 1px solid var(--primary-border-color)
+}
+
+.settings-form {
+  display: flex;
+  flex-wrap: wrap;
+  &__group {
+    padding: 0.5rem 0.5rem 0 1.5rem;
+    position: relative;
+
+    input {
+      position: absolute;
+      left: 0;
+      top: 10px;
+    }
+
+    label {
+      cursor: pointer;
+      font-size: 0.875em;
+
+      &:hover,
+      &:focus {
+        color: var(--primary-color);
+      }
+    }
+
+  }
+}
+
+.alert {
+  color: var(--primary-color);
+}
+
+// easter EGG IE
+.ie-greta {
+
+  font-size: 2rem;
+  font-weight: 800;
+  color: #fff;
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: black;
+  font-family: "Comic Sans MS", sans-serif;
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+    align-items: center;
+    background-color: #fff;
+    padding: 0.5rem 0;
+  }
+
+  img {
+    height: 200px;
+    width: auto;
+  }
 }
 
 @keyframes rotate-animation {

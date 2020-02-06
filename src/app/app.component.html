@@ -43,14 +43,16 @@
   </div>
   <div class="advanced-options" *ngIf="advancedSettings">
     <div class="container">
-      Setting from below will <strong>not</strong> be saved in local storage!
-      <form action="">
+      <span class="alert"> belows settings will  <strong>not</strong> be saved in local storage!</span>
+      <form action="" class="settings-form ">
         <div class="settings-form__group">
-          <input type="checkbox" id="disable-images-animation" [(ngModel)]="disableImages" [ngModelOptions]="{standalone: true}">
+          <input type="checkbox" id="disable-images-animation" [(ngModel)]="disableImages"
+                 [ngModelOptions]="{standalone: true}">
           <label for="disable-images-animation">Disable thumbnails animation</label>
         </div>
         <div class="settings-form__group">
-          <input type="checkbox" id="crop-description" [(ngModel)]="croppedDescription" [ngModelOptions]="{standalone: true}">
+          <input type="checkbox" id="crop-description" [(ngModel)]="croppedDescription"
+                 [ngModelOptions]="{standalone: true}">
           <label for="crop-description">Crop description after second line in grid view</label>
         </div>
       </form>
@@ -160,8 +162,16 @@
   </div>
 </section>
 
-<div class="content" *ngIf="res">
+<div class="ie-greta" *ngIf="ieMode">
+  <div class="container">
+    <div>
+      <img src="https://media.tenor.com/images/1cb99494daba7c586dc0dd9179a2ed09/tenor.gif" alt="angry greta ie">
+    </div>
+    <p>use internet explorer browser ?!</p>
+  </div>
+</div>
 
+<div class="content" *ngIf="res">
 
   <section class="toolbar container">
     <ng-container *ngIf="res.total > 0">
@@ -217,7 +227,8 @@
             </dd>
           </dl>
 
-          <p class="search-item__description" [ngClass]="{'cropped': croppedDescription, 'search-item__description--grid': gridView}">{{image.description}}</p>
+          <p class="search-item__description"
+             [ngClass]="{'cropped': croppedDescription, 'search-item__description--grid': gridView}">{{image.description}}</p>
 
           <a class="search-item__button" href="{{ image.links.html }}" (click)="$event.stopPropagation()">View</a>
 
