@@ -10,7 +10,7 @@
           <option *ngFor="let opt of options" [value]="opt.value">{{opt.value}}</option>
         </select>
       </div>
-      <button (click)="toggleHistory($event)" title="Show history search" class="actions__button button button--no-border-radius" *ngIf="historyItems.length > 0">
+      <button (click)="toggleHistory($event)" title="Show history search" class="actions__button actions__button--on-desktop button button--no-border-radius" *ngIf="historyItems.length > 0">
         <i class="actions__icon material-icons" aria-hidden="true" *ngIf="!showHistory">history</i>
         <i class="actions__icon material-icons" aria-hidden="true" *ngIf="showHistory">close</i>
       </button>
@@ -44,9 +44,9 @@
         </button>
       </li>
       <li class="actions__item">
-        <button (click)="advancedSettings = !advancedSettings" title="advanced settings" class="actions__button button">
-          <i class="material-icons" aria-hidden="true" *ngIf="advancedSettings">settings</i>
-          <i class="material-icons" aria-hidden="true" *ngIf="!advancedSettings">settings_applications</i>
+        <button (click)="settings.advancedSettings = !settings.advancedSettings" title="advanced settings" class="actions__button button">
+          <i class="material-icons" aria-hidden="true" *ngIf="settings.advancedSettings">settings_applications</i>
+          <i class="material-icons" aria-hidden="true" *ngIf="!settings.advancedSettings">settings</i>
         </button>
       </li>
       <li class="actions__item" *ngIf="res">
@@ -55,16 +55,22 @@
           <i class="actions__icon material-icons" aria-hidden="true" *ngIf="!gridView">view_module</i>
         </button>
       </li>
+      <li class="actions__item actions__item--on-mobile">
+        <button (click)="toggleHistory($event)" title="Show history search" class="actions__button button button--no-border-radius" *ngIf="historyItems.length > 0">
+          <i class="actions__icon material-icons" aria-hidden="true" *ngIf="!showHistory">history</i>
+          <i class="actions__icon material-icons" aria-hidden="true" *ngIf="showHistory">close</i>
+        </button>
+      </li>
     </ul>
   </div>
-  <div class="advanced-options" *ngIf="advancedSettings">
+  <div class="advanced-options" *ngIf="settings.advancedSettings">
     <div class="container">
       <span class="alert"> belows settings will  <strong>not</strong> be saved in local storage!</span>
       <form action="" class="settings-form">
         <div class="settings-form__group">
-          <input class="settings-form__checkbox" type="checkbox" id="disable-images-animation" [(ngModel)]="disableImages"
+          <input class="settings-form__checkbox" type="checkbox" id="disable-images-animation" [(ngModel)]="settings.disableImages"
                  [ngModelOptions]="{standalone: true}">
-          <label class="settings-form__label" for="disable-images-animation">Disable thumbnails scale to fit in container</label>
+          <label class="settings-form__label" for="disable-images-animation">Disable thumbnails fit in container</label>
         </div>
         <div class="settings-form__group">
           <input type="checkbox" class="settings-form__checkbox" id="crop-description" [(ngModel)]="croppedDescription"
@@ -216,7 +222,7 @@
             image
           </i>
           <img
-            [ngClass]="{'search-item__thumbnail--disabled' : disableImages}"
+            [ngClass]="{'search-item__thumbnail--disabled' : settings.disableImages}"
             src="{{image.urls.small}}"
             alt="" class="search-item__thumbnail">
         </div>

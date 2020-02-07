@@ -37,6 +37,7 @@ $wide: 1680px;
 
 .button {
   width: 40px;
+  min-width: 40px;
   height: 40px;
   display: flex;
   justify-content: center;
@@ -116,6 +117,21 @@ $wide: 1680px;
     margin-left: 0.5rem;
     display: flex;
     align-items: center;
+
+    &--on-mobile {
+      @include res(phone) {
+        display: none;
+      }
+    }
+  }
+
+  &__button {
+    &--on-desktop {
+      display: none;
+      @include res(phone) {
+        display: flex;
+      }
+    }
   }
 
   &__loader {
@@ -239,8 +255,7 @@ $wide: 1680px;
 
   &__select {
     appearance: none;
-    width: 140px;
-    padding: 0 1rem;
+    padding: 0 2rem 0 1rem;
     border: 1px solid var(--form-border-color);
     cursor: pointer;
     color: var(--font-color);

@@ -23,13 +23,15 @@ export class AppComponent implements OnInit {
   page;
   itemsPerPage;
   options;
-  advancedSettings = false;
-  disableImages = false;
   croppedDescription = false;
   ieMode = false;
   historyItems: string[] = [];
   maxItemsInSearch = 5;
   showHistory = false;
+  settings = {
+    advancedSettings: false,
+    disableImages: false
+  };
   @HostBinding('class.dark-mode') darkMode = false;
 
   constructor(private formBuilder: FormBuilder) {
