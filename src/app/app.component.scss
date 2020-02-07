@@ -604,17 +604,20 @@ button img {
 .settings-form {
   display: flex;
   flex-wrap: wrap;
+
   &__group {
-    padding: 0.5rem 0.5rem 0 1.5rem;
+    padding: 0.5rem 0.5rem 0.5rem 0;
+    margin-right: 0.5rem;
     position: relative;
+    display: flex;
+    align-items: center;
+  }
 
-    input {
-      position: absolute;
-      left: 0;
-      top: 10px;
-    }
+  &__checkbox {
+    margin-right: 0.4rem;
+  }
 
-    label {
+  &__label {
       cursor: pointer;
       font-size: 0.875em;
 
@@ -622,8 +625,6 @@ button img {
       &:focus {
         color: var(--primary-color);
       }
-    }
-
   }
 }
 
