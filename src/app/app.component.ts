@@ -35,13 +35,15 @@ export class AppComponent implements OnInit {
   constructor(private formBuilder: FormBuilder) {
     this.page = 1;
     // revert to 12 after developing
-    this.itemsPerPage = 1;
+    this.itemsPerPage = 12;
     this.options = [
       {name: 'portrait', value: 'portrait'},
       {name: 'landscape', value: 'landscape'},
       {name: 'squarish', value: 'squarish'},
     ];
     this.isIE();
+    console.log('%c do not open this site in IE, Greta will be angry then!!', 'background: green; color: white; display: block;');
+
   }
 
   ngOnInit() {
