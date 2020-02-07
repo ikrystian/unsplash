@@ -44,6 +44,7 @@ $wide: 1680px;
   border-radius: 0;
   overflow: hidden;
   transition: border-color 0.2s ease-in-out, border-radius 0.2s ease-in-out;
+
   &:not(:disabled) {
     cursor: pointer;
 
@@ -60,6 +61,11 @@ $wide: 1680px;
     &:active {
       border-color: var(--primary-color);
     }
+  }
+
+  &--no-border-radius {
+    // use important just for not override every single rule
+    border-radius: 0 !important;
   }
 
   i {
@@ -176,6 +182,7 @@ $wide: 1680px;
 .search-form {
   display: flex;
   width: 100%;
+  position: relative;
 
   @include res(desktop) {
     width: 70%;
@@ -191,16 +198,15 @@ $wide: 1680px;
     border: 1px solid #c3c3c3;
     border-right: none;
     color: var(--font-color);
-    transition: border-color 0.2s ease-in-out, border-radius 0.2s ease-in-out;
+    transition: border-color 0.2s ease-in-out;
     background-color: transparent;
 
     &:focus {
       outline: none;
       border-color: var(--primary-color);
-      border-radius: 20px 0 0 20px;
 
-      + select {
-        border-left-color: var(--primary-color);
+      + .search-form__select-wrapper > select {
+        border-left-color: var(--primary-color) !important;
       }
     }
   }
@@ -223,6 +229,11 @@ $wide: 1680px;
       transform: translateY(-50%);
       z-index: 0;
     }
+
+    + .button {
+      border-color: var(--form-border-color);
+      border-left: 0;
+    }
   }
 
   &__select {
@@ -235,12 +246,11 @@ $wide: 1680px;
     position: relative;
     z-index: 1;
     background-color: transparent;
-    transition: border-color 0.2s ease-in-out, border-radius 0.2s ease-in-out;
+    transition: border-color 0.2s ease-in-out;
 
     &:focus {
       outline: none;
       border-color: var(--primary-color);
-      border-radius: 0 20px 20px 0;
     }
 
     option {
@@ -250,6 +260,14 @@ $wide: 1680px;
         outline: none;
       }
     }
+  }
+
+  &__history {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    transform: translateY(100%);
   }
 }
 
@@ -614,13 +632,20 @@ button img {
 
 // easter EGG IE
 .ie-greta {
-
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
   font-size: 2rem;
   font-weight: 800;
-  color: #fff;
-  -webkit-text-stroke-width: 2px;
-  -webkit-text-stroke-color: black;
+  color: #000;
   font-family: "Comic Sans MS", sans-serif;
+  z-index: 666;
 
   .container {
     display: flex;
@@ -635,6 +660,69 @@ button img {
     height: 200px;
     width: auto;
   }
+}
+
+.search-history {
+  border: 1px solid var(--primary-border-color);
+  border-top: 0;
+  padding: 1rem 0 0 0;
+  background-color: var(--header-background-color);
+  z-index: 3;
+
+  &__title {
+    padding: 0 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+}
+
+.history-list {
+  padding: 0;
+  list-style: none;
+  overflow: auto;
+  max-height: 200px;
+
+  &__item {
+    display: flex;
+
+    &:not(:last-of-type) {
+      margin-bottom: 0.5rem;
+    }
+  }
+
+  &__item-name {
+    flex: 1 1 0;
+    margin-right: 0.5rem;
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+    text-align: left;
+    padding: 0.5rem;
+
+    &:hover,
+    &:focus {
+      // remove this hex color
+      background-color: #dedede;
+    }
+  }
+
+  &__link {
+    text-align: center;
+    font-size: 0.875em;
+    color: var(--primary-color);
+    text-decoration: none;
+    display: block;
+    border-top: 1px solid var(--primary-border-color);
+    padding: 0.5rem;
+
+    &:hover,
+    &:focus {
+      text-decoration: underline;
+    }
+  }
+}
+
+.no-history {
+  padding: 0.5rem;
 }
 
 @keyframes rotate-animation {

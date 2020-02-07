@@ -1,8 +1,8 @@
-import { Component, HostBinding, OnInit} from '@angular/core';
+import {Component, HostBinding, OnInit} from '@angular/core';
 import Unsplash, {toJson} from 'unsplash-js';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import * as moment from 'moment';
-import { Image } from './image/image';
+import {Image} from './image/image';
 import {observable} from 'rxjs';
 
 @Component({
@@ -12,7 +12,7 @@ import {observable} from 'rxjs';
 })
 
 export class AppComponent implements OnInit {
-  unsplash = new Unsplash({accessKey: '4ae61b3dedfb954680f2c13f5f43370d6bd3e6cc1adab125577ab3a9dc070f3e'});
+  unsplash = new Unsplash({accessKey: '0cd8dc520afcebddb302df021b34acf9779014e145516044b8a64ff67a58fe64'});
   res: any;
   images: Image[];
   searchForm: FormGroup;
@@ -27,12 +27,15 @@ export class AppComponent implements OnInit {
   disableImages = false;
   croppedDescription = false;
   ieMode = false;
-
+  historyItems: string[] = [];
+  maxItemsInSearch = 5;
+  showHistory = false;
   @HostBinding('class.dark-mode') darkMode = false;
 
   constructor(private formBuilder: FormBuilder) {
     this.page = 1;
-    this.itemsPerPage = 12;
+    // revert to 12 after developing
+    this.itemsPerPage = 1;
     this.options = [
       {name: 'portrait', value: 'portrait'},
       {name: 'landscape', value: 'landscape'},
@@ -43,11 +46,17 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
 
-
     this.searchForm = this.formBuilder.group({
       searchText: '',
       orientation: 'portrait'
     });
+
+    if (localStorage.getItem('historyItems')) {
+      this.historyItems = JSON.parse(localStorage.getItem('historyItems'));
+    } else {
+      this.historyItems = [];
+    }
+
     if (localStorage.getItem('searchTerms')) {
       const historyTerms = JSON.parse(localStorage.getItem('searchTerms'));
       this.getImages(historyTerms.searchText, historyTerms.orientation);
@@ -59,6 +68,26 @@ export class AppComponent implements OnInit {
 
     }
     this.onValueChanges();
+  }
+
+  changeFormValue(name, e) {
+    e.preventDefault();
+    this.showHistory = false;
+    this.getImages(name);
+    this.searchForm.controls['searchText'].setValue(name);
+
+  }
+
+  toggleHistory(event) {
+    event.preventDefault();
+    this.showHistory = !this.showHistory;
+  }
+
+  focusOut(name) {
+    if (!this.historyItems.includes(name)) {
+      this.historyItems.push(name);
+      localStorage.setItem('historyItems', JSON.stringify(this.historyItems));
+    }
   }
 
   onValueChanges(): void {
@@ -82,16 +111,16 @@ export class AppComponent implements OnInit {
     window.location.href = websiteUrl;
   }
 
-  getImages(searchText, orientation) {
+  getImages(searchText, orientation = 'portrait') {
     this.page = 1;
     this.images = [];
     this.loading = true;
     this.unsplash.search.photos(searchText, this.page, this.itemsPerPage, {orientation})
       .then(toJson)
       .then(json => {
-          this.res = json;
-          this.images = json.results;
-          this.loading = false;
+        this.res = json;
+        this.images = json.results;
+        this.loading = false;
       });
   }
 
@@ -102,6 +131,7 @@ export class AppComponent implements OnInit {
     this.images = [];
     this.loading = true;
     this.unsplash.search.photos(historyTerms.searchText, this.page, this.itemsPerPage, {orientation: historyTerms.orientation})
+      .catch(error => console.log(error))
       .then(toJson)
       .then(json => {
         this.res = json;
