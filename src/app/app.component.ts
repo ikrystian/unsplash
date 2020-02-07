@@ -1,9 +1,8 @@
 import {Component, HostBinding, OnInit} from '@angular/core';
-import Unsplash, {toJson} from 'unsplash-js';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import * as moment from 'moment';
 import {Image} from './image/image';
-import {observable} from 'rxjs';
+import {ImageService} from './image/image.service';
 
 @Component({
   selector: 'app-root',
@@ -12,13 +11,11 @@ import {observable} from 'rxjs';
 })
 
 export class AppComponent implements OnInit {
-  unsplash = new Unsplash({accessKey: '0cd8dc520afcebddb302df021b34acf9779014e145516044b8a64ff67a58fe64'});
   res: any;
   images: Image[];
   searchForm: FormGroup;
   expiredNewLabelDate = moment().subtract(14, 'days').format();
   page;
-  itemsPerPage;
   options;
   historyItems: string[] = [];
   settings = {
@@ -30,13 +27,12 @@ export class AppComponent implements OnInit {
     maxItemsInSearch: 5,
     loading: false,
     gridView: false
-};
+  };
   @HostBinding('class.dark-mode') darkMode = false;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private imageService: ImageService) {
     this.page = 1;
     // revert to 12 after developing
-    this.itemsPerPage = 12;
     this.options = [
       {name: 'portrait', value: 'portrait'},
       {name: 'landscape', value: 'landscape'},
@@ -44,7 +40,6 @@ export class AppComponent implements OnInit {
     ];
     this.isIE();
     console.log('%c do not open this site in IE, Greta will be angry then!!', 'background: green; color: white; display: block;');
-
   }
 
   ngOnInit() {
@@ -53,6 +48,7 @@ export class AppComponent implements OnInit {
       searchText: '',
       orientation: 'portrait'
     });
+
 
     if (localStorage.getItem('historyItems')) {
       this.historyItems = JSON.parse(localStorage.getItem('historyItems'));
@@ -80,12 +76,12 @@ export class AppComponent implements OnInit {
     this.searchForm.controls['searchText'].setValue(name);
   }
 
-  toggleHistory(event) {
+  toggleHistory(event): void {
     event.preventDefault();
     this.settings.showHistory = !this.settings.showHistory;
   }
 
-  focusOut(name) {
+  focusOut(name): void {
     if (!this.historyItems.includes(name)) {
       this.historyItems.push(name);
       localStorage.setItem('historyItems', JSON.stringify(this.historyItems));
@@ -105,41 +101,36 @@ export class AppComponent implements OnInit {
     });
   }
 
-  nightMode() {
+  nightMode(): void {
     this.darkMode = !this.darkMode;
   }
 
-  goToImageWebsite(websiteUrl) {
+  goToImageWebsite(websiteUrl): void {
     window.location.href = websiteUrl;
   }
 
-  getImages(searchText, orientation = 'portrait') {
-    this.page = 1;
+  getImages(searchText, orientation?) {
     this.images = [];
     this.settings.loading = true;
-    this.unsplash.search.photos(searchText, this.page, this.itemsPerPage, {orientation})
-      .then(toJson)
-      .then(json => {
-        this.res = json;
-        this.images = json.results;
-        this.settings.loading = false;
-      });
+
+    this.imageService.getImages(searchText, orientation).then((res) => {
+      this.res = res;
+      this.images = res.results;
+      this.settings.loading = false;
+    });
   }
 
   gotToPage(page: number) {
     const historyTerms = JSON.parse(localStorage.getItem('searchTerms'));
     this.page = page;
-    console.log(this.page);
     this.images = [];
     this.settings.loading = true;
-    this.unsplash.search.photos(historyTerms.searchText, this.page, this.itemsPerPage, {orientation: historyTerms.orientation})
-      .catch(error => console.log(error))
-      .then(toJson)
-      .then(json => {
-        this.res = json;
-        this.images = json.results;
-        this.settings.loading = false;
-      });
+
+    this.imageService.getImagesForSpecyficPage(historyTerms.searchText, historyTerms.orientation, page).then((res) => {
+      this.res = res;
+      this.images = res.results;
+      this.settings.loading = false;
+    });
   }
 
   scrollToTop(): void {
