@@ -194,30 +194,13 @@
 </div>
 
 <div class="content" *ngIf="res">
+  <app-toolbar></app-toolbar>
 
-  <section class="toolbar container">
-    <ng-container *ngIf="res.total > 0">
-      <section class="statistic">
-        Total items: <strong>{{ res.total }}</strong>
-      </section>
-      <div class="pagination">
-        <button class="button" [disabled]="page == 1 || settings.loading" (click)="gotToPage(page - 1)"><i
-          class="material-icons">keyboard_arrow_left</i></button>
-        <span>Page <strong>{{ page }}</strong> from: <strong>{{res.total_pages}}</strong></span>
-        <button class="button" (click)="gotToPage(page + 1)" [disabled]="page >= res.total_pages || settings.loading"><i
-          class="material-icons">keyboard_arrow_right</i></button>
-      </div>
-    </ng-container>
-    <ng-container *ngIf="res.total === 0">
-      There is no images like u want
-    </ng-container>
-  </section>
-
-  <section class="image-list-view container" [ngClass]="{'image-list-view--grid' : gridView}">
+  <section class="image-list-view container" [ngClass]="{'image-list-view--grid' : settings.gridView}">
     <ng-container *ngFor="let image of images">
-      <article class="search-item" [ngClass]="{'search-item--grid' : gridView}"
+      <article class="search-item" [ngClass]="{'search-item--grid' : settings.gridView}"
                (click)="goToImageWebsite(image.links.html)">
-        <div class="search-item__image-wrapper" [ngClass]="{'search-item__image-wrapper--grid' : gridView}">
+        <div class="search-item__image-wrapper" [ngClass]="{'search-item__image-wrapper--grid' : settings.gridView}">
           <i class="material-icons">
             image
           </i>
@@ -226,10 +209,10 @@
             src="{{image.urls.small}}"
             alt="" class="search-item__thumbnail">
         </div>
-        <div class="search-item__details" [ngClass]="{'search-item__details--grid' : gridView}">
+        <div class="search-item__details" [ngClass]="{'search-item__details--grid' : settings.gridView}">
 
           <dl class="search-item__list">
-            <ng-container *ngIf="!gridView">
+            <ng-container *ngIf="!settings.gridView">
 
               <dt class="search-item__label">Photo id:</dt>
               <dd class="search-item__value"> {{ image.id }}</dd>

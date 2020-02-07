@@ -60,3 +60,14 @@ body {
 ::-webkit-scrollbar-thumb:window-inactive {
   background: rgba(0, 0, 0, 0.3);
 }
+
+.container {
+  width: 1160px;
+  margin: auto;
+  max-width: 100%;
+
+  &--flex {
+    display: flex;
+    justify-content: space-between;
+  }
+}

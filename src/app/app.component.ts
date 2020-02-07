@@ -64,7 +64,6 @@ export class AppComponent implements OnInit {
         searchText: historyTerms.searchText,
         orientation: historyTerms.orientation
       });
-
     }
     this.onValueChanges();
   }
