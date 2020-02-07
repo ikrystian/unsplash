@@ -16,22 +16,21 @@ export class AppComponent implements OnInit {
   res: any;
   images: Image[];
   searchForm: FormGroup;
-  settingsForm: FormGroup;
-  loading = false;
-  gridView = false;
   expiredNewLabelDate = moment().subtract(14, 'days').format();
   page;
   itemsPerPage;
   options;
-  croppedDescription = false;
-  ieMode = false;
   historyItems: string[] = [];
-  maxItemsInSearch = 5;
-  showHistory = false;
   settings = {
     advancedSettings: false,
-    disableImages: false
-  };
+    disableImages: false,
+    croppedDescription: false,
+    ieMode: false,
+    showHistory: false,
+    maxItemsInSearch: 5,
+    loading: false,
+    gridView: false
+};
   @HostBinding('class.dark-mode') darkMode = false;
 
   constructor(private formBuilder: FormBuilder) {
@@ -76,15 +75,14 @@ export class AppComponent implements OnInit {
 
   changeFormValue(name, e) {
     e.preventDefault();
-    this.showHistory = false;
+    this.settings.showHistory = false;
     this.getImages(name);
     this.searchForm.controls['searchText'].setValue(name);
-
   }
 
   toggleHistory(event) {
     event.preventDefault();
-    this.showHistory = !this.showHistory;
+    this.settings.showHistory = !this.settings.showHistory;
   }
 
   focusOut(name) {
@@ -118,13 +116,13 @@ export class AppComponent implements OnInit {
   getImages(searchText, orientation = 'portrait') {
     this.page = 1;
     this.images = [];
-    this.loading = true;
+    this.settings.loading = true;
     this.unsplash.search.photos(searchText, this.page, this.itemsPerPage, {orientation})
       .then(toJson)
       .then(json => {
         this.res = json;
         this.images = json.results;
-        this.loading = false;
+        this.settings.loading = false;
       });
   }
 
@@ -133,14 +131,14 @@ export class AppComponent implements OnInit {
     this.page = page;
     console.log(this.page);
     this.images = [];
-    this.loading = true;
+    this.settings.loading = true;
     this.unsplash.search.photos(historyTerms.searchText, this.page, this.itemsPerPage, {orientation: historyTerms.orientation})
       .catch(error => console.log(error))
       .then(toJson)
       .then(json => {
         this.res = json;
         this.images = json.results;
-        this.loading = false;
+        this.settings.loading = false;
       });
   }
 
@@ -150,7 +148,7 @@ export class AppComponent implements OnInit {
 
   private isIE(): void {
     const match = navigator.userAgent.search(/(?:Edge|MSIE|Trident\/.*; rv:)/);
-    this.ieMode = (match !== -1);
+    this.settings.ieMode = (match !== -1);
   }
 
 }

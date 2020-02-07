@@ -11,25 +11,25 @@
         </select>
       </div>
       <button (click)="toggleHistory($event)" title="Show history search" class="actions__button actions__button--on-desktop button button--no-border-radius" *ngIf="historyItems.length > 0">
-        <i class="actions__icon material-icons" aria-hidden="true" *ngIf="!showHistory">history</i>
-        <i class="actions__icon material-icons" aria-hidden="true" *ngIf="showHistory">close</i>
+        <i class="actions__icon material-icons" aria-hidden="true" *ngIf="!settings.showHistory">history</i>
+        <i class="actions__icon material-icons" aria-hidden="true" *ngIf="settings.showHistory">close</i>
       </button>
-      <div class="search-form__history search-history" *ngIf="showHistory">
+      <div class="search-form__history search-history" *ngIf="settings.showHistory">
         <p class="search-history__title">Search history:</p>
         <ul class="history-list search-history__list">
           <ng-container *ngFor="let historyItem of historyItems; let index = index">
-            <li class="history-list__item" *ngIf="index < maxItemsInSearch && historyItem ">
+            <li class="history-list__item" *ngIf="index < settings.maxItemsInSearch && historyItem ">
               <button class="history-list__item-name" (click)="changeFormValue(historyItem, $event)">{{ historyItem }}</button>
             </li>
           </ng-container>
         </ul>
-        <a *ngIf="maxItemsInSearch < historyItems.length - 1" class="history-list__link" href="#" (click)="maxItemsInSearch = historyItems.length">Show all position in history ({{historyItems.length}})</a>
+        <a *ngIf="settings.maxItemsInSearch < historyItems.length - 1" class="history-list__link" href="#" (click)="settings.maxItemsInSearch = historyItems.length">Show all position in history ({{historyItems.length}})</a>
       </div>
 
     </form>
 
     <ul class="actions">
-      <li class="actions__item" *ngIf="loading">
+      <li class="actions__item" *ngIf="settings.loading">
         <span class="actions__loader" role="alert">
           <span class="hide-for-user">Loading, please wait</span>
           <i class="material-icons" aria-hidden="true">
@@ -57,8 +57,8 @@
       </li>
       <li class="actions__item actions__item--on-mobile">
         <button (click)="toggleHistory($event)" title="Show history search" class="actions__button button button--no-border-radius" *ngIf="historyItems.length > 0">
-          <i class="actions__icon material-icons" aria-hidden="true" *ngIf="!showHistory">history</i>
-          <i class="actions__icon material-icons" aria-hidden="true" *ngIf="showHistory">close</i>
+          <i class="actions__icon material-icons" aria-hidden="true" *ngIf="!settings.showHistory">history</i>
+          <i class="actions__icon material-icons" aria-hidden="true" *ngIf="settings.showHistory">close</i>
         </button>
       </li>
     </ul>
@@ -73,7 +73,7 @@
           <label class="settings-form__label" for="disable-images-animation">Disable thumbnails fit in container</label>
         </div>
         <div class="settings-form__group">
-          <input type="checkbox" class="settings-form__checkbox" id="crop-description" [(ngModel)]="croppedDescription"
+          <input type="checkbox" class="settings-form__checkbox" id="crop-description" [(ngModel)]="settings.croppedDescription"
                  [ngModelOptions]="{standalone: true}">
           <label class="settings-form__label" for="crop-description">Crop description after second line in grid view</label>
         </div>
@@ -184,7 +184,7 @@
   </div>
 </section>
 
-<div class="ie-greta" *ngIf="ieMode">
+<div class="ie-greta" *ngIf="settings.ieMode">
   <div class="container">
     <div>
       <img src="https://media.tenor.com/images/1cb99494daba7c586dc0dd9179a2ed09/tenor.gif" alt="angry greta ie">
@@ -201,10 +201,10 @@
         Total items: <strong>{{ res.total }}</strong>
       </section>
       <div class="pagination">
-        <button class="button" [disabled]="page == 1 || loading" (click)="gotToPage(page - 1)"><i
+        <button class="button" [disabled]="page == 1 || settings.loading" (click)="gotToPage(page - 1)"><i
           class="material-icons">keyboard_arrow_left</i></button>
         <span>Page <strong>{{ page }}</strong> from: <strong>{{res.total_pages}}</strong></span>
-        <button class="button" (click)="gotToPage(page + 1)" [disabled]="page >= res.total_pages || loading"><i
+        <button class="button" (click)="gotToPage(page + 1)" [disabled]="page >= res.total_pages || settings.loading"><i
           class="material-icons">keyboard_arrow_right</i></button>
       </div>
     </ng-container>
@@ -250,7 +250,7 @@
           </dl>
 
           <p class="search-item__description"
-             [ngClass]="{'cropped': croppedDescription, 'search-item__description--grid': gridView}">{{image.description}}</p>
+             [ngClass]="{'cropped': settings.croppedDescription, 'search-item__description--grid': settings.gridView}">{{image.description}}</p>
 
           <a class="search-item__button" href="{{ image.links.html }}" (click)="$event.stopPropagation()">View</a>
 
