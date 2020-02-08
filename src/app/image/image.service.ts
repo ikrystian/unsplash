@@ -17,7 +17,7 @@ export class ImageService {
       .then(json => json);
   }
 
-  getImagesForSpecyficPage(searchText, orientation, page): Promise<any>  {
+  getImagesForSpecificPage(searchText: string, orientation, page): Promise<any>  {
     return this.unsplash.search.photos(searchText, page, 12, {orientation})
       .then(toJson)
       .then(json => json);

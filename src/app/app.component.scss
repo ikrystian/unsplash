@@ -8,47 +8,6 @@
   font-family: var(--font);
 }
 
-.button {
-  width: 40px;
-  min-width: 40px;
-  height: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid var(--primary-border-color);
-  border-radius: 0;
-  overflow: hidden;
-  transition: border-color 0.2s ease-in-out, border-radius 0.2s ease-in-out;
-
-  &:not(:disabled) {
-    cursor: pointer;
-
-    &:hover,
-    &:focus {
-      border-radius: 50%;
-
-      i {
-        color: var(--primary-color);
-      }
-    }
-
-    &:focus,
-    &:active {
-      border-color: var(--primary-color);
-    }
-  }
-
-  &--no-border-radius {
-    // use important just for not override every single rule
-    border-radius: 0 !important;
-  }
-
-  i {
-    width: 24px;
-    transition: color 0.2s ease-in-out;
-  }
-}
-
 .header {
   background-color: var(--header-background-color);
   border-bottom: 1px solid var(--primary-border-color);
@@ -57,6 +16,20 @@
   flex-direction: column;
   justify-content: center;
   position: relative;
+
+  &__logo {
+    font-size: 2em;
+    padding: 0 0.5rem 0 1rem;
+    display: none;
+
+    @include res(tab) {
+      display: block
+    }
+
+    @include res(desktop) {
+      padding-left: 0;
+    }
+  }
 
   &__container {
     display: flex;
@@ -68,7 +41,7 @@
     align-items: flex-end;
     padding: 0.5em;
 
-    @include res(desktop) {
+    @include res(phone) {
       flex-direction: row;
       align-items: center;
       padding-left: 0;
@@ -82,7 +55,7 @@
   list-style: none;
   margin-bottom: 0.5rem;
 
-  @include res(desktop) {
+  @include res(phone) {
     margin-bottom: 0;
   }
 
@@ -194,11 +167,6 @@
       transform: translateY(-50%);
       z-index: 0;
     }
-
-    + .button {
-      border-color: var(--form-border-color);
-      border-left: 0;
-    }
   }
 
   &__select {
@@ -225,6 +193,17 @@
       }
     }
   }
+
+  &__history-button {
+    border: 1px solid var(--form-border-color);
+    border-left-width: 0;
+
+    &:hover,
+    &:focus {
+      border-color: var(--form-border-color);
+    }
+  }
+
 
   &__history {
     position: absolute;
@@ -274,12 +253,12 @@
 
 .content {
   padding: 1rem;
-  min-height: calc(100vh - 91px);
-}
+  height: calc(100vh - 53px);
+  overflow: auto;
 
-button img {
-  width: 32px;
-  height: 32px;
+  @include res(tab) {
+    height: calc(100vh - 94px);
+  }
 }
 
 .hide-for-user {
@@ -559,7 +538,7 @@ button img {
 .footer {
   background-color: #fff;
   padding: 0.5rem;
-  font-size: 0.875em;
+  font-size: 0.75em;
   text-align: right;
   border-top: 1px solid var(--primary-border-color)
 }
@@ -593,6 +572,7 @@ button img {
 
 .alert {
   color: var(--primary-color);
+  font-size: 0.875rem;
 }
 
 // easter EGG IE
@@ -630,7 +610,7 @@ button img {
 .search-history {
   border: 1px solid var(--primary-border-color);
   border-top: 0;
-  padding: 1rem 0 0 0;
+  padding: 0.5rem 0 0 0;
   background-color: var(--header-background-color);
   z-index: 3;
 

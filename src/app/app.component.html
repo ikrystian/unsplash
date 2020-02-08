@@ -1,5 +1,6 @@
 <header class="header">
   <div class="header__container">
+    <h1 class="header__logo">MUSE</h1>
     <form action="" class="search-form" [formGroup]="searchForm" autocomplete="off">
       <label for="search-text" class="hide-for-user">Search term</label>
       <input autofocus required type="search" id="search-text" class="search-form__input"
@@ -10,7 +11,7 @@
           <option *ngFor="let opt of options" [value]="opt.value">{{opt.value}}</option>
         </select>
       </div>
-      <button (click)="toggleHistory($event)" title="Show history search" class="actions__button actions__button--on-desktop button button--no-border-radius" *ngIf="historyItems.length > 0">
+      <button (click)="toggleHistory($event)" title="Show history search" class="actions__button search-form__history-button actions__button--on-desktop button button--no-border-radius" *ngIf="historyItems.length > 0">
         <i class="actions__icon material-icons" aria-hidden="true" *ngIf="!settings.showHistory">history</i>
         <i class="actions__icon material-icons" aria-hidden="true" *ngIf="settings.showHistory">close</i>
       </button>
@@ -50,9 +51,9 @@
         </button>
       </li>
       <li class="actions__item" *ngIf="res">
-        <button (click)="gridView = !gridView" title="Change grid layout" class="actions__button button">
-          <i class="actions__icon material-icons" aria-hidden="true" *ngIf="gridView">list_view</i>
-          <i class="actions__icon material-icons" aria-hidden="true" *ngIf="!gridView">view_module</i>
+        <button (click)="settings.gridView = !settings.gridView" title="Change grid layout" class="actions__button button">
+          <i class="actions__icon material-icons" aria-hidden="true" *ngIf="settings.gridView">list_view</i>
+          <i class="actions__icon material-icons" aria-hidden="true" *ngIf="!settings.gridView">view_module</i>
         </button>
       </li>
       <li class="actions__item actions__item--on-mobile">

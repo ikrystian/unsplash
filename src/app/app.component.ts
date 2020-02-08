@@ -38,6 +38,9 @@ export class AppComponent implements OnInit {
       {name: 'landscape', value: 'landscape'},
       {name: 'squarish', value: 'squarish'},
     ];
+
+    this.getImages('kitty');
+
     this.isIE();
     console.log('%c do not open this site in IE, Greta will be angry then!!', 'background: green; color: white; display: block;');
   }
