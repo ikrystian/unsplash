@@ -1,4 +1,4 @@
-@import '../../assets/mixins';
+@import 'src/assets/styles/mixins';
 
 :host {
   position: fixed;
@@ -36,6 +36,7 @@
   &__header {
     padding: 0.5rem 1rem;
     border-bottom: 1px solid var(--primary-border-color);
+    background-color: var(--modal-header-background-color);
   }
 
   &__title {
@@ -56,7 +57,7 @@
     padding: 0.5rem;
     display: flex;
     justify-content: flex-end;
-    border-top: 1px solid transparent;
+    border-top: 1px solid var(--primary-border-color);
   }
 }
 
@@ -94,7 +95,7 @@
 
   &__title {
     font-size: 0.875rem;
-    color: #757575;
+    color: var(--details-title-color);
     display: flex;
     justify-content: space-between;
   }
@@ -120,7 +121,7 @@
     font-size: 1rem;
     display: flex;
     align-items: center;
-    color: #222222;
+    color: var(--details-value-color);
   }
 
   &__link {
