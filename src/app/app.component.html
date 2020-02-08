@@ -119,7 +119,7 @@
     <!--                       (click)="goToImageWebsite(image.links.html)"-->
 
     <ng-container *ngFor="let image of images">
-      <div  (click)="openModal(image)" >asd</div>
+      <div  (click)="openModal(image.id)" >asd</div>
       <app-search-item class="search-item"
                        [ngClass]="{'search-item--grid' : settings.gridView}"
                        [image]="image" [settings]="settings"></app-search-item>

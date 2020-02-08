@@ -22,4 +22,10 @@ export class ImageService {
       .then(toJson)
       .then(json => json);
   }
+
+  getImage(id): Promise<any> {
+    return this.unsplash.photos.getPhoto(id)
+      .then(toJson)
+      .then(json => json);
+  }
 }

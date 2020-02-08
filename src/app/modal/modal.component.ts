@@ -1,5 +1,7 @@
 import { Component, ElementRef, Input, OnDestroy, OnInit } from '@angular/core';
 import {ModalService} from '../image/modal.service';
+import {ImageService} from '../image/image.service';
+import {Item} from '../image/image';
 
 @Component({
   selector: 'app-modal',
@@ -11,8 +13,8 @@ export class ModalComponent implements  OnInit, OnDestroy  {
 
   @Input() id: string;
   readonly element: any;
-
-  constructor(private modalService: ModalService, private el: ElementRef) {
+  image: Item;
+  constructor(private modalService: ModalService, private el: ElementRef, private imageService: ImageService) {
     this.element = el.nativeElement;
   }
 
@@ -26,9 +28,9 @@ export class ModalComponent implements  OnInit, OnDestroy  {
     this.element.remove();
   }
 
-  open(el): void {
+  open(id): void {
     this.element.style.display = 'flex';
-    console.log(el);
+    this.imageService.getImage(id).then(res => this.image = res);
     document.body.classList.add('modal-open');
   }
 

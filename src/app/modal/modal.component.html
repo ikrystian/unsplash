@@ -1,10 +1,13 @@
 <section class="modal" role="dialog">
-  <header class="modal__header">
-    <h1 class="modal__title"></h1>
+  <header class="modal__header" [ngStyle]="{'border-color': image?.color}">
+    <h1 class="modal__title">Szczegóły obrazu: {{ image?.id }}</h1>
   </header>
   <article class="modal__content">
+    <dl>
+      <dt>Created at: {{image?.created_at}}</dt>
+    </dl>
   </article>
-  <footer class="modal__footer">
+  <footer class="modal__footer" [ngStyle]="{'border-color': image?.color}">
     <button class="modal__button text-button" (click)="close()">Close modal</button>
   </footer>
 </section>

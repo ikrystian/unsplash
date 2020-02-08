@@ -21,3 +21,8 @@ export interface Image {
   user: User;
   portfolio_url: string;
 }
+
+export interface Item {
+  id: string;
+  created_at: string;
+}
