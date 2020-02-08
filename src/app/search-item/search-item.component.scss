@@ -110,22 +110,6 @@
     position: absolute;
     right: 0.5rem;
     bottom: 0.5rem;
-    display: inline-block;
-    text-transform: uppercase;
-    color: #fff;
-    padding: 0.5rem 1rem;
-    text-decoration: none;
-    background: linear-gradient(-45deg, var(--primary-color), var(--secondary-color));
-    background-size: 400%;
-    font-size: 0.875em;
-    font-weight: bold;
-    animation: buttonAnimation 10s linear infinite;
-    transition: background-size 0.2s ease-in-out;
-
-    &:hover,
-    &:focus {
-      background-size: 100%;
-    }
   }
 
   &__status {
@@ -197,14 +181,3 @@
   }
 }
 
-@keyframes buttonAnimation {
-  0% {
-   background-position: 0 50%
-  }
-  50% {
-    background-position: 100% 50%
-  }
-  100% {
-     background-position: 0 50%
-  }
-}

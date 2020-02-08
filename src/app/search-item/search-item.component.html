@@ -1,45 +1,45 @@
-  <span class="search-item__color"></span>
-  <div class="search-item__image-wrapper" [ngStyle]="{'border-color': image.color}" [ngClass]="{'search-item__image-wrapper--grid' : settings.gridView}">
-    <i class="material-icons">
-      image
-    </i>
-    <img
-      [ngClass]="{'search-item__thumbnail--disabled' : settings.disableImages}"
-      src="{{image.urls.small}}"
+<div class="search-item__image-wrapper" [ngStyle]="{'border-color': image.color}"
+     [ngClass]="{'search-item__image-wrapper--grid' : settings.gridView}">
+  <i class="material-icons">
+    image
+  </i>
+  <img
+    [ngClass]="{'search-item__thumbnail--disabled' : settings.disableImages}"
+    src="{{image.urls.small}}"
 
-      alt="" class="search-item__thumbnail">
-  </div>
-  <div class="search-item__details" [ngClass]="{'search-item__details--grid' : settings.gridView}">
+    alt="" class="search-item__thumbnail">
+</div>
+<div class="search-item__details" [ngClass]="{'search-item__details--grid' : settings.gridView}">
 
-    <dl class="search-item__list">
-      <ng-container *ngIf="!settings.gridView">
+  <dl class="search-item__list">
+    <ng-container *ngIf="!settings.gridView">
 
-        <dt class="search-item__label">Photo id:</dt>
-        <dd class="search-item__value"> {{ image.id }}</dd>
+      <dt class="search-item__label">Photo id:</dt>
+      <dd class="search-item__value"> {{ image.id }}</dd>
 
-        <dt class="search-item__label">Date of publication:</dt>
-        <dd class="search-item__value"> {{image.created_at | amLocal | amDateFormat: 'YYYY-MM-DD HH:mm'}}</dd>
+      <dt class="search-item__label">Date of publication:</dt>
+      <dd class="search-item__value"> {{image.created_at | amLocal | amDateFormat: 'YYYY-MM-DD HH:mm'}}</dd>
 
-      </ng-container>
+    </ng-container>
 
-      <dt class="search-item__label">Author:</dt>
-      <dd class="search-item__value">
-        <a href="{{image.user.portfolio_url}}"
-           class="search-item__link"
-           (click)="$event.stopPropagation()"
-           *ngIf="image.user.portfolio_url else onlyNameSection">{{ image.user.name }}</a>
-        <ng-template #onlyNameSection>{{ image.user.name }}</ng-template>
-      </dd>
-    </dl>
+    <dt class="search-item__label">Author:</dt>
+    <dd class="search-item__value">
+      <a href="{{image.user.portfolio_url}}"
+         class="search-item__link"
+         (click)="$event.stopPropagation()"
+         *ngIf="image.user.portfolio_url else onlyNameSection">{{ image.user.name }}</a>
+      <ng-template #onlyNameSection>{{ image.user.name }}</ng-template>
+    </dd>
+  </dl>
 
-    <p class="search-item__description"
-       [ngClass]="{'cropped': settings.croppedDescription, 'search-item__description--grid': settings.gridView}">{{image.description}}</p>
+  <p class="search-item__description"
+     [ngClass]="{'cropped': settings.croppedDescription, 'search-item__description--grid': settings.gridView}">{{image.description}}</p>
 
-    <a class="search-item__button" href="{{ image.links.html }}" (click)="$event.stopPropagation()">View</a>
+  <a class="search-item__button text-button" href="{{ image.links.html }}" (click)="$event.stopPropagation()">View</a>
 
-    <span class="search-item__status" *ngIf="image.created_at > expiredNewLabelDate">
+  <span class="search-item__status" *ngIf="image.created_at > expiredNewLabelDate">
             <i class="material-icons">
             star_border
             </i>
           </span>
-  </div>
+</div>

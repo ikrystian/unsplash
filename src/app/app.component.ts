@@ -2,6 +2,7 @@ import {Component, HostBinding, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {Image} from './image/image';
 import {ImageService} from './image/image.service';
+import {ModalService} from './image/modal.service';
 
 @Component({
   selector: 'app-root',
@@ -28,7 +29,7 @@ export class AppComponent implements OnInit {
   };
   @HostBinding('class.dark-mode') darkMode = false;
 
-  constructor(private formBuilder: FormBuilder, private imageService: ImageService) {
+  constructor(private formBuilder: FormBuilder, private imageService: ImageService, private modalService: ModalService) {
     this.page = 1;
     // revert to 12 after developing
     this.options = [
@@ -140,6 +141,9 @@ export class AppComponent implements OnInit {
   private isIE(): void {
     const match = navigator.userAgent.search(/(?:Edge|MSIE|Trident\/.*; rv:)/);
     this.settings.ieMode = (match !== -1);
+  }
+  openModal(image) {
+    this.modalService.open(image);
   }
 
 }

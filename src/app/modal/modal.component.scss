@@ -1,0 +1,47 @@
+:host {
+  position: fixed;
+  background-color: var(--modal-overlay-background-color);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 666;
+  align-items: center;
+  justify-content: center;
+  display: none;
+}
+
+.modal {
+  background-color: var(--modal-background);
+  min-width: 600px;
+  width: 600px;
+  max-width: 95vw;
+  font-family: var(--font);
+
+
+  &__header {
+    padding: 0.5rem 1rem;
+    border-bottom: 1px solid;
+  }
+
+  &__title {
+    color: var(--font-color);
+    font-weight: 600;
+    font-size: 1.25em;
+  }
+
+  &__content {
+    background-color: var(--body-background-color);
+    overflow: auto;
+    max-height: 80vh;
+    padding: 1rem;
+    min-height: 300px;
+  }
+
+  &__footer {
+    padding: 0.5rem;
+    display: flex;
+    justify-content: flex-end;
+    border-top: 1px solid;
+  }
+}

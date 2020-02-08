@@ -13,6 +13,9 @@
   --form-border-color: #c3c3c3;
   --icon-color: #757575;
   --button-active-background-color: rgba(0, 0, 0, 0.1);
+  --modal-overlay-background-color: rgba(0, 0, 0, 0.7);
+  --modal-background: #fff;
+  --text-button-color: #fff;
 
   --font: 'Open Sans', sans-serif;
 }
@@ -29,6 +32,9 @@
   --form-border-color: #fff;
   --icon-color: #fff;
   --button-active-background-color: rgba(255, 255, 255, 0.1);
+  --modal-overlay-background-color: rgba(0, 0, 0, 0.7);
+  --modal-background: #000;
+  --text-button-color: #fff;
 
   --font: 'Montserrat', sans-serif;
 }
@@ -48,6 +54,10 @@ body {
   font-size: 16px;
   min-height: 100vh;
   overflow-y: scroll;
+
+  &.modal-open {
+    overflow-y: hidden;
+  }
 }
 
 ::-webkit-scrollbar {
@@ -117,6 +127,26 @@ body {
   }
 }
 
+.text-button {
+  display: inline-block;
+  text-transform: uppercase;
+  color: var(--text-button-color);
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  background: linear-gradient(-45deg, var(--primary-color), var(--secondary-color));
+  background-size: 400%;
+  font-size: 0.875em;
+  font-weight: bold;
+  animation: buttonAnimation 10s linear infinite;
+  transition: background-size 0.2s ease-in-out;
+  border: 0;
+  cursor: pointer;
+  &:hover,
+  &:focus {
+    background-size: 100%;
+  }
+}
+
 .container {
   width: 1160px;
   margin: auto;
@@ -125,5 +155,17 @@ body {
   &--flex {
     display: flex;
     justify-content: space-between;
+  }
+}
+
+@keyframes buttonAnimation {
+  0% {
+    background-position: 0 50%
+  }
+  50% {
+    background-position: 100% 50%
+  }
+  100% {
+    background-position: 0 50%
   }
 }

@@ -8,6 +8,7 @@ import { MomentModule } from 'ngx-moment';
 import { SearchItemComponent } from './search-item/search-item.component';
 import { IeComponent } from './ie/ie.component';
 import { WelcomeComponent } from './welcome/welcome.component';
+import { ModalComponent } from './modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { WelcomeComponent } from './welcome/welcome.component';
     SearchItemComponent,
     IeComponent,
     WelcomeComponent,
+    ModalComponent,
   ],
   imports: [
     BrowserModule,
