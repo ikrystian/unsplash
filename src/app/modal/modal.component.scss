@@ -13,15 +13,27 @@
 
 .modal {
   background-color: var(--modal-background);
-  min-width: 600px;
   width: 600px;
   max-width: 95vw;
   font-family: var(--font);
 
+  &__loader {
+    height: 300px;
+    max-height: calc(100vh - 10rem - 93px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 600px;
+    max-width: 100%;
+
+    .material-icons {
+      font-size: 4em;
+    }
+  }
 
   &__header {
     padding: 0.5rem 1rem;
-    border-bottom: 1px solid;
+    border-bottom: 1px solid var(--primary-border-color);
   }
 
   &__title {
@@ -33,15 +45,119 @@
   &__content {
     background-color: var(--body-background-color);
     overflow: auto;
-    max-height: 80vh;
+    height: 300px;
+    max-height: calc(100vh - 2rem - 93px);
     padding: 1rem;
-    min-height: 300px;
   }
 
   &__footer {
     padding: 0.5rem;
     display: flex;
     justify-content: flex-end;
-    border-top: 1px solid;
+    border-top: 1px solid transparent;
+  }
+}
+
+.item-details {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  grid-gap: 0.5rem;
+
+  + .item {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+}
+
+.item {
+  position: relative;
+  overflow: hidden;
+
+  &--image {
+    grid-column: 1 / 2;
+    grid-row: 1 / 4;
+    max-height: calc(171px + 1.5rem);
+  }
+
+  $defaultDelay: 100ms !default;
+  @for $i from 1 through 12 {
+    &:nth-child(#{$i}) .item__content {
+      animation-delay: #{$defaultDelay * $i};
+    }
+  }
+
+  &--double {
+    grid-column: 1 / -1;
+  }
+
+  &__image {
+    display: block;
+    margin: auto;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+
+  &__content {
+    background-color: var(--item-background);
+    animation: showItem 1s forwards;
+    opacity: 0;
+    padding: 0.5rem;
+    height: 100%;
+  }
+
+  &__title {
+    font-size: 0.875rem;
+    color: #757575;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__icon {
+    background: linear-gradient(-45deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    position: absolute;
+    right: 0.25rem;
+    font-size: 3em;
+    user-select: none;
+    opacity: 0.15;
+    top: 50%;
+    transform: translate(0, -50%);
+
+    &--rotated {
+      transform: rotate(90deg) translate(-50%, 0);
+    }
+  }
+
+  &__value {
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    color: #222222;
+  }
+
+  &__color {
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    margin-right: 0.5rem;
+  }
+}
+
+
+@keyframes showItem {
+  0% {
+    opacity: 0;
+    transform: translateY(-100%);
+
+  }
+  40% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

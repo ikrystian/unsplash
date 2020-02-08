@@ -35,12 +35,7 @@
 
     <ul class="actions">
       <li class="actions__item" *ngIf="settings.loading">
-        <span class="actions__loader" role="alert">
-          <span class="hide-for-user">Loading, please wait</span>
-          <i class="material-icons" aria-hidden="true">
-            autorenew
-          </i>
-          </span>
+        <app-loader></app-loader>
       </li>
       <li class="actions__item">
         <button (click)="nightMode()" title="Change grid layout" class="actions__button button">

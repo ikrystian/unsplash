@@ -9,6 +9,7 @@ import { SearchItemComponent } from './search-item/search-item.component';
 import { IeComponent } from './ie/ie.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { ModalComponent } from './modal/modal.component';
+import { LoaderComponent } from './shared/loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { ModalComponent } from './modal/modal.component';
     IeComponent,
     WelcomeComponent,
     ModalComponent,
+    LoaderComponent,
   ],
   imports: [
     BrowserModule,

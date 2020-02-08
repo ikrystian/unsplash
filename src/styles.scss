@@ -16,6 +16,7 @@
   --modal-overlay-background-color: rgba(0, 0, 0, 0.7);
   --modal-background: #fff;
   --text-button-color: #fff;
+  --item-background: #fff;
 
   --font: 'Open Sans', sans-serif;
 }
@@ -35,6 +36,7 @@
   --modal-overlay-background-color: rgba(0, 0, 0, 0.7);
   --modal-background: #000;
   --text-button-color: #fff;
+  --item-background: #000;
 
   --font: 'Montserrat', sans-serif;
 }
@@ -147,6 +149,22 @@ body {
   }
 }
 
+.link {
+  color: var(--primary-color);
+  text-decoration: none;
+  background: linear-gradient(to bottom, var(--primary-color) 0%, var(--primary-color) 100%) repeat-x 0 100%;
+  background-size: 2px 2px;
+  transition: background-size .2s, color .2s;
+  padding-left: 3px;
+  padding-right: 3px;
+
+  &:hover,
+  &:focus {
+    background-size: 4px 50px;
+    color: #fff;
+  }
+}
+
 .container {
   width: 1160px;
   margin: auto;
@@ -156,6 +174,16 @@ body {
     display: flex;
     justify-content: space-between;
   }
+}
+
+.hide-for-user {
+  width: 0;
+  height: 0;
+  display: block;
+  overflow: hidden;
+  position: fixed;
+  left: 0;
+  top: 0;
 }
 
 @keyframes buttonAnimation {

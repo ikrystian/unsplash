@@ -1,13 +1,101 @@
 <section class="modal" role="dialog">
-  <header class="modal__header" [ngStyle]="{'border-color': image?.color}">
-    <h1 class="modal__title">Szczegóły obrazu: {{ image?.id }}</h1>
+  <header class="modal__header">
+    <h1 class="modal__title">Image details</h1>
   </header>
   <article class="modal__content">
-    <dl>
-      <dt>Created at: {{image?.created_at}}</dt>
+
+    <div class="modal__loader" *ngIf="loading">
+      <app-loader></app-loader>
+    </div>
+
+    <dl class="item-details" *ngIf="!loading">
+      <div class="item item--image">
+        <img [src]="image?.urls.small" alt="" class="item__image" [alt]="image?.description">
+      </div>
+      <div class="item">
+        <div class="item__content">
+          <dt class="item__title"> Author <i class="material-icons item__icon"> low_priority </i></dt>
+          <dd class="item__value">{{ image?.user.name }}</dd>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item__content">
+          <dt class="item__title"> Website <i class="material-icons item__icon"> low_priority </i></dt>
+          <dd class="item__value"><a [href]="image?.user.portfolio_url" class="link">{{ image?.user.portfolio_url }}</a>
+          </dd>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item__content">
+          <dt class="item__title"> Photo id <i class="material-icons item__icon"> low_priority </i></dt>
+          <dd class="item__value">{{ image?.id }}</dd>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item__content">
+          <dt class="item__title"> Created at <i class="material-icons item__icon"> calendar_today </i></dt>
+          <dd class="item__value">{{image?.created_at}}</dd>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item__content">
+          <dt class="item__title">
+            Updated at <i class="material-icons item__icon"> date_range </i></dt>
+          <dd class="item__value">{{image?.updated_at}}</dd>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="item__content">
+          <dt class="item__title"> Image width <i class="material-icons item__icon item__icon--rotated">height</i></dt>
+          <dd class="item__value">{{ image?.width}}px</dd>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="item__content">
+          <dt class="item__title">Image height <i class="material-icons item__icon">height</i></dt>
+          <dd class="item__value">{{ image?.height}}px</dd>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="item__content">
+          <dt class="item__title">Color <i class="material-icons item__icon">color_lens</i></dt>
+          <dd class="item__value">
+            <span class="item__color" [ngStyle]="{'background-color': image?.color}"></span>
+            {{ image?.color}}
+          </dd>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="item__content">
+          <dt class="item__title">Downloads <i class="material-icons item__icon">cloud_download</i></dt>
+          <dd class="item__value">{{ image?.downloads }}</dd>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item__content">
+          <dt class="item__title">Likes <i class="material-icons item__icon">thumb_up</i></dt>
+          <dd class="item__value">{{ image?.likes }}</dd>
+        </div>
+      </div>
+      <div class="item" [ngClass]="{'item--double': !image?.description}">
+        <div class="item__content">
+          <dt class="item__title">Location <i class="material-icons item__icon">location_on</i></dt>
+          <dd class="item__value">{{ image?.location.city }}, {{ image?.location.country }}</dd>
+        </div>
+      </div>
     </dl>
+    <div class="item" *ngIf="image?.description">
+      <div class="item__content">
+        <h2 class="item__title">Description <i class="material-icons item__icon">short_text</i></h2>
+        <p class="item__value">{{ image?.description }}</p>
+      </div>
+    </div>
   </article>
-  <footer class="modal__footer" [ngStyle]="{'border-color': image?.color}">
+  <footer class="modal__footer">
     <button class="modal__button text-button" (click)="close()">Close modal</button>
   </footer>
 </section>

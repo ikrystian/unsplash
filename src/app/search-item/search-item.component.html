@@ -25,7 +25,7 @@
     <dt class="search-item__label">Author:</dt>
     <dd class="search-item__value">
       <a href="{{image.user.portfolio_url}}"
-         class="search-item__link"
+         class="search-item__link link"
          (click)="$event.stopPropagation()"
          *ngIf="image.user.portfolio_url else onlyNameSection">{{ image.user.name }}</a>
       <ng-template #onlyNameSection>{{ image.user.name }}</ng-template>

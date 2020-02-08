@@ -65,18 +65,6 @@
       }
     }
   }
-
-  &__loader {
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: default;
-    color: var(--primary-color);
-    animation: rotate-animation 1.5s infinite normal;
-    user-select: none;
-  }
 }
 
 .statistic {
@@ -254,16 +242,6 @@
   padding: 1rem;
 }
 
-.hide-for-user {
-  width: 0;
-  height: 0;
-  display: block;
-  overflow: hidden;
-  position: fixed;
-  left: 0;
-  top: 0;
-}
-
 .toolbar {
   background-color: var(--content-background);
   padding: 1rem;
@@ -393,10 +371,4 @@
   position: fixed;
   right: 0.5rem;
   bottom: 0.5rem;
-}
-
-@keyframes rotate-animation {
-  100% {
-    transform: rotate(360deg)
-  }
 }
