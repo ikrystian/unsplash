@@ -10,6 +10,7 @@ import { IeComponent } from './ie/ie.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { ModalComponent } from './modal/modal.component';
 import { LoaderComponent } from './shared/loader/loader.component';
+import { SafePipe } from './safe.pipe';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { LoaderComponent } from './shared/loader/loader.component';
     WelcomeComponent,
     ModalComponent,
     LoaderComponent,
+    SafePipe,
   ],
   imports: [
     BrowserModule,

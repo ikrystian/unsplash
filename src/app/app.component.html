@@ -1,7 +1,7 @@
 <header class="header">
   <div class="header__container">
     <form action="" class="search-form" [formGroup]="searchForm" autocomplete="off">
-      <button (click)="toggleHistory($event)"  class="actions__button button button--no-border-radius" *ngIf="historyItems.length > 0">
+      <button *ngIf="showIframe" (click)="toggleIframe()" class="actions__button button button--no-border-radius">
         <i class="actions__icon material-icons" aria-hidden="true" *ngIf="!settings.showHistory">keyboard_backspace</i>
       </button>
       <label for="search-text" class="hide-for-user">Search term</label>
@@ -86,13 +86,17 @@
           <label class="settings-form__label" for="crop-description">Crop description after second line in grid
             view</label>
         </div>
-        <div class="settings-form__group">
-          <input type="checkbox" class="settings-form__checkbox" id="modal-details"
-                 [(ngModel)]="settings.modalDetails"
-                 [ngModelOptions]="{standalone: true}">
-          <label class="settings-form__label" for="modal-details">Show modal instead of go to photos website
-            view</label>
+
+        <div class="settings-form__group settings-form__group--column">
+          <p>Choose image details mode</p>
+            <div class="settings-form__group">
+            <div *ngFor="let item of detailsAction" class="settings-form__radio">
+              <input type="radio" id="mode-{{item.value}}" [(ngModel)]="radioSelected" name="details-mode" value="{{item.value}}" (change)="onItemChange(item)"  [ngModelOptions]="{standalone: true}"> 
+              <label for="mode-{{item.value}}" class="settings-form__label">{{item.name}}</label>
+            </div>
+          </div>
         </div>
+
       </form>
     </div>
   </div>
@@ -102,7 +106,7 @@
 <app-ie *ngIf="settings.ieMode"></app-ie>
 <div class="content" id="content" *ngIf="res">
 
-  <iframe class="iframe-preview" src="https://unsplash.com/"></iframe>
+  <iframe *ngIf="showIframe" class="iframe-preview" [src]="iframeSrc | safe"></iframe>
 
   <section class="toolbar container">
     <ng-container *ngIf="res.total > 0">
@@ -127,7 +131,7 @@
 
     <ng-container *ngFor="let image of images">
       <app-search-item class="search-item"
-                       (click)="openModal([image.id, image.links.html])"
+                       (click)="openModal([image.id, image.links.html, image.links.html])"
                        [ngClass]="{'search-item--grid' : settings.gridView}"
                        [image]="image" [settings]="settings"></app-search-item>
     </ng-container>
@@ -135,7 +139,5 @@
   </section>
 
 </div>
-
-<app-modal id="modal" [ngClass]="{'dark-mode': darkMode}"></app-modal>
-
 <button class="button scroll-to-top" (click)="scrollToTop()"><i class="material-icons"> keyboard_arrow_up </i></button>
+<app-modal id="modal" [ngClass]="{'dark-mode': darkMode}"></app-modal>

@@ -16,7 +16,11 @@ export class AppComponent implements OnInit {
   searchForm: FormGroup;
   page;
   options;
+  iframeSrc: string;
   historyItems: string[] = [];
+  detailsAction: any;
+  itemsList;
+  showIframe = false;
   settings = {
     advancedSettings: false,
     disableImages: true,
@@ -26,8 +30,12 @@ export class AppComponent implements OnInit {
     maxItemsInSearch: 5,
     loading: false,
     gridView: false,
-    modalDetails: false
+    modalDetails: 0
   };
+  radioSel:any;
+  radioSelected: string;
+  radioSelectedString:string;
+
   @HostBinding('class.dark-mode') darkMode = false;
 
   constructor(private formBuilder: FormBuilder, private imageService: ImageService, private modalService: ModalService) {
@@ -38,11 +46,16 @@ export class AppComponent implements OnInit {
       {name: 'landscape', value: 'landscape'},
       {name: 'squarish', value: 'squarish'},
     ];
+    this.detailsAction = [{value: 'value_1', name: "Show modal with details"}, {value: 'value_2', name: 'Open page in new tab'}, {value: 'value_3', name: 'Show iframe'}];
 
     this.getImages('kitty');
 
     this.isIE();
     console.log('%c do not open this site in IE, Greta will be angry then!!', 'background: green; color: white; display: block;');
+
+    this.itemsList = this.detailsAction;
+    this.radioSelected = "value_2";
+    this.getSelecteditem();
   }
 
   ngOnInit() {
@@ -70,6 +83,18 @@ export class AppComponent implements OnInit {
     }
     this.onValueChanges();
   }
+
+
+   // Get row item from array  
+   getSelecteditem(){
+    this.radioSel = this.detailsAction.find(Item => Item.value === this.radioSelected);
+    this.radioSelectedString = JSON.stringify(this.radioSel);
+  }
+  // Radio Change Event
+  onItemChange(item){
+    this.getSelecteditem();
+  }
+
 
   changeFormValue(name, e) {
     e.preventDefault();
@@ -139,12 +164,24 @@ export class AppComponent implements OnInit {
     window.location.href = websiteUrl;
   }
 
+  toggleIframe(src?) {
+    this.showIframe = !this.showIframe;
+    this.iframeSrc = (src) ? src : '';
+  }
+
   private isIE(): void {
     const match = navigator.userAgent.search(/(?:Edge|MSIE|Trident\/.*; rv:)/);
     this.settings.ieMode = (match !== -1);
   }
 
   openModal(arr): void {
-    this.settings.modalDetails ? this.modalService.open(arr[0]) : window.open(arr[1], '_blank');
+    if(this.radioSelected == 'value_1'){
+      this.modalService.open(arr[0])
+    } else if (this.radioSelected == 'value_2') {
+      window.open(arr[1], '_blank')
+    } else {
+      console.log(arr[2]);
+      this.toggleIframe(arr[2]);
+    }
   }
 }
