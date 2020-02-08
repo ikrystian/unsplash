@@ -120,7 +120,7 @@
     margin: 0;
     padding: 0 1rem;
     line-height: 40px;
-    border: 1px solid #c3c3c3;
+    border: 1px solid var(--form-border-color);
     border-right: none;
     color: var(--font-color);
     transition: border-color 0.2s ease-in-out;
