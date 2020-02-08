@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,700|Open+Sans:400,600,700&display=swap&subset=latin-ext');
+@import './assets/styles/mixins';
 
 :root {
   --body-background-color: #eceff1;
@@ -109,9 +110,7 @@ body {
     &:hover,
     &:focus {
       i {
-        background: linear-gradient(-45deg, var(--primary-color), var(--secondary-color));
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+        @include gradient-overlay();
       }
 
       background-color: var(--button-active-background-color);

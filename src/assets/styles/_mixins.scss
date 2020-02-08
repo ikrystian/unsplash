@@ -3,6 +3,13 @@ $medium: 768px;
 $desktop: 1160px;
 $wide: 1680px;
 
+@mixin gradient-overlay() {
+  color: var(--primary-color);
+  background: linear-gradient(-45deg, var(--primary-color), var(--secondary-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 @mixin res($breakpoint) {
   @if $breakpoint == wide {
     @media only screen and (min-width: $wide) {

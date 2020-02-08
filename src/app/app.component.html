@@ -71,8 +71,19 @@
   </div>
   <div class="advanced-options" *ngIf="settings.advancedSettings">
     <div class="container">
-      <span class="info"> belows settings will  <strong>not</strong> be saved in local storage!</span>
+      <div role="alert" class="info">
+        <i class="material-icons">error</i>
+        <span>belows settings will  <strong>not</strong> be saved in local storage!</span></div>
       <form action="" class="settings-form">
+        <div class="settings-form__group settings-form__group--column">
+          <p>Choose image details mode</p>
+            <div class="settings-form__radios">
+            <div *ngFor="let item of detailsAction" class="settings-form__radio">
+              <input type="radio" id="mode-{{item.value}}" [(ngModel)]="radioSelected" name="details-mode" value="{{item.value}}" (change)="onItemChange(item)"  [ngModelOptions]="{standalone: true}"> 
+              <label for="mode-{{item.value}}" class="settings-form__label">{{item.name}}</label>
+            </div>
+          </div>
+        </div>
         <div class="settings-form__group">
           <input class="settings-form__checkbox" type="checkbox" id="disable-images-animation"
                  [(ngModel)]="settings.disableImages"
@@ -86,17 +97,6 @@
           <label class="settings-form__label" for="crop-description">Crop description after second line in grid
             view</label>
         </div>
-
-        <div class="settings-form__group settings-form__group--column">
-          <p>Choose image details mode</p>
-            <div class="settings-form__group">
-            <div *ngFor="let item of detailsAction" class="settings-form__radio">
-              <input type="radio" id="mode-{{item.value}}" [(ngModel)]="radioSelected" name="details-mode" value="{{item.value}}" (change)="onItemChange(item)"  [ngModelOptions]="{standalone: true}"> 
-              <label for="mode-{{item.value}}" class="settings-form__label">{{item.name}}</label>
-            </div>
-          </div>
-        </div>
-
       </form>
     </div>
   </div>
