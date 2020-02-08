@@ -1,4 +1,4 @@
-import { Component, HostBinding, OnInit } from '@angular/core';
+import {Component, HostBinding, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {Image} from './image/image';
 import {ImageService} from './image/image.service';
@@ -25,7 +25,8 @@ export class AppComponent implements OnInit {
     showHistory: false,
     maxItemsInSearch: 5,
     loading: false,
-    gridView: false
+    gridView: false,
+    modalDetails: false
   };
   @HostBinding('class.dark-mode') darkMode = false;
 
@@ -142,8 +143,8 @@ export class AppComponent implements OnInit {
     const match = navigator.userAgent.search(/(?:Edge|MSIE|Trident\/.*; rv:)/);
     this.settings.ieMode = (match !== -1);
   }
-  openModal(image) {
-    this.modalService.open(image);
-  }
 
+  openModal(arr): void {
+    this.settings.modalDetails ? this.modalService.open(arr[0]) : window.open(arr[1], '_blank');
+  }
 }

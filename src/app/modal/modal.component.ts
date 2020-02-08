@@ -35,6 +35,7 @@ export class ModalComponent implements OnInit, OnDestroy {
     this.loading = true;
     this.imageService.getImage(id).then(res => {
       this.image = res;
+      console.log(res);
       this.loading = false;
     });
     document.body.classList.add('modal-open');
