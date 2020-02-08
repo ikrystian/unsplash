@@ -128,7 +128,7 @@ export class AppComponent implements OnInit {
     this.images = [];
     this.settings.loading = true;
 
-    this.imageService.getImagesForSpecyficPage(historyTerms.searchText, historyTerms.orientation, page).then((res) => {
+    this.imageService.getImagesForSpecificPage(historyTerms.searchText, historyTerms.orientation, page).then((res) => {
       this.res = res;
       this.images = res.results;
       this.settings.loading = false;
