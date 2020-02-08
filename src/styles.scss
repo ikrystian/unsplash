@@ -3,7 +3,8 @@
 :root {
   --body-background-color: #eceff1;
   --header-background-color: #fff;
-  --primary-color: #ff4858;
+  --primary-color: #017eff;
+  --secondary-color: #04e8f6;
   --primary-border-color: #ddd;
   --font-color: #222;
   --content-background: #fff;
@@ -11,7 +12,7 @@
   --search-item-hover-background: #dedede;
   --form-border-color: #c3c3c3;
   --icon-color: #757575;
-  --button-active-background-color: rgba(0, 0, 0, 0.2);
+  --button-active-background-color: rgba(0, 0, 0, 0.1);
 
   --font: 'Open Sans', sans-serif;
 }
@@ -27,7 +28,7 @@
   --search-item-hover-background: #222;
   --form-border-color: #fff;
   --icon-color: #fff;
-  --button-active-background-color: rgba(255, 255, 255, 0.2);
+  --button-active-background-color: rgba(255, 255, 255, 0.1);
 
   --font: 'Montserrat', sans-serif;
 }
@@ -46,6 +47,7 @@ html {
 body {
   font-size: 16px;
   min-height: 100vh;
+  overflow-y: scroll;
 }
 
 ::-webkit-scrollbar {
@@ -76,6 +78,7 @@ body {
   overflow: hidden;
   transition: background-color 0.2s ease-in-out;
   border-radius: 50%;
+  user-select: none;
 
   i {
     color: var(--icon-color);
@@ -90,7 +93,9 @@ body {
     &:hover,
     &:focus {
       i {
-        color: var(--primary-color);
+        background: linear-gradient(-45deg, var(--primary-color), var(--secondary-color));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
       }
 
       background-color: var(--button-active-background-color);

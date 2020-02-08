@@ -18,7 +18,7 @@ export class AppComponent implements OnInit {
   historyItems: string[] = [];
   settings = {
     advancedSettings: false,
-    disableImages: false,
+    disableImages: true,
     croppedDescription: false,
     ieMode: false,
     showHistory: false,
@@ -130,7 +130,7 @@ export class AppComponent implements OnInit {
   }
 
   scrollToTop(): void {
-    document.getElementById('content').scroll(0, 0);
+    window.scroll(0, 0);
   }
 
   goToImageWebsite(websiteUrl): void {

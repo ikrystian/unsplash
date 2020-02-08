@@ -96,10 +96,17 @@
     justify-content: flex-start;
   }
 
-  span {
+  &__page-number {
     margin-left: 0.5rem;
     margin-right: 0.5rem;
     font-size: 0.875em;
+
+    &--current {
+      color: var(--primary-color);
+    }
+    &--total {
+      color: var(--secondary-color);
+    }
   }
 }
 
@@ -223,7 +230,7 @@
   &--grid {
     grid-template-columns: 1fr;
 
-    @include res(thone) {
+    @include res(phone) {
       grid-template-columns: repeat(2, 1fr);
     }
 
@@ -282,14 +289,6 @@
   }
 }
 
-.footer {
-  background-color: #fff;
-  padding: 0.5rem;
-  font-size: 0.75em;
-  text-align: right;
-  border-top: 1px solid var(--primary-border-color)
-}
-
 .settings-form {
   display: flex;
   flex-wrap: wrap;
@@ -309,6 +308,7 @@
   &__label {
     cursor: pointer;
     font-size: 0.875em;
+    transition: color 0.2s ease-in-out;
 
     &:hover,
     &:focus {
@@ -317,9 +317,13 @@
   }
 }
 
-.alert {
+.info {
   color: var(--primary-color);
   font-size: 0.875rem;
+
+  &::first-letter {
+    text-transform: capitalize;
+  }
 }
 
 .search-history {
@@ -383,6 +387,12 @@
 
 .no-history {
   padding: 0.5rem;
+}
+
+.scroll-to-top {
+  position: fixed;
+  right: 0.5rem;
+  bottom: 0.5rem;
 }
 
 @keyframes rotate-animation {

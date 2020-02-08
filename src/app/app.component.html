@@ -10,7 +10,9 @@
           <option *ngFor="let opt of options" [value]="opt.value">{{opt.value}}</option>
         </select>
       </div>
-      <button (click)="toggleHistory($event)" title="Show history search" class="actions__button search-form__history-button actions__button--on-desktop button button--no-border-radius" *ngIf="historyItems.length > 0">
+      <button (click)="toggleHistory($event)" title="Show history search"
+              class="actions__button search-form__history-button actions__button--on-desktop button button--no-border-radius"
+              *ngIf="historyItems.length > 0">
         <i class="actions__icon material-icons" aria-hidden="true" *ngIf="!settings.showHistory">history</i>
         <i class="actions__icon material-icons" aria-hidden="true" *ngIf="settings.showHistory">close</i>
       </button>
@@ -19,11 +21,14 @@
         <ul class="history-list search-history__list">
           <ng-container *ngFor="let historyItem of historyItems; let index = index">
             <li class="history-list__item" *ngIf="index < settings.maxItemsInSearch && historyItem ">
-              <button class="history-list__item-name" (click)="changeFormValue(historyItem, $event)">{{ historyItem }}</button>
+              <button class="history-list__item-name"
+                      (click)="changeFormValue(historyItem, $event)">{{ historyItem }}</button>
             </li>
           </ng-container>
         </ul>
-        <a *ngIf="settings.maxItemsInSearch < historyItems.length - 1" class="history-list__link" href="#" (click)="settings.maxItemsInSearch = historyItems.length">Show all position in history ({{historyItems.length}})</a>
+        <a *ngIf="settings.maxItemsInSearch < historyItems.length - 1" class="history-list__link" href="#"
+           (click)="settings.maxItemsInSearch = historyItems.length">Show all position in history
+          ({{historyItems.length}})</a>
       </div>
 
     </form>
@@ -44,19 +49,22 @@
         </button>
       </li>
       <li class="actions__item">
-        <button (click)="settings.advancedSettings = !settings.advancedSettings" title="advanced settings" class="actions__button button">
+        <button (click)="settings.advancedSettings = !settings.advancedSettings" title="advanced settings"
+                class="actions__button button">
           <i class="material-icons" aria-hidden="true" *ngIf="settings.advancedSettings">settings_applications</i>
           <i class="material-icons" aria-hidden="true" *ngIf="!settings.advancedSettings">settings</i>
         </button>
       </li>
       <li class="actions__item" *ngIf="res">
-        <button (click)="settings.gridView = !settings.gridView" title="Change grid layout" class="actions__button button">
+        <button (click)="settings.gridView = !settings.gridView" title="Change grid layout"
+                class="actions__button button">
           <i class="actions__icon material-icons" aria-hidden="true" *ngIf="settings.gridView">list_view</i>
           <i class="actions__icon material-icons" aria-hidden="true" *ngIf="!settings.gridView">view_module</i>
         </button>
       </li>
       <li class="actions__item actions__item--on-mobile">
-        <button (click)="toggleHistory($event)" title="Show history search" class="actions__button button button--no-border-radius" *ngIf="historyItems.length > 0">
+        <button (click)="toggleHistory($event)" title="Show history search"
+                class="actions__button button button--no-border-radius" *ngIf="historyItems.length > 0">
           <i class="actions__icon material-icons" aria-hidden="true" *ngIf="!settings.showHistory">history</i>
           <i class="actions__icon material-icons" aria-hidden="true" *ngIf="settings.showHistory">close</i>
         </button>
@@ -65,17 +73,20 @@
   </div>
   <div class="advanced-options" *ngIf="settings.advancedSettings">
     <div class="container">
-      <span class="alert"> belows settings will  <strong>not</strong> be saved in local storage!</span>
+      <span class="info"> belows settings will  <strong>not</strong> be saved in local storage!</span>
       <form action="" class="settings-form">
         <div class="settings-form__group">
-          <input class="settings-form__checkbox" type="checkbox" id="disable-images-animation" [(ngModel)]="settings.disableImages"
+          <input class="settings-form__checkbox" type="checkbox" id="disable-images-animation"
+                 [(ngModel)]="settings.disableImages"
                  [ngModelOptions]="{standalone: true}">
           <label class="settings-form__label" for="disable-images-animation">Disable thumbnails fit in container</label>
         </div>
         <div class="settings-form__group">
-          <input type="checkbox" class="settings-form__checkbox" id="crop-description" [(ngModel)]="settings.croppedDescription"
+          <input type="checkbox" class="settings-form__checkbox" id="crop-description"
+                 [(ngModel)]="settings.croppedDescription"
                  [ngModelOptions]="{standalone: true}">
-          <label class="settings-form__label" for="crop-description">Crop description after second line in grid view</label>
+          <label class="settings-form__label" for="crop-description">Crop description after second line in grid
+            view</label>
         </div>
       </form>
     </div>
@@ -84,7 +95,6 @@
 
 <app-welcome *ngIf="!res"></app-welcome>
 <app-ie *ngIf="settings.ieMode"></app-ie>
-
 <div class="content" id="content" *ngIf="res">
   <section class="toolbar container">
     <ng-container *ngIf="res.total > 0">
@@ -94,7 +104,8 @@
       <div class="pagination" *ngIf="res.total_pages > 1">
         <button class="button" [disabled]="page == 1 || settings.loading" (click)="gotToPage(page - 1)"><i
           class="material-icons">keyboard_arrow_left</i></button>
-        <span>Page <strong>{{ page }}</strong> from: <strong>{{res.total_pages}}</strong></span>
+        <span>Page <strong class="pagination__page-number">{{ page }}</strong> from: <strong
+          class="pagination__page-number">{{res.total_pages}}</strong></span>
         <button class="button" (click)="gotToPage(page + 1)" [disabled]="page >= res.total_pages || settings.loading"><i
           class="material-icons">keyboard_arrow_right</i></button>
       </div>
@@ -106,7 +117,8 @@
 
   <section class="image-list-view container" [ngClass]="{'image-list-view--grid' : settings.gridView}">
     <ng-container *ngFor="let image of images">
-      <app-search-item class="search-item" [ngClass]="{'search-item--grid' : settings.gridView}"
+      <app-search-item class="search-item"
+                       [ngClass]="{'search-item--grid' : settings.gridView}"
                        (click)="goToImageWebsite(image.links.html)"
                        [image]="image" [settings]="settings"></app-search-item>
     </ng-container>
@@ -115,8 +127,4 @@
 
 </div>
 
-<footer class="footer">
-  <div class="container">
-    <p><strong>MAUSE</strong> - most awesome unsplash search engine</p>
-  </div>
-</footer>
+<button class="button scroll-to-top" (click)="scrollToTop()"><i class="material-icons"> keyboard_arrow_up </i></button>
