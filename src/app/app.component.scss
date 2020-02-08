@@ -173,9 +173,11 @@
     }
 
     option {
-      &:hover, &:focus {
-        color: #fff;
-        background-color: #ff4858;
+      color: var(--font-color);
+      background-color: var(--header-background-color);
+
+      &:hover, 
+      &:focus {
         outline: none;
       }
     }
@@ -389,11 +391,13 @@
     cursor: pointer;
     text-align: left;
     padding: 0.5rem;
+    color: var(--font-color);
 
     &:hover,
     &:focus {
-      // remove this hex color
-      background-color: #dedede;
+      background-color: var(--header-background-color);
+      color: var(--primary-color);
+      padding-left: 1rem;
     }
   }
 
