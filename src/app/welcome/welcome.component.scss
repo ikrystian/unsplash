@@ -1,0 +1,44 @@
+@import '../../assets/mixins';
+
+.welcome-page {
+  min-height: calc(100vh - 105px);
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+
+  @include res(desktop) {
+    min-height: calc(100vh - 57px);
+    padding: 2rem;
+  }
+
+  &__title {
+    text-align: center;
+    font-weight: 500;
+
+    strong {
+      font-weight: bold;
+      background-color: #fff;
+      color: var(--primary-color);
+    }
+  }
+
+  svg {
+    max-width: 100%;
+    margin: auto;
+    display: block;
+    height: auto;
+
+    @include res(desktop) {
+      max-width: 40vw;
+    }
+  }
+
+  span {
+    color: var(--primary-color);
+  }
+
+  h2 {
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+}
