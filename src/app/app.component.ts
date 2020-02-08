@@ -184,8 +184,7 @@ export class AppComponent implements OnInit {
     } else if (this.radioSelected == 'value_2') {
       window.open(arr[1], '_blank')
     } else {
-      console.log(arr[2]);
-      this.toggleIframe(arr[2]);
+      this.toggleIframe(arr[1]);
     }
   }
 }

@@ -36,11 +36,11 @@
   <p class="search-item__description"
      [ngClass]="{'cropped': settings.croppedDescription, 'search-item__description--grid': settings.gridView}">{{image.description}}</p>
 
-  <a class="search-item__button text-button" target="_blank" href="{{ image.links.html }}" (click)="$event.stopPropagation()">View</a>
+  <a class="search-item__button text-button" target="_blank" href="{{ image.links.html }}" (click)="$event.stopPropagation()">View <span class="hide-for-user">image: {{image.id}}</span></a> 
 
   <span class="search-item__status" *ngIf="image.created_at > expiredNewLabelDate">
-            <i class="material-icons">
-            star_border
-            </i>
-          </span>
+    <i class="material-icons">
+    star_border
+    </i>
+  </span>
 </div>

@@ -131,7 +131,7 @@
 
     <ng-container *ngFor="let image of images">
       <app-search-item class="search-item"
-                       (click)="openModal([image.id, image.links.html, image.links.html])"
+                       (click)="openModal([image.id, image.links.html])"
                        [ngClass]="{'search-item--grid' : settings.gridView}"
                        [image]="image" [settings]="settings"></app-search-item>
     </ng-container>
