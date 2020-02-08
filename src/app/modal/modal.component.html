@@ -8,10 +8,16 @@
       <app-loader></app-loader>
     </div>
 
-    <dl class="item-details" *ngIf="!loading">
-      <div class="item item--image">
-        <img [src]="image?.urls.small" alt="" class="item__image" [alt]="image?.description">
-      </div>
+    <ng-container *ngIf="!loading">
+    <div class="item item--double" *ngIf="image?.description">
+      <dl class="item__content">
+        <dt class="item__title">Description <i class="material-icons item__icon">short_text</i></dt>
+        <dd class="item__value">{{ image?.description }}</dd>
+      </dl>
+    </div>
+
+    <dl class="item-details">
+
       <div class="item">
         <div class="item__content">
           <dt class="item__title"> Author <i class="material-icons item__icon"> low_priority </i></dt>
@@ -20,8 +26,14 @@
       </div>
       <div class="item">
         <div class="item__content">
+          <dt class="item__title"> Username <i class="material-icons item__icon"> low_priority </i></dt>
+          <dd class="item__value">{{ image?.user.username }}</dd>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item__content">
           <dt class="item__title"> Website <i class="material-icons item__icon"> low_priority </i></dt>
-          <dd class="item__value"><a [href]="image?.user.portfolio_url" class="link">{{ image?.user.portfolio_url }}</a>
+          <dd class="item__value"><a class="item__link link" [href]="image?.user.portfolio_url">{{ image?.user.portfolio_url }}</a>
           </dd>
         </div>
       </div>
@@ -81,19 +93,14 @@
           <dd class="item__value">{{ image?.likes }}</dd>
         </div>
       </div>
-      <div class="item" [ngClass]="{'item--double': !image?.description}">
+      <div class="item">
         <div class="item__content">
           <dt class="item__title">Location <i class="material-icons item__icon">location_on</i></dt>
           <dd class="item__value">{{ image?.location.city }}, {{ image?.location.country }}</dd>
         </div>
       </div>
     </dl>
-    <div class="item" *ngIf="image?.description">
-      <div class="item__content">
-        <h2 class="item__title">Description <i class="material-icons item__icon">short_text</i></h2>
-        <p class="item__value">{{ image?.description }}</p>
-      </div>
-    </div>
+    </ng-container>
   </article>
   <footer class="modal__footer">
     <button class="modal__button text-button" (click)="close()">Close modal</button>

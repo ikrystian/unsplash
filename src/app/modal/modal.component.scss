@@ -1,3 +1,5 @@
+@import '../../assets/mixins';
+
 :host {
   position: fixed;
   background-color: var(--modal-overlay-background-color);
@@ -63,22 +65,11 @@
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(6, 1fr);
   grid-gap: 0.5rem;
-
-  + .item {
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
-  }
 }
 
 .item {
   position: relative;
   overflow: hidden;
-
-  &--image {
-    grid-column: 1 / 2;
-    grid-row: 1 / 4;
-    max-height: calc(171px + 1.5rem);
-  }
 
   $defaultDelay: 100ms !default;
   @for $i from 1 through 12 {
@@ -89,14 +80,8 @@
 
   &--double {
     grid-column: 1 / -1;
-  }
-
-  &__image {
-    display: block;
-    margin: auto;
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
+    animation-delay: 0ms;
+    margin: 0.5rem 0;
   }
 
   &__content {
@@ -136,6 +121,13 @@
     display: flex;
     align-items: center;
     color: #222222;
+  }
+
+  &__link {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 100%;
   }
 
   &__color {
