@@ -17,20 +17,6 @@
   justify-content: center;
   position: relative;
 
-  &__logo {
-    font-size: 2em;
-    padding: 0 0.5rem 0 1rem;
-    display: none;
-
-    @include res(tab) {
-      display: block
-    }
-
-    @include res(desktop) {
-      padding-left: 0;
-    }
-  }
-
   &__container {
     display: flex;
     width: 1160px;
@@ -254,7 +240,7 @@
 .content {
   padding: 1rem;
   height: calc(100vh - 53px);
-  overflow: auto;
+  overflow-y: scroll;
 
   @include res(tab) {
     height: calc(100vh - 94px);
@@ -271,255 +257,16 @@
   top: 0;
 }
 
-.search-item {
+.toolbar {
+  background-color: var(--content-background);
+  padding: 1rem;
   display: flex;
   flex-direction: column;
-  padding: 0.5rem;
-  position: relative;
-  height: 100%;
-  transition: background-color 0.2s ease-in-out;
 
   @include res(phone) {
     flex-direction: row;
-  }
-
-  &:hover {
-    background-color: var(--search-item-hover-background);
-    cursor: pointer;
-
-    .search-item__thumbnail {
-      transform: scale(1.4);
-    }
-  }
-
-  &:not(:last-of-type) {
-    border-bottom: 1px solid var(--primary-border-color);
-  }
-
-  &--grid {
-    display: flex;
-    flex-direction: column;
-    border-bottom: 0 !important;
-    margin-bottom: 1rem !important;
-
-    &:hover {
-      background-color: transparent;
-      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23)
-    }
-  }
-
-  &__image-wrapper {
-    min-width: 128px;
-    width: 100%;
-    height: 150px;
-    display: flex;
     align-items: center;
-    justify-content: center;
-    background-color: #fff;
-    overflow: hidden;
-    position: relative;
-    margin-bottom: 0.5rem;
-
-    @include res(phone) {
-      width: 128px;
-      height: 128px;
-      margin-bottom: 0;
-    }
-
-    .material-icons {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      z-index: 0;
-      opacity: 0.3;
-      transform: translate(-50%);
-    }
-
-    &--grid {
-      width: 100%;
-      height: 250px;
-      margin-bottom: 0.5rem;
-    }
-  }
-
-  &__thumbnail {
-    object-fit: contain;
-    max-height: 100%;
-    position: relative;
-    z-index: 1;
-    transition: transform 3s ease-in-out;
-
-    &--disabled {
-      object-fit: cover;
-      height: 100%;
-      width: 100%;
-    }
-  }
-
-  &__details {
-    padding-left: 1rem;
-    padding-bottom: 44px;
-    display: flex;
-    flex-direction: column;
     justify-content: space-between;
-
-    @include res(phone) {
-      padding-right: 5rem;
-      padding-bottom: 0;
-    }
-
-    &--grid {
-      padding: 0 0 44px 0;
-    }
-  }
-
-  &__button {
-    position: absolute;
-    right: 0.5rem;
-    bottom: 0.5rem;
-    display: inline-block;
-    text-transform: uppercase;
-    color: #fff;
-    font-weight: 500;
-    padding: 0.5rem 1rem;
-    text-decoration: none;
-    background-color: var(--primary-color);
-    font-size: 0.875em;
-
-    &:hover,
-    &:focus {
-      opacity: 0.5;
-    }
-  }
-
-  &__status {
-    position: absolute;
-    top: 0.5rem;
-    right: 0.5rem;
-
-  }
-
-  &__list {
-    font-size: 0.875em;
-  }
-
-  &__label {
-    color: #767676;
-    display: inline-block;
-    margin-right: 0.2rem;
-    margin-top: 0.5rem;
-
-    @include res(desktop) {
-      margin-top: 0;
-    }
-  }
-
-  &__value {
-    display: inline;
-
-    color: var(--search-item-value-color);
-
-    &::after {
-      display: block;
-      height: 0.3rem;
-      content: '';
-    }
-
-    a:focus {
-      color: red;
-    }
-  }
-
-  &__link {
-    color: var(--primary-color);
-    text-decoration: none;
-    background: linear-gradient(to bottom, var(--primary-color) 0%, var(--primary-color) 100%) repeat-x 0 100%;
-    background-size: 2px 2px;
-    transition: background-size .2s, color .2s;
-    padding-left: 3px;
-    padding-right: 3px;
-
-    &:hover,
-    &:focus {
-      background-size: 4px 50px;
-      color: #fff;
-    }
-  }
-
-  &__description {
-    font-size: 0.875em;
-    &--grid {
-      &.cropped {
-        overflow: hidden;
-        text-overflow: ellipsis;
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-      }
-    }
-  }
-}
-
-.scroll-to-top {
-  position: fixed;
-  bottom: 1rem;
-  right: 1rem;
-  width: 36px;
-  height: 36px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 0;
-  border-radius: 50%;
-  background-color: rgba(0, 0, 0, 0.1);
-  cursor: pointer;
-
-  &:hover,
-  &:focus {
-    background-color: rgba(0, 0, 0, 0.2);
-  }
-}
-
-.welcome-page {
-  min-height: calc(100vh - 105px);
-  display: grid;
-  place-items: center;
-  padding: 1rem;
-
-  @include res(desktop) {
-    min-height: calc(100vh - 57px);
-    padding: 2rem;
-  }
-
-  &__title {
-    text-align: center;
-    font-weight: 500;
-
-    strong {
-      font-weight: bold;
-      background-color: #fff;
-      color: var(--primary-color);
-    }
-  }
-
-  svg {
-    max-width: 100%;
-    margin: auto;
-    display: block;
-    height: auto;
-
-    @include res(desktop) {
-      max-width: 40vw;
-    }
-  }
-
-  span {
-    color: var(--primary-color);
-  }
-
-  h2 {
-    margin-bottom: 2rem;
-    text-align: center;
   }
 }
 
@@ -560,51 +307,19 @@
   }
 
   &__label {
-      cursor: pointer;
-      font-size: 0.875em;
+    cursor: pointer;
+    font-size: 0.875em;
 
-      &:hover,
-      &:focus {
-        color: var(--primary-color);
-      }
+    &:hover,
+    &:focus {
+      color: var(--primary-color);
+    }
   }
 }
 
 .alert {
   color: var(--primary-color);
   font-size: 0.875rem;
-}
-
-// easter EGG IE
-.ie-greta {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #fff;
-  font-size: 2rem;
-  font-weight: 800;
-  color: #000;
-  font-family: "Comic Sans MS", sans-serif;
-  z-index: 666;
-
-  .container {
-    display: flex;
-    flex-direction: column;
-    margin-top: 1rem;
-    align-items: center;
-    background-color: #fff;
-    padding: 0.5rem 0;
-  }
-
-  img {
-    height: 200px;
-    width: auto;
-  }
 }
 
 .search-history {

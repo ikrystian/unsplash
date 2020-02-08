@@ -5,12 +5,16 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { MomentModule } from 'ngx-moment';
-import { ToolbarComponent } from './toolbar/toolbar.component';
+import { SearchItemComponent } from './search-item/search-item.component';
+import { IeComponent } from './ie/ie.component';
+import { WelcomeComponent } from './welcome/welcome.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ToolbarComponent
+    SearchItemComponent,
+    IeComponent,
+    WelcomeComponent,
   ],
   imports: [
     BrowserModule,

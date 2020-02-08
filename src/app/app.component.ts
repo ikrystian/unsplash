@@ -1,6 +1,5 @@
 import {Component, HostBinding, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
-import * as moment from 'moment';
 import {Image} from './image/image';
 import {ImageService} from './image/image.service';
 
@@ -14,7 +13,6 @@ export class AppComponent implements OnInit {
   res: any;
   images: Image[];
   searchForm: FormGroup;
-  expiredNewLabelDate = moment().subtract(14, 'days').format();
   page;
   options;
   historyItems: string[] = [];
@@ -107,10 +105,6 @@ export class AppComponent implements OnInit {
     this.darkMode = !this.darkMode;
   }
 
-  goToImageWebsite(websiteUrl): void {
-    window.location.href = websiteUrl;
-  }
-
   getImages(searchText, orientation?) {
     this.images = [];
     this.settings.loading = true;
@@ -136,7 +130,11 @@ export class AppComponent implements OnInit {
   }
 
   scrollToTop(): void {
-    window.scroll(0, 0);
+    document.getElementById('content').scroll(0, 0);
+  }
+
+  goToImageWebsite(websiteUrl): void {
+    window.location.href = websiteUrl;
   }
 
   private isIE(): void {
