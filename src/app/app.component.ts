@@ -165,8 +165,12 @@ export class AppComponent implements OnInit {
   }
 
   toggleIframe(src?) {
-    this.showIframe = !this.showIframe;
-    this.iframeSrc = (src) ? src : '';
+    if(src) {
+      this.iframeSrc = src;
+      this.showIframe = true;
+    } else {
+      this.showIframe = !this.showIframe
+    }
   }
 
   private isIE(): void {
