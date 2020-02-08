@@ -54,7 +54,7 @@ export class AppComponent implements OnInit {
     console.log('%c do not open this site in IE, Greta will be angry then!!', 'background: green; color: white; display: block;');
 
     this.itemsList = this.detailsAction;
-    this.radioSelected = "value_2";
+    this.radioSelected = "value_1";
     this.getSelecteditem();
   }
 
