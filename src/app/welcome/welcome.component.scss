@@ -19,6 +19,9 @@
       font-weight: bold;
       background-color: #fff;
       color: var(--primary-color);
+      display: inline-block;
+      padding: 0 0.5rem;
+      @include gradient-overlay();
     }
   }
 

@@ -40,15 +40,16 @@ export class AppComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, private imageService: ImageService, private modalService: ModalService) {
     this.page = 1;
-    // revert to 12 after developing
     this.options = [
       {name: 'portrait', value: 'portrait'},
       {name: 'landscape', value: 'landscape'},
       {name: 'squarish', value: 'squarish'},
     ];
-    this.detailsAction = [{value: 'value_1', name: "Show modal with details"}, {value: 'value_2', name: 'Open page in new tab'}, {value: 'value_3', name: 'Show iframe'}];
-
-    this.getImages('kitty');
+    this.detailsAction = [
+      {value: 'value_1', name: "Show modal with details"}, 
+      {value: 'value_2', name: 'Open page in new tab'}, 
+      {value: 'value_3', name: 'Show iframe'}
+    ];
 
     this.isIE();
     console.log('%c do not open this site in IE, Greta will be angry then!!', 'background: green; color: white; display: block;');
