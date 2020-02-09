@@ -4,6 +4,7 @@ import {Image} from './image/image';
 import {ImageService} from './image/image.service';
 import {ModalService} from './image/modal.service';
 import { DOCUMENT } from '@angular/common';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
@@ -42,7 +43,10 @@ export class AppComponent implements OnInit {
     private formBuilder: FormBuilder, 
     private imageService: ImageService, 
     private modalService: ModalService,
+    private translate: TranslateService,
     @Inject(DOCUMENT) private document: Document ) {
+
+    translate.setDefaultLang('pl');
 
     this.page = 1;
     this.options = [
@@ -115,6 +119,10 @@ export class AppComponent implements OnInit {
   toggleHistory(event?): void {
     event ? event.preventDefault() : '';
     this.settings.showHistory = !this.settings.showHistory;
+  }
+
+  useLanguage(language: string) {
+    this.translate.use(language);
   }
 
   focusOut(name): void {

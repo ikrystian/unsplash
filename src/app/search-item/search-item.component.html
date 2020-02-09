@@ -14,10 +14,10 @@
   <dl class="search-item__list">
     <ng-container *ngIf="!settings.gridView">
 
-      <dt class="search-item__label">Photo id:</dt>
+      <dt class="search-item__label">{{'PHOTO_ID' | translate}}:</dt>
       <dd class="search-item__value"> {{ image.id }}</dd>
 
-      <dt class="search-item__label">Date of publication:</dt>
+      <dt class="search-item__label">{{'PUBLICATION_DATE' | translate}}:</dt>
       <dd class="search-item__value"> {{image.created_at | amLocal | amDateFormat: 'YYYY-MM-DD HH:mm'}}</dd>
 
     </ng-container>

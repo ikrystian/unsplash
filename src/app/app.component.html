@@ -63,6 +63,12 @@
           <i class="actions__icon material-icons" aria-hidden="true" *ngIf="!settings.gridView">view_module</i>
         </button>
       </li>
+
+      <li class="actions__item">
+        <button (click)="useLanguage('pl')" class="actions__button button">en</button>
+        <button (click)="useLanguage('en')" class="actions__button button">de</button>
+      </li>
+
       <li class="actions__item actions__item--on-mobile">
         <button (click)="toggleHistory($event)" title="Show history search"
                 class="actions__button button button--no-border-radius" *ngIf="historyItems.length > 0">
@@ -70,6 +76,7 @@
           <i class="actions__icon material-icons" aria-hidden="true" *ngIf="settings.showHistory">close</i>
         </button>
       </li>
+
     </ul>
   </div>
   <div class="advanced-options" *ngIf="settings.advancedSettings">
@@ -114,7 +121,7 @@
   <section class="toolbar container">
     <ng-container *ngIf="res.total > 0">
       <section class="statistic">
-        Total items: <strong>{{ res.total }}</strong>
+        {{ 'TOTAL_ITEMS' | translate}}: <strong>{{ res.total }}</strong>
       </section>
       <div class="pagination" *ngIf="res.total_pages > 1">
         <button class="button" [disabled]="page == 1 || settings.loading" (click)="gotToPage(page - 1)"><i
