@@ -1,8 +1,9 @@
-import {Component, HostBinding, OnInit} from '@angular/core';
+import {Component, HostBinding, OnInit, HostListener, Inject} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {Image} from './image/image';
 import {ImageService} from './image/image.service';
 import {ModalService} from './image/modal.service';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -35,10 +36,14 @@ export class AppComponent implements OnInit {
   radioSel:any;
   radioSelected: string;
   radioSelectedString:string;
-
   @HostBinding('class.dark-mode') darkMode = false;
 
-  constructor(private formBuilder: FormBuilder, private imageService: ImageService, private modalService: ModalService) {
+  constructor(
+    private formBuilder: FormBuilder, 
+    private imageService: ImageService, 
+    private modalService: ModalService,
+    @Inject(DOCUMENT) private document: Document ) {
+
     this.page = 1;
     this.options = [
       {name: 'portrait', value: 'portrait'},
@@ -66,7 +71,6 @@ export class AppComponent implements OnInit {
       orientation: 'portrait'
     });
 
-
     if (localStorage.getItem('historyItems')) {
       this.historyItems = JSON.parse(localStorage.getItem('historyItems'));
     } else {
@@ -85,16 +89,20 @@ export class AppComponent implements OnInit {
     this.onValueChanges();
   }
 
+  @HostListener('window:scroll', [])
+    onWindowScroll() {
+      const stt =  document.getElementById('scroll-to-top');
+      (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) ? stt.classList.add('scroll-to-top--on') : stt.classList.remove('scroll-to-top--on');
+    }
 
-   // Get row item from array  
-   getSelecteditem(){
-    this.radioSel = this.detailsAction.find(Item => Item.value === this.radioSelected);
-    this.radioSelectedString = JSON.stringify(this.radioSel);
-  }
-  // Radio Change Event
-  onItemChange(item){
-    this.getSelecteditem();
-  }
+    getSelecteditem(){
+      this.radioSel = this.detailsAction.find(el => el.value === this.radioSelected);
+      this.radioSelectedString = JSON.stringify(this.radioSel);
+    }
+
+    onItemChange(item){
+      this.getSelecteditem();
+    }
 
 
   changeFormValue(name, e) {
