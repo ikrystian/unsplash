@@ -21,7 +21,7 @@
         <i class="actions__icon material-icons" aria-hidden="true" *ngIf="settings.showHistory">close</i>
       </button>
       <div class="search-form__history search-history" *ngIf="settings.showHistory">
-        
+
         <p class="search-history__title">{{'SEARCH_HISTORY' | translate}}:</p>
         <ul class="history-list search-history__list">
           <ng-container *ngFor="let historyItem of historyItems; let index = index">
@@ -68,13 +68,22 @@
       </li>
 
       <li class="actions__item">
-        <button (click)="useLanguage('pl')" *ngIf="currentLanguage !=='pl'" title="Switch language to polish" class="actions__button button">
+        <button [title]="'CHANGE_LANGUAGE' | translate" class="actions__button button"  (click)="settings.languageMenu = !settings.languageMenu">
           <i class="action__icon material-icons">swap_horizontal_circle</i>
         </button>
-        <button (click)="useLanguage('en')" *ngIf="currentLanguage === 'pl'" title="Switch language english" class="actions__button button">
-          <i class="action__icon material-icons">swap_horizontal_circle</i>
-        </button>
-      </li> 
+        <ul class="sub-menu" *ngIf="settings.languageMenu">
+          <li class="sub-menu__item">
+            <button (click)="useLanguage('pl')" class="sub-menu__button">
+              <span>{{'POLISH' | translate}}</span>
+            </button>
+          </li>
+          <li class="sub-menu__item">
+            <button (click)="useLanguage('en')" class="sub-menu__button">
+              <span>{{'ENGLISH' | translate}}</span>
+            </button>
+          </li>
+        </ul>
+      </li>
 
       <li class="actions__item actions__item--on-mobile">
         <button (click)="toggleHistory($event)" [title]="'SHOW_HISTORY_SEARCH' | translate"
@@ -96,7 +105,7 @@
           <p>{{ 'CHOOSE_IMAGE_DETAILS_MODE' | translate }}</p>
             <div class="settings-form__radios">
             <div *ngFor="let item of detailsAction" class="settings-form__radio">
-              <input type="radio" id="mode-{{item.value}}" [(ngModel)]="radioSelected" name="details-mode" value="{{item.value}}" (change)="onItemChange(item)"  [ngModelOptions]="{standalone: true}"> 
+              <input type="radio" id="mode-{{item.value}}" [(ngModel)]="radioSelected" name="details-mode" value="{{item.value}}" (change)="onItemChange(item)"  [ngModelOptions]="{standalone: true}">
               <label for="mode-{{item.value}}" class="settings-form__label">{{item.name | translate}}</label>
             </div>
           </div>

@@ -49,6 +49,7 @@
     margin-left: 0.5rem;
     display: flex;
     align-items: center;
+    position: relative;
 
     &--on-mobile {
       @include res(phone) {
@@ -176,7 +177,7 @@
       color: var(--font-color);
       background-color: var(--header-background-color);
 
-      &:hover, 
+      &:hover,
       &:focus {
         outline: none;
       }
@@ -434,7 +435,7 @@
     cursor: pointer;
     display: block;
     width: 100%;
-    
+
     &:hover,
     &:focus {
       text-decoration: underline;
@@ -457,5 +458,55 @@
   &--on {
     opacity: 1;
     pointer-events: all;
+  }
+}
+
+
+.sub-menu {
+  position: absolute;
+  right: 0;
+  top: 40px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border: 1px solid var(--primary-border-color);
+  background-color: var(--submenu-background-color);
+  z-index: 3;
+
+  &__item {
+    &:not(:last-of-type) {
+      border-bottom: 1px solid var(--primary-border-color);
+    }
+  }
+
+  &__button {
+    background-color: transparent;
+    position: relative;
+    border: 0;
+    padding: 0.75rem 1rem;
+    width: 200px;
+    text-align: left;
+    cursor: pointer;
+
+    &:hover {
+      @include gradient-overlay();
+
+      &::after{
+        opacity: 1;
+      }
+    }
+
+    &::after{
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background-image: linear-gradient(to bottom, var(--primary-color), var(--secondary-color));
+      display: block;
+      content: '';
+      opacity: 0;
+      transition: opacity 0.2s ease-in-out;
+    }
   }
 }

@@ -3,8 +3,8 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 import {Image} from './image/image';
 import {ImageService} from './image/image.service';
 import {ModalService} from './image/modal.service';
-import { DOCUMENT } from '@angular/common';
-import { TranslateService } from '@ngx-translate/core';
+import {DOCUMENT} from '@angular/common';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
@@ -32,23 +32,22 @@ export class AppComponent implements OnInit {
     maxItemsInSearch: 5,
     loading: false,
     gridView: false,
-    modalDetails: 0
+    modalDetails: 0,
+    languageMenu: false
   };
-  currentLanguage;
-  radioSel:any;
+  radioSel: any;
   radioSelected: string;
-  radioSelectedString:string;
+  radioSelectedString: string;
   @HostBinding('class.dark-mode') darkMode = false;
 
   constructor(
-    private formBuilder: FormBuilder, 
-    private imageService: ImageService, 
+    private formBuilder: FormBuilder,
+    private imageService: ImageService,
     private modalService: ModalService,
     private translate: TranslateService,
-    @Inject(DOCUMENT) private document: Document ) {
+    @Inject(DOCUMENT) private document: Document) {
 
     translate.setDefaultLang('pl');
-    this.currentLanguage = translate.getDefaultLang();
     this.page = 1;
     this.options = [
       {name: 'PORTRAIT', value: 'portrait'},
@@ -56,8 +55,8 @@ export class AppComponent implements OnInit {
       {name: 'SQUARISH', value: 'squarish'},
     ];
     this.detailsAction = [
-      {value: 'value_1', name: "SHOW_MODAL_DETAILS"}, 
-      {value: 'value_2', name: 'OPEN_IN_NEW_TAB'}, 
+      {value: 'value_1', name: 'SHOW_MODAL_DETAILS'},
+      {value: 'value_2', name: 'OPEN_IN_NEW_TAB'},
       {value: 'value_3', name: 'SHOW_IFRAME'}
     ];
 
@@ -65,9 +64,9 @@ export class AppComponent implements OnInit {
     console.log('%c do not open this site in IE, Greta will be angry then!!', 'background: green; color: white; display: block;');
 
     this.itemsList = this.detailsAction;
-    this.radioSelected = "value_1";
+    this.radioSelected = 'value_1';
     this.getSelecteditem();
-  
+
   }
 
   ngOnInit() {
@@ -96,19 +95,19 @@ export class AppComponent implements OnInit {
   }
 
   @HostListener('window:scroll', [])
-    onWindowScroll() {
-      const stt =  document.getElementById('scroll-to-top');
-      (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) ? stt.classList.add('scroll-to-top--on') : stt.classList.remove('scroll-to-top--on');
-    }
+  onWindowScroll() {
+    const stt = document.getElementById('scroll-to-top');
+    (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) ? stt.classList.add('scroll-to-top--on') : stt.classList.remove('scroll-to-top--on');
+  }
 
-    getSelecteditem(){
-      this.radioSel = this.detailsAction.find(el => el.value === this.radioSelected);
-      this.radioSelectedString = JSON.stringify(this.radioSel);
-    }
+  getSelecteditem() {
+    this.radioSel = this.detailsAction.find(el => el.value === this.radioSelected);
+    this.radioSelectedString = JSON.stringify(this.radioSel);
+  }
 
-    onItemChange(item){
-      this.getSelecteditem();
-    }
+  onItemChange(item) {
+    this.getSelecteditem();
+  }
 
 
   changeFormValue(name, e) {
@@ -124,8 +123,7 @@ export class AppComponent implements OnInit {
   }
 
   useLanguage(language: string) {
-    this.currentLanguage = this.translate.setDefaultLang(language);
-    this.translate.setDefaultLang(language);
+    this.settings.languageMenu = false;
     this.translate.use(language);
   }
 
@@ -186,11 +184,11 @@ export class AppComponent implements OnInit {
   }
 
   toggleIframe(src?) {
-    if(src) {
+    if (src) {
       this.iframeSrc = src;
       this.showIframe = true;
     } else {
-      this.showIframe = !this.showIframe
+      this.showIframe = !this.showIframe;
     }
   }
 
@@ -200,10 +198,10 @@ export class AppComponent implements OnInit {
   }
 
   openModal(arr): void {
-    if(this.radioSelected == 'value_1'){
-      this.modalService.open(arr[0])
-    } else if (this.radioSelected == 'value_2') {
-      window.open(arr[1], '_blank')
+    if (this.radioSelected === 'value_1') {
+      this.modalService.open(arr[0]);
+    } else if (this.radioSelected === 'value_2') {
+      window.open(arr[1], '_blank');
     } else {
       this.toggleIframe(arr[1]);
     }
