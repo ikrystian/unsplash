@@ -97,7 +97,9 @@ export class AppComponent implements OnInit {
   @HostListener('window:scroll', [])
   onWindowScroll() {
     const stt = document.getElementById('scroll-to-top');
-    (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) ? stt.classList.add('scroll-to-top--on') : stt.classList.remove('scroll-to-top--on');
+    (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80)
+      ? stt.classList.add('scroll-to-top--on')
+      : stt.classList.remove('scroll-to-top--on');
   }
 
   getSelecteditem() {
@@ -105,7 +107,7 @@ export class AppComponent implements OnInit {
     this.radioSelectedString = JSON.stringify(this.radioSel);
   }
 
-  onItemChange(item) {
+  onItemChange() {
     this.getSelecteditem();
   }
 
@@ -118,7 +120,9 @@ export class AppComponent implements OnInit {
   }
 
   toggleHistory(event?): void {
-    event ? event.preventDefault() : '';
+    if (event) {
+      event.preventDefault();
+    }
     this.settings.showHistory = !this.settings.showHistory;
   }
 
