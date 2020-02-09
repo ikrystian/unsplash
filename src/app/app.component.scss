@@ -126,7 +126,6 @@
     color: var(--font-color);
     transition: border-color 0.2s ease-in-out;
     background-color: transparent;
-    width: 60%;
 
     @include res(phone) {
       width: unset;
