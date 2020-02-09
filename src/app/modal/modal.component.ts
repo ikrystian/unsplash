@@ -38,11 +38,11 @@ export class ModalComponent implements OnInit, OnDestroy {
       console.log(res);
       this.loading = false;
     });
-    document.body.classList.add('modal-open');
+    document.body.classList.add('body--modal');
   }
 
   close(): void {
     this.element.style.display = 'none';
-    document.body.classList.remove('modal-open');
+    document.body.classList.remove('body--modaln');
   }
 }

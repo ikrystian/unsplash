@@ -30,7 +30,7 @@
           <dd class="item__value">{{ image?.user.username }}</dd>
         </div>
       </div>
-      <div class="item">
+      <div class="item" *ngIf="image?.user.portfolio_url">
         <div class="item__content">
           <dt class="item__title">{{'WEBSITE' | translate}} <i class="material-icons item__icon"> link </i></dt>
           <dd class="item__value"><a class="item__link link" [href]="image?.user.portfolio_url" target="_blank">{{ image?.user.portfolio_url }}</a>
@@ -93,10 +93,10 @@
           <dd class="item__value">{{ image?.likes }}</dd>
         </div>
       </div>
-      <div class="item">
+      <div class="item" *ngIf="image?.location.city || image?.location.country">
         <div class="item__content">
           <dt class="item__title">{{'LOCATION' | translate}} <i class="material-icons item__icon">location_on</i></dt>
-          <dd class="item__value">{{ image?.location.city }}, {{ image?.location.country }}</dd>
+          <dd class="item__value">{{ image?.location.city }} {{ image?.location.country }}</dd>
         </div>
       </div>
     </dl>
