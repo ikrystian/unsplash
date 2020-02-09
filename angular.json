@@ -129,5 +129,8 @@
       }
     }
   },
-  "defaultProject": "unsplash"
+  "defaultProject": "unsplash",
+  "cli": {
+    "analytics": false
+  }
 }
