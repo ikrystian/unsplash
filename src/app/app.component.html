@@ -6,11 +6,11 @@
       </button>
       <label for="search-text" class="hide-for-user">{{'SEATCH_TERM' | translate}}</label>
       <input autofocus required type="search" id="search-text" class="search-form__input"
-             placeholder="eg. puppies" formControlName="searchText" (focusout)="focusOut($event.target.value)">
+             [placeholder]="'EXAMPLE_SEARCH_TERM' | translate" formControlName="searchText" (focusout)="focusOut($event.target.value)">
       <div class="search-form__select-wrapper">
         <label for="orientation" class="hide-for-user">{{'IMAGE_ORIENTATION' | translate}}</label>
         <select class="search-form__select" name="orientation" id="orientation" formControlName="orientation">
-          <option *ngFor="let opt of options" [value]="opt.value">{{opt.value}}</option>
+          <option *ngFor="let opt of options" [value]="opt.value">{{opt.name | translate}}</option>
         </select>
       </div>
       <button (click)="toggleHistory($event)" [title]="'SHOW_HISTORY_SEARCH' | translate"
@@ -93,7 +93,7 @@
             <div class="settings-form__radios">
             <div *ngFor="let item of detailsAction" class="settings-form__radio">
               <input type="radio" id="mode-{{item.value}}" [(ngModel)]="radioSelected" name="details-mode" value="{{item.value}}" (change)="onItemChange(item)"  [ngModelOptions]="{standalone: true}"> 
-              <label for="mode-{{item.value}}" class="settings-form__label">{{item.name}}</label>
+              <label for="mode-{{item.value}}" class="settings-form__label">{{item.name | translate}}</label>
             </div>
           </div>
         </div>

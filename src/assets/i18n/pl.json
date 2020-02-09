@@ -34,5 +34,12 @@
     "LOCATION" : "Lokalizacja",
     "CLOSE_MODAL" : "Zamknij",
     "FEEL_FREE_TO_USE" : "Smiało korzystaj z",
-    "LOADING_PLEASE_WAIT" : "Trwa ładowanie, proszę czekać"
+    "LOADING_PLEASE_WAIT" : "Trwa ładowanie, proszę czekać",
+    "PORTRAIT" : "Pionowe",
+    "LANDSCAPE" : "Poziome",
+    "SQUARISH" : "Kwadratowe",
+    "SHOW_MODAL_DETAILS" : "Pokaż okienko ze szczegółami",
+    "OPEN_IN_NEW_TAB" : "Otwórz w nowej zakładce",
+    "SHOW_IFRAME" : "Wyświetl szczegóły w ramce",
+    "EXAMPLE_SEARCH_TERM" : "np. waterfall"
 } 

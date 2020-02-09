@@ -427,7 +427,14 @@
     display: block;
     border-top: 1px solid var(--primary-border-color);
     padding: 0.5rem;
-
+    background-color: transparent;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 0;
+    cursor: pointer;
+    display: block;
+    width: 100%;
+    
     &:hover,
     &:focus {
       text-decoration: underline;

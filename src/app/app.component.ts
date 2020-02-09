@@ -50,14 +50,14 @@ export class AppComponent implements OnInit {
 
     this.page = 1;
     this.options = [
-      {name: 'portrait', value: 'portrait'},
-      {name: 'landscape', value: 'landscape'},
-      {name: 'squarish', value: 'squarish'},
+      {name: 'PORTRAIT', value: 'portrait'},
+      {name: 'LANDSCAPE', value: 'landscape'},
+      {name: 'SQUARISH', value: 'squarish'},
     ];
     this.detailsAction = [
-      {value: 'value_1', name: "Show modal with details"}, 
-      {value: 'value_2', name: 'Open page in new tab'}, 
-      {value: 'value_3', name: 'Show iframe'}
+      {value: 'value_1', name: "SHOW_MODAL_DETAILS"}, 
+      {value: 'value_2', name: 'OPEN_IN_NEW_TAB'}, 
+      {value: 'value_3', name: 'SHOW_IFRAME'}
     ];
 
     this.isIE();
