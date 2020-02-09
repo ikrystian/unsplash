@@ -22,7 +22,7 @@
 
     </ng-container>
 
-    <dt class="search-item__label">Author:</dt>
+    <dt class="search-item__label">{{'AUTHOR' | translate}}:</dt>
     <dd class="search-item__value">
       <a href="{{image.user.portfolio_url}}"
         target="_blank"
@@ -36,7 +36,7 @@
   <p class="search-item__description"
      [ngClass]="{'cropped': settings.croppedDescription, 'search-item__description--grid': settings.gridView}">{{image.description}}</p>
 
-  <a class="search-item__button text-button" target="_blank" href="{{ image.links.html }}" (click)="$event.stopPropagation()">View <span class="hide-for-user">image: {{image.id}}</span></a> 
+  <a class="search-item__button text-button" target="_blank" href="{{ image.links.html }}" (click)="$event.stopPropagation()">{{'VIEW' | translate}} <span class="hide-for-user">{{'IMAGE' | translate}}: {{image.id}}</span></a> 
 
   <span class="search-item__status" *ngIf="image.created_at > expiredNewLabelDate">
     <i class="material-icons">

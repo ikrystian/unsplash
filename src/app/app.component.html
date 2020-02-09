@@ -4,16 +4,16 @@
       <button *ngIf="showIframe" (click)="toggleIframe()" class="actions__button button button--no-border-radius">
         <i class="actions__icon material-icons" aria-hidden="true" *ngIf="!settings.showHistory">keyboard_backspace</i>
       </button>
-      <label for="search-text" class="hide-for-user">Search term</label>
+      <label for="search-text" class="hide-for-user">{{'SEATCH_TERM' | translate}}</label>
       <input autofocus required type="search" id="search-text" class="search-form__input"
              placeholder="eg. puppies" formControlName="searchText" (focusout)="focusOut($event.target.value)">
       <div class="search-form__select-wrapper">
-        <label for="orientation" class="hide-for-user">Image orientation</label>
+        <label for="orientation" class="hide-for-user">{{'IMAGE_ORIENTATION' | translate}}</label>
         <select class="search-form__select" name="orientation" id="orientation" formControlName="orientation">
           <option *ngFor="let opt of options" [value]="opt.value">{{opt.value}}</option>
         </select>
       </div>
-      <button (click)="toggleHistory($event)" title="Show history search"
+      <button (click)="toggleHistory($event)" [title]="'SHOW_HISTORY_SEARCH' | translate"
               class="actions__button search-form__history-button actions__button--on-desktop button button--no-border-radius"
               [ngClass]="{'search-form__history-button--active': settings.showHistory}"
               *ngIf="historyItems.length > 0">
@@ -22,7 +22,7 @@
       </button>
       <div class="search-form__history search-history" *ngIf="settings.showHistory">
         
-        <p class="search-history__title">Search history:</p>
+        <p class="search-history__title">{{'SEARCH_HISTORY' | translate}}:</p>
         <ul class="history-list search-history__list">
           <ng-container *ngFor="let historyItem of historyItems; let index = index">
             <li class="history-list__item" *ngIf="index < settings.maxItemsInSearch && historyItem ">
@@ -31,12 +31,15 @@
             </li>
           </ng-container>
         </ul>
-        <a *ngIf="settings.maxItemsInSearch < historyItems.length - 1" class="history-list__link" href="#"
-           (click)="settings.maxItemsInSearch = historyItems.length">Show all position in history
-          ({{historyItems.length}})</a>
+        <button *ngIf="settings.maxItemsInSearch < historyItems.length - 1" class="history-list__link"
+           (click)="settings.maxItemsInSearch = historyItems.length">
+           {{'SHOW_ALL_HISTORY_ITEMS' | translate}}
+          ({{historyItems.length}})
+        </button>
       </div>
 
     </form>
+
     <div *ngIf="settings.showHistory" class="search-history__overlay" aria-hidden="true" (click)="toggleHistory()"></div>
 
     <ul class="actions">
@@ -44,20 +47,20 @@
         <app-loader></app-loader>
       </li>
       <li class="actions__item">
-        <button (click)="nightMode()" title="Change grid layout" class="actions__button button">
+        <button (click)="nightMode()" [title]="'CHANGE_THEME' | translate" class="actions__button button">
           <i class="actions__icon material-icons" aria-hidden="true" *ngIf="!darkMode">brightness_4</i>
           <i class="actions__icon material-icons" aria-hidden="true" *ngIf="darkMode">brightness_7</i>
         </button>
       </li>
       <li class="actions__item">
-        <button (click)="settings.advancedSettings = !settings.advancedSettings" title="advanced settings"
+        <button (click)="settings.advancedSettings = !settings.advancedSettings" [title]="'ADVANCED_SETTINGS' | translate"
                 class="actions__button button">
           <i class="material-icons" aria-hidden="true" *ngIf="settings.advancedSettings">settings_applications</i>
           <i class="material-icons" aria-hidden="true" *ngIf="!settings.advancedSettings">settings</i>
         </button>
       </li>
       <li class="actions__item" *ngIf="res">
-        <button (click)="settings.gridView = !settings.gridView" title="Change grid layout"
+        <button (click)="settings.gridView = !settings.gridView" [title]="'CHANGE_LAYOUT' | translate"
                 class="actions__button button">
           <i class="actions__icon material-icons" aria-hidden="true" *ngIf="settings.gridView">list_view</i>
           <i class="actions__icon material-icons" aria-hidden="true" *ngIf="!settings.gridView">view_module</i>
@@ -65,12 +68,12 @@
       </li>
 
       <li class="actions__item">
-        <button (click)="useLanguage('pl')" class="actions__button button">en</button>
-        <button (click)="useLanguage('en')" class="actions__button button">de</button>
+        <button (click)="useLanguage('en')" class="actions__button button">en</button>
+        <button (click)="useLanguage('pl')" class="actions__button button">pl</button>
       </li>
 
       <li class="actions__item actions__item--on-mobile">
-        <button (click)="toggleHistory($event)" title="Show history search"
+        <button (click)="toggleHistory($event)" [title]="'SHOW_HISTORY_SEARCH' | translate"
                 class="actions__button button button--no-border-radius" *ngIf="historyItems.length > 0">
           <i class="actions__icon material-icons" aria-hidden="true" *ngIf="!settings.showHistory">history</i>
           <i class="actions__icon material-icons" aria-hidden="true" *ngIf="settings.showHistory">close</i>
@@ -83,10 +86,10 @@
     <div class="container">
       <div role="alert" class="info">
         <i class="material-icons">error</i>
-        <span>belows settings will  <strong>not</strong> be saved in local storage!</span></div>
+        <span>{{ 'ADVANCED_SETTINGS_ALERT' | translate }}</span></div>
       <form action="" class="settings-form">
         <div class="settings-form__group settings-form__group--column">
-          <p>Choose image details mode</p>
+          <p>{{ 'CHOOSE_IMAGE_DETAILS_MODE' | translate }}</p>
             <div class="settings-form__radios">
             <div *ngFor="let item of detailsAction" class="settings-form__radio">
               <input type="radio" id="mode-{{item.value}}" [(ngModel)]="radioSelected" name="details-mode" value="{{item.value}}" (change)="onItemChange(item)"  [ngModelOptions]="{standalone: true}"> 
@@ -98,14 +101,13 @@
           <input class="settings-form__checkbox" type="checkbox" id="disable-images-animation"
                  [(ngModel)]="settings.disableImages"
                  [ngModelOptions]="{standalone: true}">
-          <label class="settings-form__label" for="disable-images-animation">Disable thumbnails fit in container</label>
+          <label class="settings-form__label" for="disable-images-animation">{{'DISABLE_THUMBNAILS_FIT' | translate}}</label>
         </div>
         <div class="settings-form__group">
           <input type="checkbox" class="settings-form__checkbox" id="crop-description"
                  [(ngModel)]="settings.croppedDescription"
                  [ngModelOptions]="{standalone: true}">
-          <label class="settings-form__label" for="crop-description">Crop description after second line in grid
-            view</label>
+          <label class="settings-form__label" for="crop-description">{{'CROP_DESCRIPTION_AFTER_SECOND_LINE' | translate}}</label>
         </div>
       </form>
     </div>
@@ -126,14 +128,14 @@
       <div class="pagination" *ngIf="res.total_pages > 1">
         <button class="button" [disabled]="page == 1 || settings.loading" (click)="gotToPage(page - 1)"><i
           class="material-icons">keyboard_arrow_left</i></button>
-        <span>Page <strong class="pagination__page-number">{{ page }}</strong> from: <strong
+        <span>{{'PAGE' | translate}} <strong class="pagination__page-number">{{ page }}</strong> {{'FROM' | translate}} <strong
           class="pagination__page-number">{{res.total_pages}}</strong></span>
         <button class="button" (click)="gotToPage(page + 1)" [disabled]="page >= res.total_pages || settings.loading"><i
           class="material-icons">keyboard_arrow_right</i></button>
       </div>
     </ng-container>
     <ng-container *ngIf="res.total === 0">
-      There is no images like u want
+     {{'NO_IMAGES' | translate}}
     </ng-container>
   </section>
 

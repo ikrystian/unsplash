@@ -1,6 +1,6 @@
 <section class="modal" role="dialog">
   <header class="modal__header">
-    <h1 class="modal__title">Image details</h1>
+    <h1 class="modal__title">{{'IMAGE_DETAILS' | translate}}</h1>
   </header>
   <article class="modal__content">
 
@@ -11,7 +11,7 @@
     <ng-container *ngIf="!loading">
     <div class="item item--double" *ngIf="image?.description">
       <dl class="item__content">
-        <dt class="item__title">Description <i class="material-icons item__icon">short_text</i></dt>
+        <dt class="item__title">{{'DESCRIPTION' | translate}} <i class="material-icons item__icon">short_text</i></dt>
         <dd class="item__value">{{ image?.description }}</dd>
       </dl>
     </div>
@@ -20,60 +20,60 @@
 
       <div class="item">
         <div class="item__content">
-          <dt class="item__title"> Author <i class="material-icons item__icon"> person </i></dt>
+          <dt class="item__title">{{'AUTHOR' | translate}} <i class="material-icons item__icon"> person </i></dt>
           <dd class="item__value">{{ image?.user.name }}</dd>
         </div>
       </div>
       <div class="item">
         <div class="item__content">
-          <dt class="item__title"> Username <i class="material-icons item__icon"> account_circle </i></dt>
+          <dt class="item__title">{{'USERNAME' | translate}} <i class="material-icons item__icon"> account_circle </i></dt>
           <dd class="item__value">{{ image?.user.username }}</dd>
         </div>
       </div>
       <div class="item">
         <div class="item__content">
-          <dt class="item__title"> Website <i class="material-icons item__icon"> link </i></dt>
+          <dt class="item__title">{{'WEBSITE' | translate}} <i class="material-icons item__icon"> link </i></dt>
           <dd class="item__value"><a class="item__link link" [href]="image?.user.portfolio_url" target="_blank">{{ image?.user.portfolio_url }}</a>
           </dd>
         </div>
       </div>
       <div class="item">
         <div class="item__content">
-          <dt class="item__title"> Photo id <i class="material-icons item__icon"> low_priority </i></dt>
+          <dt class="item__title">{{'PHOTO_ID' | translate}} <i class="material-icons item__icon"> low_priority </i></dt>
           <dd class="item__value"><a [href]="image?.links.html" target="_blank" class="item__link link">{{ image?.id }}</a></dd>
         </div>
       </div>
       <div class="item">
         <div class="item__content">
-          <dt class="item__title"> Created at <i class="material-icons item__icon"> calendar_today </i></dt>
+          <dt class="item__title">{{'CREATED_AT' | translate}} <i class="material-icons item__icon"> calendar_today </i></dt>
           <dd class="item__value">{{image?.created_at}}</dd>
         </div>
       </div>
       <div class="item">
         <div class="item__content">
           <dt class="item__title">
-            Updated at <i class="material-icons item__icon"> date_range </i></dt>
+            {{'UPDATED_AT' | translate}} <i class="material-icons item__icon"> date_range </i></dt>
           <dd class="item__value">{{image?.updated_at}}</dd>
         </div>
       </div>
 
       <div class="item">
         <div class="item__content">
-          <dt class="item__title"> Image width <i class="material-icons item__icon item__icon--rotated">height</i></dt>
+          <dt class="item__title">{{'WIDTH' | translate}} <i class="material-icons item__icon item__icon--rotated">height</i></dt>
           <dd class="item__value">{{ image?.width}}px</dd>
         </div>
       </div>
 
       <div class="item">
         <div class="item__content">
-          <dt class="item__title">Image height <i class="material-icons item__icon">height</i></dt>
+          <dt class="item__title">{{'HEIGHT' | translate}} <i class="material-icons item__icon">height</i></dt>
           <dd class="item__value">{{ image?.height}}px</dd>
         </div>
       </div>
 
       <div class="item">
         <div class="item__content">
-          <dt class="item__title">Color <i class="material-icons item__icon">color_lens</i></dt>
+          <dt class="item__title">{{'COLOR' | translate}} <i class="material-icons item__icon">color_lens</i></dt>
           <dd class="item__value">
             <span class="item__color" [ngStyle]="{'background-color': image?.color}"></span>
             {{ image?.color}}
@@ -83,19 +83,19 @@
 
       <div class="item">
         <div class="item__content">
-          <dt class="item__title">Downloads <i class="material-icons item__icon">cloud_download</i></dt>
+          <dt class="item__title">{{'DOWNLOADS' | translate}} <i class="material-icons item__icon">cloud_download</i></dt>
           <dd class="item__value">{{ image?.downloads }}</dd>
         </div>
       </div>
       <div class="item">
         <div class="item__content">
-          <dt class="item__title">Likes <i class="material-icons item__icon">thumb_up</i></dt>
+          <dt class="item__title">{{'LIKES' | translate}} <i class="material-icons item__icon">thumb_up</i></dt>
           <dd class="item__value">{{ image?.likes }}</dd>
         </div>
       </div>
       <div class="item">
         <div class="item__content">
-          <dt class="item__title">Location <i class="material-icons item__icon">location_on</i></dt>
+          <dt class="item__title">{{'LOCATION' | translate}} <i class="material-icons item__icon">location_on</i></dt>
           <dd class="item__value">{{ image?.location.city }}, {{ image?.location.country }}</dd>
         </div>
       </div>
@@ -103,7 +103,7 @@
     </ng-container>
   </article>
   <footer class="modal__footer">
-    <button class="modal__button text-button" (click)="close()">Close modal</button>
+    <button class="modal__button text-button" (click)="close()">{{'CLOSE_MODAL' | translate}}</button>
   </footer>
 </section>
 
