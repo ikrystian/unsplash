@@ -4,7 +4,7 @@
       <button *ngIf="showIframe" (click)="toggleIframe()" class="actions__button button button--no-border-radius">
         <i class="actions__icon material-icons button__icon" aria-hidden="true" *ngIf="!settings.showHistory">keyboard_backspace</i>
       </button>
-      <label for="search-text" class="hide-for-user">{{'SEATCH_TERM' | translate}}</label>
+      <label for="search-text" class="hide-for-user">{{'SEARCH_TERM' | translate}}</label>
       <input autofocus required type="search" id="search-text" class="search-form__input"
              [placeholder]="'EXAMPLE_SEARCH_TERM' | translate" formControlName="searchText" (focusout)="focusOut($event.target.value)">
       <div class="search-form__select-wrapper">
