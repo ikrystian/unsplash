@@ -2,7 +2,7 @@
   <div class="header__container">
     <form action="" class="search-form" [formGroup]="searchForm" autocomplete="off">
       <button *ngIf="showIframe" (click)="toggleIframe()" class="actions__button button button--no-border-radius">
-        <i class="actions__icon material-icons" aria-hidden="true" *ngIf="!settings.showHistory">keyboard_backspace</i>
+        <i class="actions__icon material-icons button__icon" aria-hidden="true" *ngIf="!settings.showHistory">keyboard_backspace</i>
       </button>
       <label for="search-text" class="hide-for-user">{{'SEATCH_TERM' | translate}}</label>
       <input autofocus required type="search" id="search-text" class="search-form__input"
@@ -17,8 +17,8 @@
               class="actions__button search-form__history-button actions__button--on-desktop button button--no-border-radius"
               [ngClass]="{'search-form__history-button--active': settings.showHistory}"
               *ngIf="historyItems.length > 0">
-        <i class="actions__icon material-icons" aria-hidden="true" *ngIf="!settings.showHistory">history</i>
-        <i class="actions__icon material-icons" aria-hidden="true" *ngIf="settings.showHistory">close</i>
+        <i class="actions__icon material-icons button__icon" aria-hidden="true" *ngIf="!settings.showHistory">history</i>
+        <i class="actions__icon material-icons button__icon" aria-hidden="true" *ngIf="settings.showHistory">close</i>
       </button>
       <div class="search-form__history search-history" *ngIf="settings.showHistory">
 
@@ -48,28 +48,28 @@
       </li>
       <li class="actions__item">
         <button (click)="nightMode()" [title]="'CHANGE_THEME' | translate" class="actions__button button">
-          <i class="actions__icon material-icons" aria-hidden="true" *ngIf="!darkMode">brightness_4</i>
-          <i class="actions__icon material-icons" aria-hidden="true" *ngIf="darkMode">brightness_7</i>
+          <i class="actions__icon material-icons button__icon" aria-hidden="true" *ngIf="!darkMode">brightness_4</i>
+          <i class="actions__icon material-icons button__icon" aria-hidden="true" *ngIf="darkMode">brightness_7</i>
         </button>
       </li>
       <li class="actions__item">
         <button (click)="settings.advancedSettings = !settings.advancedSettings" [title]="'ADVANCED_SETTINGS' | translate"
                 class="actions__button button">
-          <i class="material-icons" aria-hidden="true" *ngIf="settings.advancedSettings">settings_applications</i>
-          <i class="material-icons" aria-hidden="true" *ngIf="!settings.advancedSettings">settings</i>
+          <i class="material-icons button__icon" aria-hidden="true" *ngIf="settings.advancedSettings">settings_applications</i>
+          <i class="material-icons button__icon" aria-hidden="true" *ngIf="!settings.advancedSettings">settings</i>
         </button>
       </li>
       <li class="actions__item" *ngIf="res">
         <button (click)="settings.gridView = !settings.gridView" [title]="'CHANGE_LAYOUT' | translate"
                 class="actions__button button">
-          <i class="actions__icon material-icons" aria-hidden="true" *ngIf="settings.gridView">list_view</i>
-          <i class="actions__icon material-icons" aria-hidden="true" *ngIf="!settings.gridView">view_module</i>
+          <i class="actions__icon material-icons button__icon" aria-hidden="true" *ngIf="settings.gridView">list_view</i>
+          <i class="actions__icon material-icons button__icon" aria-hidden="true" *ngIf="!settings.gridView">view_module</i>
         </button>
       </li>
 
       <li class="actions__item">
         <button [title]="'CHANGE_LANGUAGE' | translate" class="actions__button button"  (click)="settings.languageMenu = !settings.languageMenu">
-          <i class="action__icon material-icons">swap_horizontal_circle</i>
+          <i class="action__icon material-icons button__icon">swap_horizontal_circle</i>
         </button>
         <ul class="sub-menu" *ngIf="settings.languageMenu">
           <li class="sub-menu__item">
@@ -88,8 +88,8 @@
       <li class="actions__item actions__item--on-mobile">
         <button (click)="toggleHistory($event)" [title]="'SHOW_HISTORY_SEARCH' | translate"
                 class="actions__button button button--no-border-radius" *ngIf="historyItems.length > 0">
-          <i class="actions__icon material-icons" aria-hidden="true" *ngIf="!settings.showHistory">history</i>
-          <i class="actions__icon material-icons" aria-hidden="true" *ngIf="settings.showHistory">close</i>
+          <i class="actions__icon material-icons button__icon" aria-hidden="true" *ngIf="!settings.showHistory">history</i>
+          <i class="actions__icon material-icons button__icon" aria-hidden="true" *ngIf="settings.showHistory">close</i>
         </button>
       </li>
 
@@ -140,11 +140,11 @@
       </section>
       <div class="pagination" *ngIf="res.total_pages > 1">
         <button class="button" [disabled]="page == 1 || settings.loading" (click)="gotToPage(page - 1)"><i
-          class="material-icons">keyboard_arrow_left</i></button>
+          class="material-icons button__icon">keyboard_arrow_left</i></button>
         <span>{{'PAGE' | translate}} <strong class="pagination__page-number">{{ page }}</strong> {{'FROM' | translate}} <strong
           class="pagination__page-number">{{res.total_pages}}</strong></span>
         <button class="button" (click)="gotToPage(page + 1)" [disabled]="page >= res.total_pages || settings.loading"><i
-          class="material-icons">keyboard_arrow_right</i></button>
+          class="material-icons button__icon">keyboard_arrow_right</i></button>
       </div>
     </ng-container>
     <ng-container *ngIf="res.total === 0">
@@ -164,5 +164,5 @@
   </section>
 
 </div>
-<button class="button scroll-to-top" id="scroll-to-top" (click)="scrollToTop()"><i class="material-icons"> keyboard_arrow_up </i></button>
+<button class="button scroll-to-top" id="scroll-to-top" (click)="scrollToTop()"><i class="material-icons button__icon"> keyboard_arrow_up </i></button>
 <app-modal id="modal" [ngClass]="{'dark-mode': darkMode}"></app-modal>

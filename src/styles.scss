@@ -106,19 +106,22 @@ html {
   border-radius: 50%;
   user-select: none;
 
-  i {
+  &__icon {
     color: var(--icon-color);
     transition: color 0.2s ease-in-out;
   }
-  &:disabled {
+
+  &:disabled,
+  &--disabled {
     opacity: 0.2;
   }
+
   &:not(:disabled) {
     cursor: pointer;
 
     &:hover,
     &:focus {
-      i {
+      .button__icon {
         @include gradient-overlay();
       }
 
@@ -155,6 +158,7 @@ html {
   transition: background-size 0.2s ease-in-out;
   border: 0;
   cursor: pointer;
+
   &:hover,
   &:focus {
     background-size: 100%;
