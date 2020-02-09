@@ -10,7 +10,7 @@
   --font-color: #222;
   --content-background: #fff;
   --search-item-value-color: #222;
-  --search-item-hover-background: #dedede;
+  --search-item-hover-background: #ececec;
   --form-border-color: #c3c3c3;
   --icon-color: #757575;
   --button-active-background-color: rgba(0, 0, 0, 0.1);
@@ -23,6 +23,7 @@
   --details-value-color: #222;
   --search-item-label-color: #767676;
   --overlay-background-color: rgba(0, 0, 0, 0.2);
+  --ornament-color: #ffa500;
 
   --font: 'Open Sans', sans-serif;
 }
@@ -48,8 +49,8 @@
   --details-value-color: #fff;
   --search-item-label-color: #fff;
   --overlay-background-color: rgba(0, 0, 0, 0.5);
-  
-  --font: 'Montserrat', sans-serif;
+  --ornament-color: #ffa500;
+  --font: 'Open Sans', sans-serif;
 }
 
 * {
@@ -205,4 +206,13 @@ body {
   100% {
     background-position: 0 50%
   }
+}
+
+.star-explain {
+  position: absolute;
+  top: 0.75rem;
+  right: 0;
+  font-size: 0.875em;
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
 }

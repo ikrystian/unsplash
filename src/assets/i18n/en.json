@@ -41,5 +41,6 @@
     "SHOW_MODAL_DETAILS" : "SHow modal with details",
     "OPEN_IN_NEW_TAB" : "Open in new tab",
     "SHOW_IFRAME" : "Display details in iframe",
-    "EXAMPLE_SEARCH_TERM" : "eg. waterfall"
-} 
+    "EXAMPLE_SEARCH_TERM" : "eg. waterfall",
+    "CREATED_LESS_THAN_TWO_WEEKS_AGO" : "Created less than two weeks ago"
+}

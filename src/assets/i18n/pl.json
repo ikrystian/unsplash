@@ -41,5 +41,6 @@
     "SHOW_MODAL_DETAILS" : "Pokaż okienko ze szczegółami",
     "OPEN_IN_NEW_TAB" : "Otwórz w nowej zakładce",
     "SHOW_IFRAME" : "Wyświetl szczegóły w ramce",
-    "EXAMPLE_SEARCH_TERM" : "np. waterfall"
-} 
+    "EXAMPLE_SEARCH_TERM" : "np. waterfall",
+    "CREATED_LESS_THAN_TWO_WEEKS_AGO" : "Nie starsze niż 2 tygodnie"
+}
