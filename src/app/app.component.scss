@@ -126,7 +126,11 @@
     color: var(--font-color);
     transition: border-color 0.2s ease-in-out;
     background-color: transparent;
+    width: 60%;
 
+    @include res(phone) {
+      width: unset;
+    }
     &:focus {
       outline: none;
       border-color: var(--primary-color);
@@ -143,7 +147,6 @@
 
     &::after {
       content: '';
-      display: block;
       width: 0;
       height: 0;
       border-style: solid;
@@ -154,12 +157,18 @@
       top: 50%;
       transform: translateY(-50%);
       z-index: 0;
+      display: none;
+
+      @include res(phone) {
+        display: block;
+
+      }
     }
   }
 
   &__select {
     appearance: none;
-    padding: 0 2rem 0 1rem;
+    padding: 0 0.5rem;
     border: 1px solid var(--form-border-color);
     cursor: pointer;
     color: var(--font-color);
@@ -167,6 +176,10 @@
     z-index: 1;
     background-color: transparent;
     transition: border-color 0.2s ease-in-out;
+
+    @include res(phone) {
+      padding: 0 2rem 0 1rem;
+    }
 
     &:focus {
       outline: none;
