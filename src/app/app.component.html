@@ -105,7 +105,7 @@
           <p>{{ 'CHOOSE_IMAGE_DETAILS_MODE' | translate }}</p>
             <div class="settings-form__radios">
             <div *ngFor="let item of detailsAction" class="settings-form__radio">
-              <input type="radio" id="mode-{{item.value}}" [(ngModel)]="radioSelected" name="details-mode" value="{{item.value}}" (change)="onItemChange(item)"  [ngModelOptions]="{standalone: true}">
+              <input type="radio" id="mode-{{item.value}}" [(ngModel)]="radioSelected" name="details-mode" value="{{item.value}}" (change)="onItemChange()"  [ngModelOptions]="{standalone: true}">
               <label for="mode-{{item.value}}" class="settings-form__label">{{item.name | translate}}</label>
             </div>
           </div>
