@@ -15,7 +15,7 @@
     "ADVANCED_SETTINGS" : "Advanced settings",
     "ADVANCED_SETTINGS_ALERT" : "Belows settings will be not saved in local storage",
     "CHOOSE_IMAGE_DETAILS_MODE" : "Choose view details mode",
-    "CROP_DESCRIPTION_AFTER_SECOND_LINE": "Clip description after second line",
+    "CROP_DESCRIPTION_AFTER_SECOND_LINE": "Clip description after second line in grid view",
     "DISABLE_THUMBNAILS_FIT" : "Disable thumbnails fit",
     "PAGE" : "Page",
     "FROM" : "from",

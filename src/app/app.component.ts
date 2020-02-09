@@ -34,6 +34,7 @@ export class AppComponent implements OnInit {
     gridView: false,
     modalDetails: 0
   };
+  currentLanguage;
   radioSel:any;
   radioSelected: string;
   radioSelectedString:string;
@@ -47,7 +48,7 @@ export class AppComponent implements OnInit {
     @Inject(DOCUMENT) private document: Document ) {
 
     translate.setDefaultLang('pl');
-
+    this.currentLanguage = translate.getDefaultLang();
     this.page = 1;
     this.options = [
       {name: 'PORTRAIT', value: 'portrait'},
@@ -66,6 +67,7 @@ export class AppComponent implements OnInit {
     this.itemsList = this.detailsAction;
     this.radioSelected = "value_1";
     this.getSelecteditem();
+  
   }
 
   ngOnInit() {
@@ -122,6 +124,8 @@ export class AppComponent implements OnInit {
   }
 
   useLanguage(language: string) {
+    this.currentLanguage = this.translate.setDefaultLang(language);
+    this.translate.setDefaultLang(language);
     this.translate.use(language);
   }
 

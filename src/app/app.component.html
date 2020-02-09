@@ -68,9 +68,13 @@
       </li>
 
       <li class="actions__item">
-        <button (click)="useLanguage('en')" class="actions__button button">en</button>
-        <button (click)="useLanguage('pl')" class="actions__button button">pl</button>
-      </li>
+        <button (click)="useLanguage('pl')" *ngIf="currentLanguage !=='pl'" title="Switch language to polish" class="actions__button button">
+          <i class="action__icon material-icons">swap_horizontal_circle</i>
+        </button>
+        <button (click)="useLanguage('en')" *ngIf="currentLanguage === 'pl'" title="Switch language english" class="actions__button button">
+          <i class="action__icon material-icons">swap_horizontal_circle</i>
+        </button>
+      </li> 
 
       <li class="actions__item actions__item--on-mobile">
         <button (click)="toggleHistory($event)" [title]="'SHOW_HISTORY_SEARCH' | translate"
