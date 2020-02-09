@@ -121,11 +121,20 @@
     &:hover {
       color: var(--ornament-color);
 
-      + .star-explain {
+      + .search-item__status-explain {
         transform: translateX(-2.5rem);
         opacity: 1;
       }
     }
+  }
+
+  &__status-explain {
+    position: absolute;
+    top: 0.75rem;
+    right: 0;
+    font-size: 0.875em;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
   }
 
   &__list {

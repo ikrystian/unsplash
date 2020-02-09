@@ -433,7 +433,6 @@
     border-right: 0;
     border-bottom: 0;
     cursor: pointer;
-    display: block;
     width: 100%;
 
     &:hover,
@@ -460,7 +459,6 @@
     pointer-events: all;
   }
 }
-
 
 .sub-menu {
   position: absolute;

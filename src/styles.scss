@@ -213,12 +213,3 @@ html {
     background-position: 0 50%
   }
 }
-
-.star-explain {
-  position: absolute;
-  top: 0.75rem;
-  right: 0;
-  font-size: 0.875em;
-  opacity: 0;
-  transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
-}
