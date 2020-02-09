@@ -15,11 +15,13 @@
       </div>
       <button (click)="toggleHistory($event)" title="Show history search"
               class="actions__button search-form__history-button actions__button--on-desktop button button--no-border-radius"
+              [ngClass]="{'search-form__history-button--active': settings.showHistory}"
               *ngIf="historyItems.length > 0">
         <i class="actions__icon material-icons" aria-hidden="true" *ngIf="!settings.showHistory">history</i>
         <i class="actions__icon material-icons" aria-hidden="true" *ngIf="settings.showHistory">close</i>
       </button>
       <div class="search-form__history search-history" *ngIf="settings.showHistory">
+        
         <p class="search-history__title">Search history:</p>
         <ul class="history-list search-history__list">
           <ng-container *ngFor="let historyItem of historyItems; let index = index">
@@ -35,6 +37,7 @@
       </div>
 
     </form>
+    <div *ngIf="settings.showHistory" class="search-history__overlay" aria-hidden="true" (click)="toggleHistory()"></div>
 
     <ul class="actions">
       <li class="actions__item" *ngIf="settings.loading">

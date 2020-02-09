@@ -112,8 +112,8 @@ export class AppComponent implements OnInit {
     this.searchForm.controls['searchText'].setValue(name);
   }
 
-  toggleHistory(event): void {
-    event.preventDefault();
+  toggleHistory(event?): void {
+    event ? event.preventDefault() : '';
     this.settings.showHistory = !this.settings.showHistory;
   }
 

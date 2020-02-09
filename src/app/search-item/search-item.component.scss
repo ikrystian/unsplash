@@ -124,7 +124,7 @@
   }
 
   &__label {
-    color: #767676;
+    color: var(--serch-item-label-color);
     display: inline-block;
     margin-right: 0.2rem;
     margin-top: 0.5rem;
