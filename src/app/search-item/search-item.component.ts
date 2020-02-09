@@ -1,5 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
-import * as moment from 'moment';
+import { Component, Input, OnInit } from '@angular/core';
+import moment from 'moment';
 
 @Component({
   selector: 'app-search-item',
@@ -19,3 +19,4 @@ export class SearchItemComponent implements OnInit {
   }
 
 }
+ 
