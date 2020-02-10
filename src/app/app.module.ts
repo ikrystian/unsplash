@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
@@ -13,6 +14,7 @@ import { LoaderComponent } from './shared/loader/loader.component';
 import { SafePipe } from './safe.pipe';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { SidenavComponent } from './sidenav/sidenav.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
     ModalComponent,
     LoaderComponent,
     SafePipe,
+    SidenavComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,6 +33,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
     ReactiveFormsModule,
     MomentModule,
     FormsModule,
+    BrowserAnimationsModule,
     TranslateModule.forRoot({
       loader: {
           provide: TranslateLoader,

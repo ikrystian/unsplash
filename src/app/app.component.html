@@ -61,6 +61,15 @@
           <i class="material-icons button__icon" aria-hidden="true" *ngIf="!settings.advancedSettings">settings</i>
         </button>
       </li>
+
+      <li class="actions__item">
+        <button (click)="settings.showSidenav = !settings.showSidenav"
+                class="actions__button button">
+          <i class="material-icons button__icon" aria-hidden="true" *ngIf="settings.showSidenav">menu_open</i>
+          <i class="material-icons button__icon" aria-hidden="true" *ngIf="!settings.showSidenav">menu</i>
+        </button>
+      </li>
+
       <li class="actions__item" *ngIf="res">
         <button (click)="settings.gridView = !settings.gridView" [title]="'CHANGE_LAYOUT' | translate"
                 class="actions__button button">
@@ -95,6 +104,8 @@
         </button>
       </li>
 
+
+      
     </ul>
   </div>
   <div class="advanced-options" *ngIf="settings.advancedSettings">
@@ -128,6 +139,8 @@
     </div>
   </div>
 </header>
+
+<app-sidenav @enterAnimation *ngIf="settings.showSidenav" [settings]="settings" ></app-sidenav>
 
 <app-welcome *ngIf="!res"></app-welcome>
 <app-ie *ngIf="settings.ieMode"></app-ie>

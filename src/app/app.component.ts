@@ -5,11 +5,35 @@ import {ImageService} from './image/image.service';
 import {ModalService} from './image/modal.service';
 import {DOCUMENT} from '@angular/common';
 import {TranslateService} from '@ngx-translate/core';
+import { trigger, transition, style, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  animations: [
+    trigger(
+      'enterAnimation', 
+      [
+        transition(
+          ':enter', 
+          [
+            style({ opacity: 0, transform: 'translateX(-100%)' }),
+            animate('0.3s ease-out', 
+                    style({opacity: 1, transform: 'translateX(0%)' }))
+          ]
+        ),
+        transition(
+          ':leave', 
+          [
+            style({ opacity: 1, transform: 'translateX(0%)' }),
+            animate('0.3s ease-out', 
+                    style({opacity: 0, transform: 'translateX(-100%)' }))
+          ]
+        )
+      ]
+    )
+  ]
 })
 
 export class AppComponent implements OnInit {
@@ -33,7 +57,8 @@ export class AppComponent implements OnInit {
     loading: false,
     gridView: false,
     modalDetails: 0,
-    languageMenu: false
+    languageMenu: false,
+    showSidenav: false
   };
   radioSel: any;
   radioSelected: string;
