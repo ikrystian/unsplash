@@ -82,6 +82,7 @@ export class AppComponent implements OnInit {
       this.historyItems = [];
     }
 
+
     if (localStorage.getItem('searchTerms')) {
       const historyTerms = JSON.parse(localStorage.getItem('searchTerms'));
       this.getImages(historyTerms.searchText, historyTerms.orientation);
@@ -132,7 +133,7 @@ export class AppComponent implements OnInit {
   }
 
   focusOut(name): void {
-    if (!this.historyItems.includes(name)) {
+    if (!this.historyItems.includes(name) && name !== '') {
       this.historyItems.push(name);
       localStorage.setItem('historyItems', JSON.stringify(this.historyItems));
     }

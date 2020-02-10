@@ -13,6 +13,7 @@
           <option *ngFor="let opt of options" [value]="opt.value">{{opt.name | translate}}</option>
         </select>
       </div>
+
       <button (click)="toggleHistory($event)" [title]="'SHOW_HISTORY_SEARCH' | translate"
               class="actions__button search-form__history-button actions__button--on-desktop button button--no-border-radius"
               [ngClass]="{'search-form__history-button--active': settings.showHistory}"
@@ -20,6 +21,7 @@
         <i class="actions__icon material-icons button__icon" aria-hidden="true" *ngIf="!settings.showHistory">history</i>
         <i class="actions__icon material-icons button__icon" aria-hidden="true" *ngIf="settings.showHistory">close</i>
       </button>
+
       <div class="search-form__history search-history" *ngIf="settings.showHistory">
 
         <p class="search-history__title">{{'SEARCH_HISTORY' | translate}}:</p>
