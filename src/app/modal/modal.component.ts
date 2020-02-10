@@ -43,6 +43,6 @@ export class ModalComponent implements OnInit, OnDestroy {
 
   close(): void {
     this.element.style.display = 'none';
-    document.body.classList.remove('body--modaln');
+    document.body.classList.remove('body--modal');
   }
 }
