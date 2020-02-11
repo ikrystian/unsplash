@@ -1,29 +1,39 @@
 <aside class="sidebar">
 <h2 class="sidebar__title">
-    <span>Settings</span> 
+    <span>Settings</span>
     <button class="button" (click)="settings.showSidenav = false">
-        <i class="material-icons button__icon">close</i> 
+        <i class="material-icons button__icon">close</i>
     </button>
 </h2>
 
 
 <div class="settings-form__group">
     <div class="sidebar__content">
-        <button class="sidebar__action" (click)="clearchSearchHistory()">
+        <button class="sidebar__action" (click)="clearSearchHistory()">
             <i class="material-icons">undo</i>
             Clear search history
         </button>
 
         <!-- <button class="sidebar__action" (click)="chooseActionType()">
             <i class="material-icons">sent</i>
-            EMMIT 
+            EMMIT
         </button> -->
 
     </div>
 
 </div>
 
-<div class="sttings-checkboxes">
+<div class="settings-checkboxes">
+
+  <div class="setting-item">
+    <input class="settings-form__checkbox" type="checkbox" id="grid-view"
+           [(ngModel)]="settings.gridView"
+           [ngModelOptions]="{standalone: true}">
+    <label class="settings-form__label" for="grid-view">
+      <i class="material-icons">view_module</i>
+      <span>Grid view</span>
+    </label>
+  </div>
 
     <div class="setting-item">
     <input class="settings-form__checkbox" type="checkbox" id="disable-images-animation"
@@ -31,9 +41,10 @@
            [ngModelOptions]="{standalone: true}">
     <label class="settings-form__label" for="disable-images-animation">
         <i class="material-icons">photo</i>
-        <span>{{'DISABLE_THUMBNAILS_FIT' | translate}}</span>
+        <span>Disable thumbnails</span>
     </label>
     </div>
+
     <div class="setting-item">
         <input type="checkbox" class="settings-form__checkbox" id="crop-description"
                [(ngModel)]="settings.croppedDescription"
@@ -42,7 +53,7 @@
             <i class="material-icons">
                 line_weight
                 </i>
-            <span>{{'CROP_DESCRIPTION_AFTER_SECOND_LINE' | translate}}</span>
+            <span>Crop descriptions</span>
         </label>
       </div>
     </div>

@@ -13,21 +13,21 @@ import { trigger, transition, style, animate } from '@angular/animations';
   styleUrls: ['./app.component.scss'],
   animations: [
     trigger(
-      'enterAnimation', 
+      'enterAnimation',
       [
         transition(
-          ':enter', 
+          ':enter',
           [
             style({ opacity: 0, transform: 'translateX(-100%)' }),
-            animate('0.3s ease-out', 
+            animate('0.3s ease-out',
                     style({opacity: 1, transform: 'translateX(0%)' }))
           ]
         ),
         transition(
-          ':leave', 
+          ':leave',
           [
             style({ opacity: 1, transform: 'translateX(0%)' }),
-            animate('0.3s ease-out', 
+            animate('0.3s ease-out',
                     style({opacity: 0, transform: 'translateX(-100%)' }))
           ]
         )
@@ -43,7 +43,6 @@ export class AppComponent implements OnInit {
   page;
   options;
   iframeSrc: string;
-  historyItems: string[] = [];
   detailsAction: any;
   itemsList;
   showIframe = false;
@@ -58,7 +57,8 @@ export class AppComponent implements OnInit {
     gridView: false,
     modalDetails: 0,
     languageMenu: false,
-    showSidenav: true
+    showSidenav: false,
+    historyItems:  []
   };
   parent;
   radioSel: any;
@@ -103,9 +103,9 @@ export class AppComponent implements OnInit {
     });
 
     if (localStorage.getItem('historyItems')) {
-      this.historyItems = JSON.parse(localStorage.getItem('historyItems'));
+      this.settings.historyItems = JSON.parse(localStorage.getItem('historyItems'));
     } else {
-      this.historyItems = [];
+      this.settings.historyItems = [];
     }
 
 
@@ -161,9 +161,10 @@ export class AppComponent implements OnInit {
 
 
   focusOut(name): void {
-    if (!this.historyItems.includes(name) && name !== '') {
-      this.historyItems.push(name);
-      localStorage.setItem('historyItems', JSON.stringify(this.historyItems));
+    const searchText = name.split(' ').join('');
+    if (!this.settings.historyItems.includes(searchText) && searchText !== '') {
+      this.settings.historyItems.push(searchText);
+      localStorage.setItem('historyItems', JSON.stringify(this.settings.historyItems));
     }
   }
 
@@ -233,8 +234,8 @@ export class AppComponent implements OnInit {
   newItem(e) {
     console.log(e);
 
-  } 
-  
+  }
+
   openModal(arr): void {
     if (this.radioSelected === 'value_1') {
       this.modalService.open(arr[0]);

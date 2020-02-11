@@ -15,15 +15,13 @@ export class SidenavComponent implements OnInit {
     console.log(this.settings);
   }
 
-  clearchSearchHistory(): void {
+  clearSearchHistory(): void {
+    this.settings.historyItems = [];
     localStorage.removeItem('historyItems');
   }
 
   chooseActionType() {
-    this.newItemEvent.emit('asd');  
+    this.newItemEvent.emit('asd');
   }
 
- 
-
-  
 }
