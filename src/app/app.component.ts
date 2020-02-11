@@ -58,8 +58,9 @@ export class AppComponent implements OnInit {
     gridView: false,
     modalDetails: 0,
     languageMenu: false,
-    showSidenav: false
+    showSidenav: true
   };
+  parent;
   radioSel: any;
   radioSelected: string;
   radioSelectedString: string;
@@ -181,6 +182,10 @@ export class AppComponent implements OnInit {
     this.darkMode = !this.darkMode;
   }
 
+  showParent() {
+
+  }
+
   getImages(searchText, orientation?) {
     this.images = [];
     this.settings.loading = true;
@@ -227,6 +232,11 @@ export class AppComponent implements OnInit {
     this.settings.ieMode = (match !== -1);
   }
 
+  newItem(e) {
+    console.log(e);
+    
+  } 
+  
   openModal(arr): void {
     if (this.radioSelected === 'value_1') {
       this.modalService.open(arr[0]);
@@ -236,4 +246,5 @@ export class AppComponent implements OnInit {
       this.toggleIframe(arr[1]);
     }
   }
+
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-sidenav',
@@ -7,6 +7,8 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class SidenavComponent implements OnInit {
   @Input() settings: any;
+  @Output() newItemEvent = new EventEmitter();
+
   constructor() { }
 
   ngOnInit(): void {
@@ -17,4 +19,11 @@ export class SidenavComponent implements OnInit {
     localStorage.removeItem('historyItems');
   }
 
+  chooseActionType() {
+    this.newItemEvent.emit('asd');  
+  }
+
+ 
+
+  
 }
