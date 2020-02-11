@@ -521,3 +521,18 @@
     }
   }
 }
+
+.no-results {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  width: 100%;
+
+  svg {
+    width: 25vw;
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 1rem;
+  }
+}

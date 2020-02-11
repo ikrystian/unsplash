@@ -168,6 +168,10 @@ export class AppComponent implements OnInit {
     }
   }
 
+  cleanSearchTerm(text) {
+    return text.split(' ').join('').toLocaleLowerCase();
+  }
+
   onValueChanges(): void {
     this.searchForm.valueChanges.subscribe(val => {
       if (val.searchText) {
