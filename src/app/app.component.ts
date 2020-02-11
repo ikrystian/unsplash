@@ -158,6 +158,8 @@ export class AppComponent implements OnInit {
     this.translate.use(language);
   }
 
+
+
   focusOut(name): void {
     if (!this.historyItems.includes(name) && name !== '') {
       this.historyItems.push(name);
@@ -180,10 +182,6 @@ export class AppComponent implements OnInit {
 
   nightMode(): void {
     this.darkMode = !this.darkMode;
-  }
-
-  showParent() {
-
   }
 
   getImages(searchText, orientation?) {
@@ -214,7 +212,7 @@ export class AppComponent implements OnInit {
     window.scroll(0, 0);
   }
 
-  goToImageWebsite(websiteUrl): void {
+  goToImageWebsite(websiteUrl: string): void {
     window.location.href = websiteUrl;
   }
 
@@ -234,7 +232,7 @@ export class AppComponent implements OnInit {
 
   newItem(e) {
     console.log(e);
-    
+
   } 
   
   openModal(arr): void {

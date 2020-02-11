@@ -14,23 +14,36 @@
             Clear search history
         </button>
 
-        <button class="sidebar__action" (click)="chooseActionType()">
+        <!-- <button class="sidebar__action" (click)="chooseActionType()">
             <i class="material-icons">sent</i>
             EMMIT 
-        </button>
+        </button> -->
 
-        <input class="settings-form__checkbox" type="checkbox" id="disable-images-animation"
-               [(ngModel)]="settings.disableImages"
-               [ngModelOptions]="{standalone: true}">
-        <label class="settings-form__label" for="disable-images-animation">{{'DISABLE_THUMBNAILS_FIT' | translate}}</label>
-      </div>
-      <div class="settings-form__group">
-        <input type="checkbox" class="settings-form__checkbox" id="crop-description"
-               [(ngModel)]="settings.croppedDescription"
-               [ngModelOptions]="{standalone: true}">
-        <label class="settings-form__label" for="crop-description">{{'CROP_DESCRIPTION_AFTER_SECOND_LINE' | translate}}</label>
-      </div>
+    </div>
 
 </div>
 
+<div class="sttings-checkboxes">
+
+    <div class="setting-item">
+    <input class="settings-form__checkbox" type="checkbox" id="disable-images-animation"
+           [(ngModel)]="settings.disableImages"
+           [ngModelOptions]="{standalone: true}">
+    <label class="settings-form__label" for="disable-images-animation">
+        <i class="material-icons">photo</i>
+        <span>{{'DISABLE_THUMBNAILS_FIT' | translate}}</span>
+    </label>
+    </div>
+    <div class="setting-item">
+        <input type="checkbox" class="settings-form__checkbox" id="crop-description"
+               [(ngModel)]="settings.croppedDescription"
+               [ngModelOptions]="{standalone: true}">
+        <label class="settings-form__label" for="crop-description">
+            <i class="material-icons">
+                line_weight
+                </i>
+            <span>{{'CROP_DESCRIPTION_AFTER_SECOND_LINE' | translate}}</span>
+        </label>
+      </div>
+    </div>
 </aside>

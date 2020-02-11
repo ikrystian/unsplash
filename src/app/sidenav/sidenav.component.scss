@@ -54,3 +54,45 @@
         }
     }
 }
+
+.sttings-checkboxes {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 0.5rem;
+    margin: 0.5rem;
+}
+
+.setting-item {
+
+    input {
+        display: none;
+
+        &:checked + label {
+            background-color: var(--primary-color);
+            color: #fff;
+        }
+    }
+
+    label {
+        width: 100%;
+        height: 120px;
+        padding: 0.5rem;
+        background-color: #dedede;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+        cursor: pointer;
+        font-size: 0.75em;
+        border: 1px solid transparent;
+
+        &:hover {
+            border-color: var(--primary-color);
+        }
+    }
+
+    .material-icons {
+        font-size: 2em;
+        @include gradient-overlay();
+    }
+}
