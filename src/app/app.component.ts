@@ -138,7 +138,6 @@ export class AppComponent implements OnInit {
     this.getSelecteditem();
   }
 
-
   changeFormValue(name, e) {
     e.preventDefault();
     this.settings.showHistory = false;
@@ -157,8 +156,6 @@ export class AppComponent implements OnInit {
     this.settings.languageMenu = false;
     this.translate.use(language);
   }
-
-
 
   focusOut(name): void {
     const searchText = name.split(' ').join('');
